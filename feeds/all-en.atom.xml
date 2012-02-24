@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/all-en.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com</id><updated>2012-02-20T00:00:00+08:00</updated><entry><title>Blogging with Pelican and GitHub</title><link href="http://www.martinbrochhaus.com/2012/02/pelican.html" rel="alternate"></link><updated>2012-02-20T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>http://www.martinbrochhaus.com/2012/02/pelican.html</id><summary type="html">&lt;p&gt;While it took me indeed just four lines of code and thirty minutes to setup the
+first version of this blog, I couldn't resist to geek over it for a few more
+hours and create a nice and clean approach to publishing this blog with
+&lt;a href="https://github.com/fabric/fabric"&gt;Fabric&lt;/a&gt;,
+&lt;a href="https://github.com/ametaireau/pelican"&gt;Pelican&lt;/a&gt; and
+&lt;a href="http://github.com"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;What to expect&lt;/h1&gt;
+&lt;p&gt;When you follow these instructions, you can expect the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A simple static blog website with a simple yet beautiful theme.&lt;/li&gt;
+&lt;li&gt;Possibility to change any aspect of the site as you wish.&lt;/li&gt;
+&lt;li&gt;Writing your blog posts in the editor of your choice with
+  &lt;a href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;All your content is under version control on GitHub. This means that people
+  can send you pull requests and suggest improvements to your posts, which is
+  just awesome.&lt;/li&gt;
+&lt;li&gt;Publishing your posts by simply calling &lt;code&gt;fab publish:'Commit message'&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Free hosting on GitHub. I guess you don't need to worry to make it to the
+  front page of &lt;a href="http://news.ycombinator.com/"&gt;Hacker News&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I should mention that Pelican is a Python project and therefore it wouldn't
+hurt if you knew a bit about Pyhton. I will assume basic Python knowledge here.
+Let's get started:&lt;/p&gt;
+&lt;h1&gt;Activate GitHub Pages&lt;/h1&gt;
+&lt;p&gt;Just create a new repository called &lt;code&gt;username.github.com&lt;/code&gt;. Whatever you place
+in here will be served at &lt;code&gt;http://username.github.com&lt;/code&gt;. For more information
+please see the &lt;a href="http://pages.github.com/"&gt;GitHub Pages Documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;Setup your repository&lt;/h1&gt;
+&lt;p&gt;First create a folder on your disk for the new project:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;mkdir &lt;span class="nv"&gt;$HOME&lt;/span&gt;/Projects/myblog
+&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/Projects/myblog
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next setup your &lt;code&gt;source&lt;/code&gt; folder. This is the folder where you will write your
+articles and call pelican to generate your static html output:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;mkdir &lt;span class="nb"&gt;source&lt;/span&gt;
+&lt;span class="nb"&gt;cd source&lt;/span&gt;
+
+&lt;span class="c"&gt;# We will steal some files from my own repo here:&lt;/span&gt;
+wget https://github.com/mbrochh/mbrochh.github.com/raw/master/source/requirements.txt
+wget https://github.com/mbrochh/mbrochh.github.com/raw/master/source/fabfile.py
+wget https://github.com/mbrochh/mbrochh.github.com/raw/master/source/settings.py.sample settings.py
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The sample &lt;code&gt;settings.py&lt;/code&gt; you just got from my own repo will need some changes
+now. Have a look at it and edit it so that it fits your needs.&lt;/p&gt;
+&lt;h1&gt;Setup your virtualenv&lt;/h1&gt;
+&lt;p&gt;If you have never used virtualenv and virtualenvwrapper before, now is the
+time to learn about it. Usually this is what you need to do to install it:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo easy_install pip
+sudo pip install virtualenv
+sudo pip install virtualenvwrapper
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;WORKON_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;~/Envs
+&lt;span class="nb"&gt;source&lt;/span&gt; /usr/local/bin/virtualenvwrapper.sh
+&lt;span class="c"&gt;# also add export WORKON_HOME=~/Envs to your .bashrc file&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We will use virtualenv to install fabric and pelican:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;mkvirtualenv -p python2.7 blog
+workon blog
+pip install -r requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Create your first post&lt;/h1&gt;
+&lt;p&gt;Now is the time to create your first post:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# make sure to be in the source/ folder&lt;/span&gt;
+mkdir -p posts/2012/02/  &lt;span class="c"&gt;# insert appropriate year and month here&lt;/span&gt;
+&lt;span class="nb"&gt;cd &lt;/span&gt;posts/2012/02/
+touch hello-world.md
+nano hello-world.md
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To learn more about how to write your articles with Markdown or
+reStructuredText for Pelican, have a look at
+&lt;a href="http://pelican.notmyidea.org/en/latest/getting_started.html#writing-articles-using-pelican"&gt;writing articles using pelican&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Your article should look similar to this:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;Date: 2012-02-20
+Title: Hello world
+Category: Blog
+Tags: blogging, test
+
+Lorem ipsum
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I like to create meaningful commit messages for the edits of my &lt;code&gt;.md&lt;/code&gt; files and
+separate them from the changes that the Pelican output generates, therefore now
+it is a good time to create a commit:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;git add .
+git commit -am &lt;span class="s2"&gt;&amp;quot;Created my first post.&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Publish your first post&lt;/h1&gt;
+&lt;p&gt;This is the interesting part! You will use Pelican now to generate the output
+for your blog:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# make sure to be in the source/ folder&lt;/span&gt;
+pelican . -o ../ -s settings.py
+git status
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When you run &lt;code&gt;git status&lt;/code&gt; you will see that Pelican generated a whole bunch
+of files in your root directory. Open your &lt;code&gt;index.html&lt;/code&gt; and have a look at
+your new blog.&lt;/p&gt;
+&lt;p&gt;If you see that something went wrong, you might want to destroy the generated
+output:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
+&lt;span class="c1"&gt;# make sure to be in the root folder and be sure that your .md file changes&lt;/span&gt;
+&lt;span class="c1"&gt;# have been committed&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;clean&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now you can edit your &lt;code&gt;.md&lt;/code&gt; files again and generate the output again. If you
+are happy with your output, it is time to publish it:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
+&lt;span class="c1"&gt;# make sure to be in the root folder&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;am&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Pelican output&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Publishing with fabric&lt;/h1&gt;
+&lt;p&gt;As you have seen, the workflow of editing your posts is always the same. First
+you edit your &lt;code&gt;.md&lt;/code&gt; files, next you commit your changes and give a meaningful
+commit message and at last you generate the output and commit it with a
+standard commit message. Finally you push to Github which will make your
+changes visible.&lt;/p&gt;
+&lt;p&gt;To make this workflow easier, I have created a little Fabric script. Now you
+can just edit your &lt;code&gt;.md&lt;/code&gt; files and once you are done, call Fabric:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;fab publish:&lt;span class="s1"&gt;&amp;#39;My commit message&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Setting up a custom domain&lt;/h1&gt;
+&lt;p&gt;As if all this isn't awesome enough, GitHub makes it really easy to create
+custom domains for your GitHub page. All you need is to place a file called
+&lt;code&gt;CNAME&lt;/code&gt; in the root of your project and add the following content:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;yourdomain.com
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then point the A record of your domain to the IP address of GitHub. For more
+information have a look at the instructions about
+&lt;a href="http://pages.github.com/#custom_domains"&gt;custom domains on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;How to embed images?&lt;/h1&gt;
+&lt;p&gt;If you need to embed images, you can just add them to the folder
+&lt;code&gt;source/images/&lt;/code&gt; and link to them in your &lt;code&gt;.md&lt;/code&gt; files like so:
+&lt;code&gt;![Alt text](./static/images/yourimage.png)&lt;/code&gt;.&lt;/p&gt;
+&lt;h1&gt;Thanks!&lt;/h1&gt;
+&lt;p&gt;That's it. I hope I didn't forget anything. I would like to thank
+&lt;a href="https://twitter.com/ametaireau"&gt;Alexis Metaireau&lt;/a&gt; for the great work on
+Pelican. There is a small and friendly group sitting at #pelican on Freenode
+and while I was writing this post, I submitted a pull request to Pelican which
+got merged almost immediately. The project is really worth a closer look!&lt;/p&gt;</summary><category term="blogging"></category><category term="python"></category></entry><entry><title>My next approach to blogging. Again.</title><link href="http://www.martinbrochhaus.com/2012/02/blogging.html" rel="alternate"></link><updated>2012-02-19T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>http://www.martinbrochhaus.com/2012/02/blogging.html</id><summary type="html">&lt;p&gt;I'm a netizen since 1996 or so and I think I have accounts for all major
+blogging services that ever popped into existence. Yet I'm quite sure that I
+have never managed to publish stuff on a regular basis or even build an
+audience. This is a shame. If you know tricks to overcome this laziness, please
+let me know in the comments!&lt;/p&gt;
+&lt;p&gt;I think there are two reasons for this:&lt;/p&gt;
+&lt;h1&gt;1. I suck at writing&lt;/h1&gt;
+&lt;p&gt;Writing meaningful content feels like a chore to me. One problem is that I am
+not a native English speaker yet for the topics I would like to write about I
+expect an English speaking audience. I guess this is just a matter of
+training and self growth, so this should be a problem that can be overcome.&lt;/p&gt;
+&lt;h1&gt;2. Technology moves too fast&lt;/h1&gt;
+&lt;p&gt;In the past I have created numerous accounts at worpress.com, blogger.com,
+tumblr.com. While setting up those blogs is a piece of cake, I always felt
+uneasy about locking-in all this content into one service. Yes, yes, there
+are probably export and import tools that should help you to get your data in
+and out of all those blogging platforms but I am quite sure that migrating a
+whole blog from one service to the other will result in major pain. And
+let's face it. Every year or so a new hot service (like tumblr) pops up and
+makes you constantly wonder if you should move on.&lt;/p&gt;
+&lt;p&gt;So I did the next obvious thing and hosted my own Wordpress instances on
+Webfaction servers. While they run smoothly and fast most of the time I am
+pretty sure that I would never be able to survive a slashdot effect. Besides
+that, I know enough about software to not be so naive to think that you are
+done when you ran the installer of Wordpress and see the initial setup. I
+would fix various security issues like changing the prefix for the database
+tables, the URL for the admin login, the name of the admin user and whatnot.
+I would spend a day or two on optimizing my Apache settings and the .htaccess
+file, even more on finding and optimizing a good theme and on installing
+more than a dozen plugins. Instead of writing articles I would constantly
+come back and make small improvements to the setup here and there and make
+sure that everything stays up to date.&lt;/p&gt;
+&lt;p&gt;And then, just when you think that you have the perfect setup, smartphones
+and tablets take over the world and you realize that you need to get a new
+theme that is optimized for mobile agents and the whole trouble starts over
+again.&lt;/p&gt;
+&lt;p&gt;Hosting Wordpress is just painful and definitely not fun. When you do
+something in your spare time it should always be fun.&lt;/p&gt;
+&lt;h1&gt;What I want&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;I want to be able to write my articles in Vim&lt;/li&gt;
+&lt;li&gt;I want to write my posts in Markdown.&lt;/li&gt;
+&lt;li&gt;I want to be able to put my articles under version control.&lt;/li&gt;
+&lt;li&gt;I don't want to think about hosting and scaling.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A few weeks ago I discovered two services, &lt;a href="http://www.calepin.co"&gt;calepin.co&lt;/a&gt;
+and &lt;a href="http://www.scriptogr.am"&gt;scriptogr.am&lt;/a&gt; which looked very promising and
+very close to my needs. Unfortunately the creator of calepin.co has some
+strange opinions about the future of publishing and therefore keeps the service
+way too minimalistic. While scriptogr.am looks like a very decent service, the
+only problem here is that you have to host your stuff on Dropbox. While this
+somehow meets my requirements of version control, I would prefer &lt;em&gt;real&lt;/em&gt; version
+control on Github.&lt;/p&gt;
+&lt;p&gt;Thankfully out of a sudden &lt;a href="https://twitter.com/#!/pydanny/status/171102804574875648"&gt;Daniel
+Greenfeld&lt;/a&gt; posted
+about his Pelican powered blog on Github. Luckily he included a first blog post
+which describes how to setup a similar blog with just four simple lines of
+code.&lt;/p&gt;
+&lt;p&gt;I was hooked. So I set up this blog in an hour or so. Let's see if I can
+finally meet my goal to publish meaningful content on a regular basis :)&lt;/p&gt;</summary><category term="blogging"></category><category term="python"></category></entry></feed>
