@@ -40,3 +40,7 @@ status: draft
 
     ::text
     export PS1='\w\[\033[31m\]$(__git_ps1 "(%s)") \[\033[01;34m\]$\[\033[00m\] '
+
+# Vimbits
+
+# Jump to .git root
