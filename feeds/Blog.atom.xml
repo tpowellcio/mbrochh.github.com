@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/Blog.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com</id><updated>2012-02-20T00:00:00+08:00</updated><entry><title>Blogging with Pelican and GitHub</title><link href="http://www.martinbrochhaus.com/2012/02/pelican.html" rel="alternate"></link><updated>2012-02-20T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>http://www.martinbrochhaus.com/2012/02/pelican.html</id><summary type="html">&lt;p&gt;While it took me indeed just four lines of code and thirty minutes to setup the
+<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/Blog.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com</id><updated>2012-02-29T00:00:00+08:00</updated><entry><title>Snippets of February 2012</title><link href="http://www.martinbrochhaus.com/2012/02/snippets-201202.html" rel="alternate"></link><updated>2012-02-29T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>http://www.martinbrochhaus.com/2012/02/snippets-201202.html</id><summary type="html">&lt;p&gt;Naturally, as a developer I learn new awesome things almost every day.
+I thought it might be a good idea to keep track of all those small Ah-Ha!
+moments and release a snippets post every month.&lt;/p&gt;
+&lt;h1&gt;Global .gitignore&lt;/h1&gt;
+&lt;p&gt;When I wanted to contribute code to
+&lt;a href="https://github.com/ametaireau/pelican"&gt;Pelican&lt;/a&gt; I naively added
+&lt;code&gt;.ropeproject&lt;/code&gt; to that repo's &lt;code&gt;.gitignore&lt;/code&gt; file. As a result, I was told in
+the codereview that I should not pollute other project's &lt;code&gt;.gitignore&lt;/code&gt; files
+with unrelated stuff but rather use a global &lt;code&gt;.gitignore&lt;/code&gt; file instead. How
+could I not know about this until now?!?&lt;/p&gt;
+&lt;p&gt;Just add the following code to your .gitconfig:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[core]
+excludesfile = $HOME/.gitignore_global
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then create the &lt;code&gt;.gitignore_global&lt;/code&gt; file and put stuff inside that your
+editors of choice might produce.&lt;/p&gt;
+&lt;h1&gt;Better Omni Completion in Vim&lt;/h1&gt;
+&lt;p&gt;So I finally got the &lt;code&gt;hjkl&lt;/code&gt; keys for movement into my muscle memory. Now it
+annoys me that I have to use the arrow keys when I want to browse through the
+various options that the code completion suggests. There is a vimbit for that:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;set completeopt=longest,menuone
+
+&amp;quot; found here: http://stackoverflow.com/a/2170800/70778
+function! OmniPopup(action)
+    if pumvisible()
+        if a:action == &amp;#39;j&amp;#39;
+            return &amp;quot;\&amp;lt;C-N&amp;gt;&amp;quot;
+        elseif a:action == &amp;#39;k&amp;#39;
+            return &amp;quot;\&amp;lt;C-P&amp;gt;&amp;quot;
+        endif
+    endif
+    return a:action
+endfunction
+inoremap &amp;lt;silent&amp;gt;&amp;lt;C-j&amp;gt; &amp;lt;C-R&amp;gt;=OmniPopup(&amp;#39;j&amp;#39;)&amp;lt;CR&amp;gt;
+inoremap &amp;lt;silent&amp;gt;&amp;lt;C-k&amp;gt; &amp;lt;C-R&amp;gt;=OmniPopup(&amp;#39;k&amp;#39;)&amp;lt;CR&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Vimbits&lt;/h1&gt;
+&lt;p&gt;Speaking of vimbits: &lt;a href="http://vimbits.com/"&gt;vimbits.com&lt;/a&gt; recently flew through
+my Twitter stream. I spent an hour there. As a result my &lt;code&gt;.vimrc&lt;/code&gt; just
+exploded with all kinds of awesomeness.&lt;/p&gt;
+&lt;h1&gt;Showing git branch in prompt&lt;/h1&gt;
+&lt;p&gt;I thought that I was typing &lt;code&gt;git branch&lt;/code&gt; way too often (actually I type
+&lt;code&gt;git br&lt;/code&gt;, of course).&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;brew install git
+
+::text
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PS1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;\w\[\033[31m\]$(__git_ps1 &amp;quot;(%s)&amp;quot;) \[\033[01;34m\]$\[\033[00m\] &amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Hint: In order for this to work, you need to install git via Homebrew on OSX.&lt;/p&gt;</summary><category term="git"></category><category term="python"></category><category term="vim"></category></entry><entry><title>Blogging with Pelican and GitHub</title><link href="http://www.martinbrochhaus.com/2012/02/pelican.html" rel="alternate"></link><updated>2012-02-20T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>http://www.martinbrochhaus.com/2012/02/pelican.html</id><summary type="html">&lt;p&gt;While it took me indeed just four lines of code and thirty minutes to setup the
 first version of this blog, I couldn't resist to geek over it for a few more
 hours and create a nice and clean approach to publishing this blog with
 &lt;a href="https://github.com/fabric/fabric"&gt;Fabric&lt;/a&gt;,

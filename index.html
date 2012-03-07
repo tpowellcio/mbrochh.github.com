@@ -65,8 +65,100 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./2012/02/pelican.html">Blogging with Pelican and GitHub</a></h1> 
+                    <h1 class="entry-title"><a href="./2012/02/snippets-201202.html">Snippets of February 2012</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-02-29T00:00:00">
+                Wed 29 February 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/Martin Brochhaus.html">Martin Brochhaus</a>
+        </address>
+        
+<p>In <a href="./category/Blog.html">Blog</a>. </p>
+<p>tags: <a href="./tag/git.html">git</a><a href="./tag/python.html">python</a><a href="./tag/vim.html">vim</a></p>
+
+
+</footer><!-- /.post-info --><p>Naturally, as a developer I learn new awesome things almost every day.
+I thought it might be a good idea to keep track of all those small Ah-Ha!
+moments and release a snippets post every month.</p>
+<h1>Global .gitignore</h1>
+<p>When I wanted to contribute code to
+<a href="https://github.com/ametaireau/pelican">Pelican</a> I naively added
+<code>.ropeproject</code> to that repo's <code>.gitignore</code> file. As a result, I was told in
+the codereview that I should not pollute other project's <code>.gitignore</code> files
+with unrelated stuff but rather use a global <code>.gitignore</code> file instead. How
+could I not know about this until now?!?</p>
+<p>Just add the following code to your .gitconfig:</p>
+<div class="codehilite"><pre>[core]
+excludesfile = $HOME/.gitignore_global
+</pre></div>
+
+
+<p>Then create the <code>.gitignore_global</code> file and put stuff inside that your
+editors of choice might produce.</p>
+<h1>Better Omni Completion in Vim</h1>
+<p>So I finally got the <code>hjkl</code> keys for movement into my muscle memory. Now it
+annoys me that I have to use the arrow keys when I want to browse through the
+various options that the code completion suggests. There is a vimbit for that:</p>
+<div class="codehilite"><pre>set completeopt=longest,menuone
+
+&quot; found here: http://stackoverflow.com/a/2170800/70778
+function! OmniPopup(action)
+    if pumvisible()
+        if a:action == &#39;j&#39;
+            return &quot;\&lt;C-N&gt;&quot;
+        elseif a:action == &#39;k&#39;
+            return &quot;\&lt;C-P&gt;&quot;
+        endif
+    endif
+    return a:action
+endfunction
+inoremap &lt;silent&gt;&lt;C-j&gt; &lt;C-R&gt;=OmniPopup(&#39;j&#39;)&lt;CR&gt;
+inoremap &lt;silent&gt;&lt;C-k&gt; &lt;C-R&gt;=OmniPopup(&#39;k&#39;)&lt;CR&gt;
+</pre></div>
+
+
+<h1>Vimbits</h1>
+<p>Speaking of vimbits: <a href="http://vimbits.com/">vimbits.com</a> recently flew through
+my Twitter stream. I spent an hour there. As a result my <code>.vimrc</code> just
+exploded with all kinds of awesomeness.</p>
+<h1>Showing git branch in prompt</h1>
+<p>I thought that I was typing <code>git branch</code> way too often (actually I type
+<code>git br</code>, of course).</p>
+<div class="codehilite"><pre>brew install git
+
+::text
+<span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\w\[\033[31m\]$(__git_ps1 &quot;(%s)&quot;) \[\033[01;34m\]$\[\033[00m\] &#39;</span>
+</pre></div>
+
+
+<p>Hint: In order for this to work, you need to install git via Homebrew on OSX.</p><p>There are <a href="./2012/02/snippets-201202.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                        <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href="./2012/02/pelican.html" rel="bookmark" title="Permalink to Blogging with Pelican and GitHub">Blogging with Pelican and GitHub</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-02-20T00:00:00">
                 Mon 20 February 2012
         </abbr>
@@ -80,178 +172,17 @@
 <p>tags: <a href="./tag/blogging.html">blogging</a><a href="./tag/python.html">python</a></p>
 
 
-</footer><!-- /.post-info --><p>While it took me indeed just four lines of code and thirty minutes to setup the
+</footer><!-- /.post-info -->
+                <p>While it took me indeed just four lines of code and thirty minutes to setup the
 first version of this blog, I couldn't resist to geek over it for a few more
 hours and create a nice and clean approach to publishing this blog with
 <a href="https://github.com/fabric/fabric">Fabric</a>,
 <a href="https://github.com/ametaireau/pelican">Pelican</a> and
-<a href="http://github.com">GitHub</a>.</p>
-<h1>What to expect</h1>
-<p>When you follow these instructions, you can expect the following:</p>
-<ul>
-<li>A simple static blog website with a simple yet beautiful theme.</li>
-<li>Possibility to change any aspect of the site as you wish.</li>
-<li>Writing your blog posts in the editor of your choice with
-  <a href="http://daringfireball.net/projects/markdown/">Markdown</a>.</li>
-<li>All your content is under version control on GitHub. This means that people
-  can send you pull requests and suggest improvements to your posts, which is
-  just awesome.</li>
-<li>Publishing your posts by simply calling <code>fab publish:'Commit message'</code>.</li>
-<li>Free hosting on GitHub. I guess you don't need to worry to make it to the
-  front page of <a href="http://news.ycombinator.com/">Hacker News</a>.</li>
-</ul>
-<p>I should mention that Pelican is a Python project and therefore it wouldn't
-hurt if you knew a bit about Pyhton. I will assume basic Python knowledge here.
-Let's get started:</p>
-<h1>Activate GitHub Pages</h1>
-<p>Just create a new repository called <code>username.github.com</code>. Whatever you place
-in here will be served at <code>http://username.github.com</code>. For more information
-please see the <a href="http://pages.github.com/">GitHub Pages Documentation</a>.</p>
-<h1>Setup your repository</h1>
-<p>First create a folder on your disk for the new project:</p>
-<div class="codehilite"><pre>mkdir <span class="nv">$HOME</span>/Projects/myblog
-<span class="nb">cd</span> <span class="nv">$HOME</span>/Projects/myblog
-</pre></div>
-
-
-<p>Next setup your <code>source</code> folder. This is the folder where you will write your
-articles and call pelican to generate your static html output:</p>
-<div class="codehilite"><pre>mkdir <span class="nb">source</span>
-<span class="nb">cd source</span>
-
-<span class="c"># We will steal some files from my own repo here:</span>
-wget https://github.com/mbrochh/mbrochh.github.com/raw/master/source/requirements.txt
-wget https://github.com/mbrochh/mbrochh.github.com/raw/master/source/fabfile.py
-wget https://github.com/mbrochh/mbrochh.github.com/raw/master/source/settings.py.sample settings.py
-</pre></div>
-
-
-<p>The sample <code>settings.py</code> you just got from my own repo will need some changes
-now. Have a look at it and edit it so that it fits your needs.</p>
-<h1>Setup your virtualenv</h1>
-<p>If you have never used virtualenv and virtualenvwrapper before, now is the
-time to learn about it. Usually this is what you need to do to install it:</p>
-<div class="codehilite"><pre>sudo easy_install pip
-sudo pip install virtualenv
-sudo pip install virtualenvwrapper
-<span class="nb">export </span><span class="nv">WORKON_HOME</span><span class="o">=</span>~/Envs
-<span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
-<span class="c"># also add export WORKON_HOME=~/Envs to your .bashrc file</span>
-</pre></div>
-
-
-<p>We will use virtualenv to install fabric and pelican:</p>
-<div class="codehilite"><pre>mkvirtualenv -p python2.7 blog
-workon blog
-pip install -r requirements.txt
-</pre></div>
-
-
-<h1>Create your first post</h1>
-<p>Now is the time to create your first post:</p>
-<div class="codehilite"><pre><span class="c"># make sure to be in the source/ folder</span>
-mkdir -p posts/2012/02/  <span class="c"># insert appropriate year and month here</span>
-<span class="nb">cd </span>posts/2012/02/
-touch hello-world.md
-nano hello-world.md
-</pre></div>
-
-
-<p>To learn more about how to write your articles with Markdown or
-reStructuredText for Pelican, have a look at
-<a href="http://pelican.notmyidea.org/en/latest/getting_started.html#writing-articles-using-pelican">writing articles using pelican</a>.</p>
-<p>Your article should look similar to this:</p>
-<div class="codehilite"><pre>Date: 2012-02-20
-Title: Hello world
-Category: Blog
-Tags: blogging, test
-
-Lorem ipsum
-</pre></div>
-
-
-<p>I like to create meaningful commit messages for the edits of my <code>.md</code> files and
-separate them from the changes that the Pelican output generates, therefore now
-it is a good time to create a commit:</p>
-<div class="codehilite"><pre>git add .
-git commit -am <span class="s2">&quot;Created my first post.&quot;</span>
-</pre></div>
-
-
-<h1>Publish your first post</h1>
-<p>This is the interesting part! You will use Pelican now to generate the output
-for your blog:</p>
-<div class="codehilite"><pre><span class="c"># make sure to be in the source/ folder</span>
-pelican . -o ../ -s settings.py
-git status
-</pre></div>
-
-
-<p>When you run <code>git status</code> you will see that Pelican generated a whole bunch
-of files in your root directory. Open your <code>index.html</code> and have a look at
-your new blog.</p>
-<p>If you see that something went wrong, you might want to destroy the generated
-output:</p>
-<div class="codehilite"><pre><span class="p">:</span><span class="n">sh</span>
-<span class="c1"># make sure to be in the root folder and be sure that your .md file changes</span>
-<span class="c1"># have been committed</span>
-<span class="n">git</span> <span class="n">clean</span> <span class="o">-</span><span class="n">df</span>
-</pre></div>
-
-
-<p>Now you can edit your <code>.md</code> files again and generate the output again. If you
-are happy with your output, it is time to publish it:</p>
-<div class="codehilite"><pre><span class="p">:</span><span class="n">sh</span>
-<span class="c1"># make sure to be in the root folder</span>
-<span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">am</span> <span class="s">&quot;Pelican output&quot;</span>
-<span class="n">git</span> <span class="nb">push</span> <span class="n">origin</span> <span class="n">master</span>
-</pre></div>
-
-
-<h1>Publishing with fabric</h1>
-<p>As you have seen, the workflow of editing your posts is always the same. First
-you edit your <code>.md</code> files, next you commit your changes and give a meaningful
-commit message and at last you generate the output and commit it with a
-standard commit message. Finally you push to Github which will make your
-changes visible.</p>
-<p>To make this workflow easier, I have created a little Fabric script. Now you
-can just edit your <code>.md</code> files and once you are done, call Fabric:</p>
-<div class="codehilite"><pre>fab publish:<span class="s1">&#39;My commit message&#39;</span>
-</pre></div>
-
-
-<h1>Setting up a custom domain</h1>
-<p>As if all this isn't awesome enough, GitHub makes it really easy to create
-custom domains for your GitHub page. All you need is to place a file called
-<code>CNAME</code> in the root of your project and add the following content:</p>
-<div class="codehilite"><pre>yourdomain.com
-</pre></div>
-
-
-<p>Then point the A record of your domain to the IP address of GitHub. For more
-information have a look at the instructions about
-<a href="http://pages.github.com/#custom_domains">custom domains on GitHub</a>.</p>
-<h1>How to embed images?</h1>
-<p>If you need to embed images, you can just add them to the folder
-<code>source/images/</code> and link to them in your <code>.md</code> files like so:
-<code>![Alt text](./static/images/yourimage.png)</code>.</p>
-<h1>Thanks!</h1>
-<p>That's it. I hope I didn't forget anything. I would like to thank
-<a href="https://twitter.com/ametaireau">Alexis Metaireau</a> for the great work on
-Pelican. There is a small and friendly group sitting at #pelican on Freenode
-and while I was writing this post, I submitted a pull request to Pelican which
-got merged almost immediately. The project is really worth a closer look!</p><p>There are <a href="./2012/02/pelican.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                        <ol id="posts-list" class="hfeed">
-            
-        
+<a href="http://github.com">GitHub ...</a></p>
+                <a class="readmore" href="./2012/02/pelican.html">read more</a>
+                <p>There are <a href="./2012/02/pelican.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
