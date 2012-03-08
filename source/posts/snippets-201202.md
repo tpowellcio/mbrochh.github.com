@@ -60,9 +60,6 @@ exploded with all kinds of awesomeness.
 I thought that I was typing ``git branch`` way too often (actually I type
 ``git br``, of course).
 
-    ::sh
-    brew install git
-
     ::text
     export PS1='\w\[\033[31m\]$(__git_ps1 "(%s)") \[\033[01;34m\]$\[\033[00m\] '
 
