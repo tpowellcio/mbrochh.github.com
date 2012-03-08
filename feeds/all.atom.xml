@@ -46,10 +46,7 @@ exploded with all kinds of awesomeness.&lt;/p&gt;
 &lt;h1&gt;Showing git branch in prompt&lt;/h1&gt;
 &lt;p&gt;I thought that I was typing &lt;code&gt;git branch&lt;/code&gt; way too often (actually I type
 &lt;code&gt;git br&lt;/code&gt;, of course).&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;brew install git
-
-::text
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PS1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;\w\[\033[31m\]$(__git_ps1 &amp;quot;(%s)&amp;quot;) \[\033[01;34m\]$\[\033[00m\] &amp;#39;&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;export PS1=&amp;#39;\w\[\033[31m\]$(__git_ps1 &amp;quot;(%s)&amp;quot;) \[\033[01;34m\]$\[\033[00m\] &amp;#39;
 &lt;/pre&gt;&lt;/div&gt;
 
 
