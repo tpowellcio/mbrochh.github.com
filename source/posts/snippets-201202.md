@@ -2,7 +2,7 @@ Date: 2012-02-29
 Title: Snippets of February 2012
 Slug: snippets-201202
 Category: Blog
-Tags: git, python, vim
+Tags: git, python, vim, snippets
 
 Naturally, as a developer I learn new awesome things almost every day.
 I thought it might be a good idea to keep track of all those small Ah-Ha!
