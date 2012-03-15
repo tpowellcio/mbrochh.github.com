@@ -41,3 +41,35 @@ In ~/.screenrc
 
     ::text
     caption always '%c:%s'
+
+# Replacing a field on a form
+
+Let's assume:
+
+    ::py
+    class FooBar(models.Model):
+        foo = models.IntegerField()
+        bar = models.IntegerField()
+
+    class FormBar(forms.ModelForm):
+        def __init__(self, *args, **kwargs):
+            super(FormBar, self).__init__(*args, **kwargs)
+            self.fields['bar'] = MyCustomIntegerField()
+
+    class FormFooBar(FormBar):
+        class Meta:
+            model = FooBar
+
+Usually we would instantiate the form ``FormFooBar`` which gets all it's fields
+created by the model. However, in the superclass, ``FormBar`` we would like
+to replace the automatically created field ``bar`` by a custom implementation
+of the IntegerField which would display a different value than the one that
+is actually saved on the instance.
+
+The code above would still show the value from the instance. It took me quite
+some time to find out that we also need to add this line after:
+
+    ::py
+    ...
+    self.fields['bar'] = MyCustomIntegerField()
+    self.initial['bar'] = my_custom_calue
