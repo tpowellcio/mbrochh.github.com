@@ -65,10 +65,10 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./2012/02/snippets-201202.html">Snippets of February 2012</a></h1> 
+                    <h1 class="entry-title"><a href="./2012/03/myisam-vs-innodb.md.html">MySQL InnoDB vs. MyISAM and the foreign key constraint of death</a></h1> 
                     <footer class="post-info">
-        <abbr class="published" title="2012-02-29T00:00:00">
-                Wed 29 February 2012
+        <abbr class="published" title="2012-03-18T00:00:00">
+                Sun 18 March 2012
         </abbr>
 
         
@@ -77,61 +77,58 @@
         </address>
         
 <p>In <a href="./category/Blog.html">Blog</a>. </p>
-<p>tags: <a href="./tag/git.html">git</a><a href="./tag/python.html">python</a><a href="./tag/vim.html">vim</a></p>
+<p>tags: <a href="./tag/databases.html">databases</a><a href="./tag/mysql.html">mysql</a><a href="./tag/django.html">django</a></p>
 
 
-</footer><!-- /.post-info --><p>Naturally, as a developer I learn new awesome things almost every day.
-I thought it might be a good idea to keep track of all those small Ah-Ha!
-moments and release a snippets post every month.</p>
-<h1>Global .gitignore</h1>
-<p>When I wanted to contribute code to
-<a href="https://github.com/ametaireau/pelican">Pelican</a> I naively added
-<code>.ropeproject</code> to that repo's <code>.gitignore</code> file. As a result, I was told in
-the codereview that I should not pollute other project's <code>.gitignore</code> files
-with unrelated stuff but rather use a global <code>.gitignore</code> file instead. How
-could I not know about this until now?!?</p>
-<p>Just add the following code to your .gitconfig:</p>
-<div class="codehilite"><pre>[core]
-excludesfile = $HOME/.gitignore_global
+</footer><!-- /.post-info --><p>During the last few months I constantly ran into problems with MySQL which
+drove me crazy and I finally decided to use PostgreSQL for all new projects.
+Today I figured out what was going on:</p>
+<p>On my development machine I have MySQL version 5.1.61 installed. Recent
+Webfaction servers however ship with MySQL version 5.5.16. I think, the newer
+version creates new tables with the much better engine InnoDB while my older
+version defaults to MyISAM.</p>
+<p>I was developing a big Django project in a highly agile way during the last
+few months and my workflow looked roughly like this:</p>
+<ul>
+<li>Write tests</li>
+<li>Create fixtures</li>
+<li>Implement feature</li>
+<li>Rebuild database with the new fixtures</li>
+<li>Deploy feature at Webfaction</li>
+<li>Export local database</li>
+<li>Import local database on Webfacion server</li>
+</ul>
+<p>This means for the last few months my customer and me were testing the app with
+testdata only (which looked very close to the real data anyways). However, this
+month the app matured enough so that I stopped importing my local database into
+the Webfaction server. From now on I would create South migrations and deploy
+them as usual.</p>
+<p>Yesterday I created a new app within the project. The model of that app had a
+foreign key to a model of one of the older apps. I'm sure you already know what
+comes now: Because I used to import my local database into the Webfaction
+server for many months, all tables had the old MyISAM engine. When I deployed
+my latest feature last night and ran the South migrations everything worked
+fine but when I tested the app in a browser, I got the foreign key constraint
+error or death.</p>
+<p>So I imported the server's datbase locally and asked some stupid questions in
+the #mysql channel. A friendly user named <code>salle</code> answered within a second
+and I learned about a cool SQL command which I never needed before:</p>
+<div class="codehilite"><pre><span class="k">SHOW</span> <span class="k">TABLE</span> <span class="n">STATUS</span><span class="p">;</span>
 </pre></div>
 
 
-<p>Then create the <code>.gitignore_global</code> file and put stuff inside that your
-editors of choice might produce.</p>
-<h1>Better Omni Completion in Vim</h1>
-<p>So I finally got the <code>hjkl</code> keys for movement into my muscle memory. Now it
-annoys me that I have to use the arrow keys when I want to browse through the
-various options that the code completion suggests. There is a vimbit for that:</p>
-<div class="codehilite"><pre>set completeopt=longest,menuone
-
-&quot; found here: http://stackoverflow.com/a/2170800/70778
-function! OmniPopup(action)
-    if pumvisible()
-        if a:action == &#39;j&#39;
-            return &quot;\&lt;C-N&gt;&quot;
-        elseif a:action == &#39;k&#39;
-            return &quot;\&lt;C-P&gt;&quot;
-        endif
-    endif
-    return a:action
-endfunction
-inoremap &lt;silent&gt;&lt;C-j&gt; &lt;C-R&gt;=OmniPopup(&#39;j&#39;)&lt;CR&gt;
-inoremap &lt;silent&gt;&lt;C-k&gt; &lt;C-R&gt;=OmniPopup(&#39;k&#39;)&lt;CR&gt;
+<p>This shows, among many other informatoin, which engine each of your tables has
+and at the first glance I could see that the newly created tables that came
+with the South migration on the server had a different engine than all the
+rest.</p>
+<p>Another stupid question later I learned that I can convert the tables to the
+other engine by simply executing:</p>
+<div class="codehilite"><pre><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="n">tablename</span><span class="o">&gt;</span> <span class="n">ENGINE</span><span class="o">=&lt;</span><span class="n">engine</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">;</span>
 </pre></div>
 
 
-<h1>Vimbits</h1>
-<p>Speaking of vimbits: <a href="http://vimbits.com/">vimbits.com</a> recently flew through
-my Twitter stream. I spent an hour there. As a result my <code>.vimrc</code> just
-exploded with all kinds of awesomeness.</p>
-<h1>Showing git branch in prompt</h1>
-<p>I thought that I was typing <code>git branch</code> way too often (actually I type
-<code>git br</code>, of course).</p>
-<div class="codehilite"><pre>export PS1=&#39;\w\[\033[31m\]$(__git_ps1 &quot;(%s)&quot;) \[\033[01;34m\]$\[\033[00m\] &#39;
-</pre></div>
-
-
-<p>Hint: In order for this to work, you need to install git via Homebrew on OSX.</p><p>There are <a href="./2012/02/snippets-201202.html#disqus_thread">comments</a>.</p>
+<p>So I converted all MyISAM tables into InnoDB tables and all was good. I should
+definitely update my local MySQL installation...</p><p>There are <a href="./2012/03/myisam-vs-innodb.md.html#disqus_thread">comments</a>.</p>
                 </article>
                 
             </aside><!-- /#featured -->
@@ -142,6 +139,45 @@ exploded with all kinds of awesomeness.</p>
                         <ol id="posts-list" class="hfeed">
             
         
+        
+        
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href="./2012/02/snippets-201202.html" rel="bookmark" title="Permalink to Snippets of February 2012">Snippets of February 2012</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-02-29T00:00:00">
+                Wed 29 February 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/Martin Brochhaus.html">Martin Brochhaus</a>
+        </address>
+        
+<p>In <a href="./category/Blog.html">Blog</a>. </p>
+<p>tags: <a href="./tag/git.html">git</a><a href="./tag/python.html">python</a><a href="./tag/vim.html">vim</a><a href="./tag/snippets.html">snippets</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>Naturally, as a developer I learn new awesome things almost every day.
+I thought it might be a good idea to keep track of all those small Ah-Ha!
+moments and release a snippets post every month.</p>
+<h1 id="global_gitignore">Global .gitignore</h1>
+<p>When I wanted to contribute code to
+<a href="https://github.com/ametaireau/pelican">Pelican</a> I naively added
+<code>.ropeproject ...</code></p>
+                <a class="readmore" href="./2012/02/snippets-201202.html">read more</a>
+                <p>There are <a href="./2012/02/snippets-201202.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         

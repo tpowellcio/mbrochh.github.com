@@ -1,22 +1,50 @@
-THEME = './themes/notmyidea/'
-STATIC_PATHS = ['images', ]
-TIMEZONE = 'Asia/Singapore'
-ARTICLE_PERMALINK_STRUCTURE = '/%Y/%m/'
-DEFAULT_CATEGORY = 'Blog'
-
+# ===============
+# Basic settings
+# ===============
 AUTHOR = 'Martin Brochhaus'
+DEFAULT_CATEGORY = 'Blog'
 SITENAME = 'martinbrochhaus.com'
 SITEURL = 'http://www.martinbrochhaus.com'
+STATIC_PATHS = ['images', ]
+TIMEZONE = 'Asia/Singapore'
 
+
+# =============
+# URL settings
+# =============
+PERMALINK_STRUCTURE = '{date:%Y}/{date:%m}/'
+ARTICLE_URL = '%s{slug}.html' % PERMALINK_STRUCTURE
+ARTICLE_LANG_URL = '%s{slug}-{lang}.html' % PERMALINK_STRUCTURE
+PAGE_URL = '%spages/{slug}.html' % PERMALINK_STRUCTURE
+PAGE_LANG_URL = '%spages/{slug}-{lang}.html' % PERMALINK_STRUCTURE
+ARTICLE_SAVE_AS = '%s{slug}.html' % PERMALINK_STRUCTURE
+ARTICLE_LANG_SAVE_AS = '%s{slug}-{lang}.html' % PERMALINK_STRUCTURE
+PAGE_SAVE_AS = '%spages/{slug}.html' % PERMALINK_STRUCTURE
+PAGE_LANG_SAVE_AS = '%spages/{slug}-{lang}.html' % PERMALINK_STRUCTURE
+
+
+# ===========
+# Pagination
+# ===========
 WITH_PAGINATION = True
 DEFAULT_PAGINATION = 10
+
+
+# =================
+# Ordering content
+# =================
 REVERSE_ARCHIVE_ORDER = True
 
+
+# =================
+# Theming
+# =================
+THEME = './themes/notmyidea/'
+
+DISQUS_SITENAME = 'martinbrochhauscom'
+GITHUB_URL = 'http://github.com/mbrochh/mbrochh.github.com'
+GOOGLE_ANALYTICS = 'UA-1147761-33'
 MENUITEMS = (
     ('Archives', '{0}/archives.html'.format(SITEURL)),
 )
-
-GOOGLE_ANALYTICS = 'UA-1147761-33'
-DISQUS_SITENAME = 'martinbrochhauscom'
-GITHUB_URL = 'http://github.com/mbrochh/mbrochh.github.com'
 TWITTER_USERNAME = 'mbrochh'

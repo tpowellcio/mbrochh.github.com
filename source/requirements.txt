@@ -1,2 +1,2 @@
 fabric
--e git://github.com/ametaireau/pelican.git#pelican
+-e git://github.com/ametaireau/pelican.git#egg=pelican
