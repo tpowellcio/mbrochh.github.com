@@ -76,6 +76,7 @@ some time to find out that we also need to add this line after:
 
 # HG Facepalm
 * http://mercurial.selenic.com/wiki/UpgradeNotes
+* https://github.com/pypa/pip/issues/454
 
 # Great blog posts
 
