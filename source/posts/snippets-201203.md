@@ -74,8 +74,12 @@ some time to find out that we also need to add this line after:
     self.fields['bar'] = MyCustomIntegerField()
     self.initial['bar'] = my_custom_calue
 
+# HG Facepalm
+* http://mercurial.selenic.com/wiki/UpgradeNotes
+
 # Great blog posts
 
 * http://carl.flax.ie/dothingstellpeople.html
 * http://steve-yegge.blogspot.com/2006/09/good-agile-bad-agile_27.html
 * http://www.dailygood.org/view.php?sid=194
+* http://www.stumbleupon.com/su/9IbGnD/zenhabits.net/the-only-guide-to-happiness-youll-ever-need/
