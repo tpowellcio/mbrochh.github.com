@@ -95,6 +95,10 @@ some time to find out that we also need to add this line after:
 
 * run sphinx-apidoc -f -o api ../website/webapps/django/project
 
+# django-cms dumpdata placeholder
+
+* do not name your placeholders '01 content', better '01_content'
+
 
 # Great blog posts
 
