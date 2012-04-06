@@ -78,6 +78,24 @@ some time to find out that we also need to add this line after:
 * http://mercurial.selenic.com/wiki/UpgradeNotes
 * https://github.com/pypa/pip/issues/454
 
+# Django and Sphinx autodoc
+* add the following to conf.py
+
+    ::py
+    sys.path.insert(0, os.path.abspath('../website/webapps/django/'))
+    # setup django
+    import settings
+    from django.core.management import setup_environ
+    setup_environ(settings)
+
+* change this in Makefile
+
+    ::sh
+    SPHINXBUILD   = python $(shell which sphinx-build)
+
+* run sphinx-apidoc -f -o api ../website/webapps/django/project
+
+
 # Great blog posts
 
 * http://carl.flax.ie/dothingstellpeople.html
