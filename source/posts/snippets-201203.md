@@ -11,6 +11,12 @@ moments and release a snippets post every month.
 
 # git aliases
 
+#
+http://jk.gs/git-config.html
+
+    [push]
+        default = upstream
+
 # access django from parallels
 
     ::sh
