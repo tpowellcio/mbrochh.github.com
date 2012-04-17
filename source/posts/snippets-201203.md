@@ -9,6 +9,13 @@ Naturally, as a developer I learn new awesome things almost every day.
 I thought it might be a good idea to keep track of all those small Ah-Ha!
 moments and release a snippets post every month.
 
+# scrolling, copy and paste in screen
+
+* C-A ESC enters copy mode, here I can scroll the real scrollback buffer
+* Space sets first marker, enter copies lines
+* C-A ] pastes text
+
+
 # git aliases
 
 #
