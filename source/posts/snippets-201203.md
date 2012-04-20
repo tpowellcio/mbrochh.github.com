@@ -9,6 +9,13 @@ Naturally, as a developer I learn new awesome things almost every day.
 I thought it might be a good idea to keep track of all those small Ah-Ha!
 moments and release a snippets post every month.
 
+# factory_boy
+
+# Static Application Switcher
+* open CompizConfig Settings Manager
+* Disable AppSwitcher
+* Enable static app switcher
+
 # scrolling, copy and paste in screen
 
 * C-A ESC enters copy mode, here I can scroll the real scrollback buffer
@@ -18,7 +25,7 @@ moments and release a snippets post every month.
 
 # git aliases
 
-#
+# git defaults
 http://jk.gs/git-config.html
 
     [push]
