@@ -90,88 +90,31 @@ installation.
 
 # Great blog posts
 
-* http://www.dailygood.org/view.php?sid=194
-* http://www.stumbleupon.com/su/9IbGnD/zenhabits.net/the-only-guide-to-happiness-youll-ever-need/
-* http://carl.flax.ie/dothingstellpeople.html
-* http://steve-yegge.blogspot.com/2006/09/good-agile-bad-agile_27.html
+I currently have 190 subsriptions in Google Reader and I am following 298
+awesome people on Twitter. These lists are carefully curated by myself and I
+usually enjoy reading almost everything that comes in through those streams.
+Here are some posts that, to me, should be spread as far as possible.
 
-# git aliases
+* [9 Essential Skills Kids Should Learn](http://www.dailygood.org/view.php?sid=194)
+  The longer I work on my own company Bitmazk Pte. Ltd. the more I realize that
+  (at least in the IT business) traditional education is completely worthless.
+  I have the feeling that I will put in quite some effort to educate my own
+  kids in a very different way than I was educated myself. This post gives some
+  very very nice ideas.
 
-# git defaults
-http://jk.gs/git-config.html
+* [The Only Guide to Happiness You’ll Ever Need](http://www.stumbleupon.com/su/9IbGnD/zenhabits.net/the-only-guide-to-happiness-youll-ever-need/)
+  The title says it all. After reading "Mindfulness in Plain English" several
+  times, the pursuit of hapiness has become a very important part of my life
+  that I try to consciously improve day after day. I've surely not mastered
+  this aspect of my life but I can tell that this list nails it.
 
-    [push]
-        default = upstream
+* [Do things, tell people](http://carl.flax.ie/dothingstellpeople.html)
+  This. Absolutely true. Whenever I did something in the open, no matter how
+  small, lame or unimportant, an incredible chain of events unfolded itself
+  in front of me that enriched my life in ways that I can't put into words.
+  Please! If you have a little bit of energy left at the end of your day, get
+  your ass up, do things, and tell people!
 
-# factory_boy
-# access django from parallels
-
-    ::sh
-    ifconfig -a
-    ./manage.py runserver 192.168.0.10:8000
-
-In Parallels, start IE and browse to http://192.168.0.10:8000
-
-# Chinese translations in Django
-
-http://stackoverflow.com/questions/7728977/django-how-to-add-chinese-support-to-the-application
-
-Put ``zh-cn`` in your settings.py but run ``makemessages -l zh_CN``
-
-
-# Replacing a field on a form
-
-Let's assume:
-
-    ::py
-    class FooBar(models.Model):
-        foo = models.IntegerField()
-        bar = models.IntegerField()
-
-    class FormBar(forms.ModelForm):
-        def __init__(self, *args, **kwargs):
-            super(FormBar, self).__init__(*args, **kwargs)
-            self.fields['bar'] = MyCustomIntegerField()
-
-    class FormFooBar(FormBar):
-        class Meta:
-            model = FooBar
-
-Usually we would instantiate the form ``FormFooBar`` which gets all it's fields
-created by the model. However, in the superclass, ``FormBar`` we would like
-to replace the automatically created field ``bar`` by a custom implementation
-of the IntegerField which would display a different value than the one that
-is actually saved on the instance.
-
-The code above would still show the value from the instance. It took me quite
-some time to find out that we also need to add this line after:
-
-    ::py
-    ...
-    self.fields['bar'] = MyCustomIntegerField()
-    self.initial['bar'] = my_custom_calue
-
-
-# Django and Sphinx autodoc
-* add the following to conf.py
-
-    ::py
-    sys.path.insert(0, os.path.abspath('../website/webapps/django/'))
-    # setup django
-    import settings
-    from django.core.management import setup_environ
-    setup_environ(settings)
-
-* change this in Makefile
-
-    ::sh
-    SPHINXBUILD   = python $(shell which sphinx-build)
-
-* run sphinx-apidoc -f -o api ../website/webapps/django/project
-
-# django-cms dumpdata placeholder
-
-* do not name your placeholders '01 content', better '01_content'
-
-
-
+* [Good Agile, Bad Agile](http://steve-yegge.blogspot.com/2006/09/good-agile-bad-agile_27.html)
+  It sad but true: This whole Scrumm and Agile movement is a big scam. This
+  rant explains why. Thought provoking read.
