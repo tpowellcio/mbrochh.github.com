@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Snippets of Mai 2012</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
+        <link href=".././feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="martinbrochhaus.com ATOM Feed" />
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie.css"/>
+                <script src=".././js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie6.css"/><![endif]-->
+
+        
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1147761-33']);
+    _gaq.push(['_trackPageview']);
+    _gaq.push(['_gat._anonymizeIp']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+
+</head>
+
+<body id="index" class="home">
+
+<a href="http://github.com/mbrochh/mbrochh.github.com">
+
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+
+</a>
+
+        <header id="banner" class="body">
+                <h1><a href="../.">martinbrochhaus.com </a></h1>
+                <nav><ul>
+                
+                    <li><a href="http://www.martinbrochhaus.com/archives.html">Archives</a></li>
+                
+                
+                
+                
+                
+                    <li class="active"><a href=".././category/Blog.html">Blog</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+                
+<section id="content" class="body">    
+<article>
+        <header> <h1 class="entry-title"><a href=""
+        rel="bookmark" title="Permalink to Snippets of Mai 2012">Snippets of Mai 2012</a></h1> 
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="mbrochh">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+ </header>
+        <div class="entry-content">
+        <footer class="post-info">
+        <abbr class="published" title="2012-05-30T00:00:00">
+                Wed 30 May 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/Martin Brochhaus.html">Martin Brochhaus</a>
+        </address>
+        
+<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>tags: <a href=".././tag/snippets.html">snippets</a></p>
+
+
+</footer><!-- /.post-info -->
+        <p>This is my third post in a series of (almost) monthly posts about small bits
+and pieces of wisdom that amazed me. You can find the last post here:
+<a href="http://martinbrochhaus.com/2012/04/snippets-201204.html">Snippets of April 2012</a></p>
+<h1 id="git_aliases">git aliases</h1>
+<h1 id="git_defaults">git defaults</h1>
+<p>http://jk.gs/git-config.html</p>
+<div class="codehilite"><pre><span class="k">[push]</span>
+<span class="na">default</span> <span class="o">=</span> <span class="s">upstream</span>
+</pre></div>
+
+
+<h1 id="factory_boy">factory_boy</h1>
+<h1 id="access_django_from_parallels">access django from parallels</h1>
+<div class="codehilite"><pre>ifconfig -a
+./manage.py runserver 192.168.0.10:8000
+</pre></div>
+
+
+<p>In Parallels, start IE and browse to http://192.168.0.10:8000</p>
+<h1 id="chinese_translations_in_django">Chinese translations in Django</h1>
+<p>http://stackoverflow.com/questions/7728977/django-how-to-add-chinese-support-to-the-application</p>
+<p>Put <code>zh-cn</code> in your settings.py but run <code>makemessages -l zh_CN</code></p>
+<h1 id="replacing_a_field_on_a_form">Replacing a field on a form</h1>
+<p>Let's assume:</p>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">FooBar</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">foo</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+    <span class="n">bar</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">FormBar</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FormBar</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;bar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">MyCustomIntegerField</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">FormFooBar</span><span class="p">(</span><span class="n">FormBar</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">FooBar</span>
+</pre></div>
+
+
+<p>Usually we would instantiate the form <code>FormFooBar</code> which gets all it's fields
+created by the model. However, in the superclass, <code>FormBar</code> we would like
+to replace the automatically created field <code>bar</code> by a custom implementation
+of the IntegerField which would display a different value than the one that
+is actually saved on the instance.</p>
+<p>The code above would still show the value from the instance. It took me quite
+some time to find out that we also need to add this line after:</p>
+<div class="codehilite"><pre><span class="o">...</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;bar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">MyCustomIntegerField</span><span class="p">()</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">initial</span><span class="p">[</span><span class="s">&#39;bar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_custom_calue</span>
+</pre></div>
+
+
+<h1 id="django_and_sphinx_autodoc">Django and Sphinx autodoc</h1>
+<ul>
+<li>
+<p>add the following to conf.py</p>
+<p>::py
+sys.path.insert(0, os.path.abspath('../website/webapps/django/'))</p>
+<h1 id="setup_django">setup django</h1>
+<p>import settings
+from django.core.management import setup_environ
+setup_environ(settings)</p>
+</li>
+<li>
+<p>change this in Makefile</p>
+<p>::sh
+SPHINXBUILD   = python $(shell which sphinx-build)</p>
+</li>
+<li>
+<p>run sphinx-apidoc -f -o api ../website/webapps/django/project</p>
+</li>
+</ul>
+<h1 id="django-cms_dumpdata_placeholder">django-cms dumpdata placeholder</h1>
+<ul>
+<li>do not name your placeholders '01 content', better '01_content'</li>
+</ul>
+        </div><!-- /.entry-content -->
+        
+        <div class="comments">
+        <h2>Comments !</h2>
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+               var disqus_identifier = "2012/05/snippets-201205.html";
+               (function() {
+               var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+               dsq.src = 'http://martinbrochhauscom.disqus.com/embed.js';
+               (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+            </script>
+        </div>
+        
+
+</article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>, which takes great advantages of <a href="http://python.org">python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'martinbrochhauscom';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</body>
+</html>
