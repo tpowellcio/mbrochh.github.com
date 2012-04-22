@@ -2,8 +2,7 @@ Date: 2012-04-21
 Title: Snippets of April 2012
 Slug: snippets-201204
 Category: Blog
-Tags: snippets
-status: draft
+Tags: snippets, ubuntu, screen, ssh, mercurial, self growth
 
 This is my second post in a series of (almost) monthly posts about small bits
 and pieces of wisdom that amazed me. You can find the first post here:
@@ -19,7 +18,7 @@ Manager and enable "Static Application Switcher" under "Window Management".
 I think it is much much more intuitive and effective to have a static list of
 windows instead of an endlessly rotating one.
 
-# Scrolling, Copy & Paste in GNU Screen
+# Scrolling and Copy & Paste in GNU Screen
 
 I really got to love screen during the past 4 months and usually work in a
 session with 7 windows open. The problem is, when I swtich to window 1 to see
@@ -49,7 +48,6 @@ On my servers, I now set this:
     # in ~/.ssh/config:
     ServerAliveInterval 60
 
-    ::text
     # in ~/.screenrc
     caption always '%c:%s'
 

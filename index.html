@@ -65,8 +65,145 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./2012/03/myisam-vs-innodb.md.html">MySQL InnoDB vs. MyISAM and the foreign key constraint of death</a></h1> 
+                    <h1 class="entry-title"><a href="./2012/04/snippets-201204.html">Snippets of April 2012</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-04-21T00:00:00">
+                Sat 21 April 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/Martin Brochhaus.html">Martin Brochhaus</a>
+        </address>
+        
+<p>In <a href="./category/Blog.html">Blog</a>. </p>
+<p>tags: <a href="./tag/snippets.html">snippets</a><a href="./tag/ubuntu.html">ubuntu</a><a href="./tag/screen.html">screen</a><a href="./tag/ssh.html">ssh</a><a href="./tag/mercurial.html">mercurial</a><a href="./tag/self growth.html">self growth</a></p>
+
+
+</footer><!-- /.post-info --><p>This is my second post in a series of (almost) monthly posts about small bits
+and pieces of wisdom that amazed me. You can find the first post here:
+<a href="http://martinbrochhaus.com/2012/02/snippets-201202.html">Snippets of February 2012</a></p>
+<h1 id="ubuntu_static_application_switcher">Ubuntu: Static Application Switcher</h1>
+<p>App switiching with ALT+TAB became a major pain since Ubuntu introduced that
+horrible Unity interface. The simple solution is to open CompizConfig Settings
+Manager and enable "Static Application Switcher" under "Window Management".</p>
+<p>I think it is much much more intuitive and effective to have a static list of
+windows instead of an endlessly rotating one.</p>
+<h1 id="scrolling_and_copy__paste_in_gnu_screen">Scrolling and Copy &amp; Paste in GNU Screen</h1>
+<p>I really got to love screen during the past 4 months and usually work in a
+session with 7 windows open. The problem is, when I swtich to window 1 to see
+the output of my tests and there is a huge traceback, I cannot use my terminal
+to scroll up because I will scroll into whatever I saw in the windows before
+(probably Vim).</p>
+<p>The trick is to use Screen's scroll mode by pressing <code>CTRL+A ESC</code>. It will
+display a message saying that copy mode is activated and now you can move the
+cursor with the usual Vim keybindings. Pressing <code>SPACE</code> or <code>ENTER</code> once
+sets a marker and pressing it again will copy everything between the first and
+second marker into the clipboard.</p>
+<p>You can paste the clipboard via <code>CTRL+A ]</code>. Yea, I know. Read the fucking
+manual... :)</p>
+<h1 id="ssh_keep_alive">SSH Keep Alive</h1>
+<p>Whenever I need to SSH into my various servers I get connection timeouts all
+the time. Somehow most people don't suffer from this so this seems to be a
+problem with my Ubuntu installation, but recently I found a solution that works
+for me:</p>
+<p>On my servers, I now set this:</p>
+<div class="codehilite"><pre># in ~/.ssh/config:
+ServerAliveInterval 60
+
+# in ~/.screenrc
+caption always &#39;%c:%s&#39;
+</pre></div>
+
+
+<p>Now I just need to remember to start a screen session right after I login. The
+screen setting will render a clock at the bottom of the screen which is enough
+to have a steady bit of traffic going through SSH for not kicking me out of the
+server any more.</p>
+<h1 id="nerdy_it_jargon">Nerdy IT Jargon</h1>
+<p>I can't remember where I learned about these but I love them:</p>
+<ul>
+<li><code>&lt;=&gt;</code> is called the spaceship operator</li>
+<li>Writing variable names <code>LikeThis</code> is called CamelCase. I knew this for
+  years, but:</li>
+<li>Writing variable names <code>like_this</code> is called <code>snake_case</code>. Very Pythonic,
+  isn't it?</li>
+</ul>
+<h1 id="hg_facepalm">HG Facepalm</h1>
+<p>I can't believe that this actually happened, but if you have something from
+Bitbucket in your requirements.txt and try to pip install it, you might get
+a weird error saying that the pip call to Bitbucket returned code 1 and this
+pip stops installing.</p>
+<p>This is because a recent version of Mercurial returns 1 if <code>hg pull</code> doesn't
+return any new changes (which happens most of the time).</p>
+<p>However, pip (and almost every other software on this planet) thinks that a
+return value of 1 means a failure and just stops.</p>
+<p>Thankfully Mercurial fixed this quickly and reverted that change, so if you are
+suffering from the "bad" version, you might want to upgrade your Mercurial
+installation.</p>
+<ul>
+<li><a href="http://mercurial.selenic.com/wiki/UpgradeNotes">Mercurial upgrade notes</a></li>
+<li><a href="https://github.com/pypa/pip/issues/454">Relevant GitHub issue for pip</a></li>
+</ul>
+<h1 id="great_blog_posts">Great blog posts</h1>
+<p>I currently have 190 subsriptions in Google Reader and I am following 298
+awesome people on Twitter. These lists are carefully curated by myself and I
+usually enjoy reading almost everything that comes in through those streams.
+Here are some posts that, to me, should be spread as far as possible.</p>
+<ul>
+<li>
+<p><a href="http://www.dailygood.org/view.php?sid=194">9 Essential Skills Kids Should Learn</a>
+  The longer I work on my own company Bitmazk Pte. Ltd. the more I realize that
+  (at least in the IT business) traditional education is completely worthless.
+  I have the feeling that I will put in quite some effort to educate my own
+  kids in a very different way than I was educated myself. This post gives some
+  very very nice ideas.</p>
+</li>
+<li>
+<p><a href="http://www.stumbleupon.com/su/9IbGnD/zenhabits.net/the-only-guide-to-happiness-youll-ever-need/">The Only Guide to Happiness You’ll Ever Need</a>
+  The title says it all. After reading "Mindfulness in Plain English" several
+  times, the pursuit of hapiness has become a very important part of my life
+  that I try to consciously improve day after day. I've surely not mastered
+  this aspect of my life but I can tell that this list nails it.</p>
+</li>
+<li>
+<p><a href="http://carl.flax.ie/dothingstellpeople.html">Do things, tell people</a>
+  This. Absolutely true. Whenever I did something in the open, no matter how
+  small, lame or unimportant, an incredible chain of events unfolded itself
+  in front of me that enriched my life in ways that I can't put into words.
+  Please! If you have a little bit of energy left at the end of your day, get
+  your ass up, do things, and tell people!</p>
+</li>
+<li>
+<p><a href="http://steve-yegge.blogspot.com/2006/09/good-agile-bad-agile_27.html">Good Agile, Bad Agile</a>
+  It sad but true: This whole Scrumm and Agile movement is a big scam. This
+  rant explains why. Thought provoking read.</p>
+</li>
+</ul><p>There are <a href="./2012/04/snippets-201204.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                        <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href="./2012/03/myisam-vs-innodb.md.html" rel="bookmark" title="Permalink to MySQL InnoDB vs. MyISAM and the foreign key constraint of death">MySQL InnoDB vs. MyISAM and the foreign key constraint of death</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-03-18T00:00:00">
                 Sun 18 March 2012
         </abbr>
@@ -80,65 +217,16 @@
 <p>tags: <a href="./tag/databases.html">databases</a><a href="./tag/mysql.html">mysql</a><a href="./tag/django.html">django</a></p>
 
 
-</footer><!-- /.post-info --><p>During the last few months I constantly ran into problems with MySQL which
+</footer><!-- /.post-info -->
+                <p>During the last few months I constantly ran into problems with MySQL which
 drove me crazy and I finally decided to use PostgreSQL for all new projects.
 Today I figured out what was going on:</p>
 <p>On my development machine I have MySQL version 5.1.61 installed. Recent
-Webfaction servers however ship with MySQL version 5.5.16. I think, the newer
-version creates new tables with the much better engine InnoDB while my older
-version defaults to MyISAM.</p>
-<p>I was developing a big Django project in a highly agile way during the last
-few months and my workflow looked roughly like this:</p>
-<ul>
-<li>Write tests</li>
-<li>Create fixtures</li>
-<li>Implement feature</li>
-<li>Rebuild database with the new fixtures</li>
-<li>Deploy feature at Webfaction</li>
-<li>Export local database</li>
-<li>Import local database on Webfacion server</li>
-</ul>
-<p>This means for the last few months my customer and me were testing the app with
-testdata only (which looked very close to the real data anyways). However, this
-month the app matured enough so that I stopped importing my local database into
-the Webfaction server. From now on I would create South migrations and deploy
-them as usual.</p>
-<p>Yesterday I created a new app within the project. The model of that app had a
-foreign key to a model of one of the older apps. I'm sure you already know what
-comes now: Because I used to import my local database into the Webfaction
-server for many months, all tables had the old MyISAM engine. When I deployed
-my latest feature last night and ran the South migrations everything worked
-fine but when I tested the app in a browser, I got the foreign key constraint
-error or death.</p>
-<p>So I imported the server's datbase locally and asked some stupid questions in
-the #mysql channel. A friendly user named <code>salle</code> answered within a second
-and I learned about a cool SQL command which I never needed before:</p>
-<div class="codehilite"><pre><span class="k">SHOW</span> <span class="k">TABLE</span> <span class="n">STATUS</span><span class="p">;</span>
-</pre></div>
-
-
-<p>This shows, among many other informatoin, which engine each of your tables has
-and at the first glance I could see that the newly created tables that came
-with the South migration on the server had a different engine than all the
-rest.</p>
-<p>Another stupid question later I learned that I can convert the tables to the
-other engine by simply executing:</p>
-<div class="codehilite"><pre><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="n">tablename</span><span class="o">&gt;</span> <span class="n">ENGINE</span><span class="o">=&lt;</span><span class="n">engine</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">;</span>
-</pre></div>
-
-
-<p>So I converted all MyISAM tables into InnoDB tables and all was good. I should
-definitely update my local MySQL installation...</p><p>There are <a href="./2012/03/myisam-vs-innodb.md.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                        <ol id="posts-list" class="hfeed">
-            
-        
+Webfaction servers ...</p>
+                <a class="readmore" href="./2012/03/myisam-vs-innodb.md.html">read more</a>
+                <p>There are <a href="./2012/03/myisam-vs-innodb.md.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
