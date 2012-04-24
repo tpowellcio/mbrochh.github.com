@@ -86,4 +86,9 @@ some time to find out that we also need to add this line after:
 
 * do not name your placeholders '01 content', better '01_content'
 
+# great content
 
+* http://www.youtube.com/watch?v=bf7BXwVeyWw
+  Pretty cool explanation of the status quo in cosmology. The idea of a future
+  civilisation that will no longer be able to see any other galaxy due to red
+  shift is just mind blowing.
