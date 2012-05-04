@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/Blog.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com</id><updated>2012-04-21T00:00:00+08:00</updated><entry><title>Snippets of April 2012</title><link href="http://www.martinbrochhaus.com/2012/04/snippets-201204.html" rel="alternate"></link><updated>2012-04-21T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>http://www.martinbrochhaus.com/2012/04/snippets-201204.html</id><summary type="html">&lt;p&gt;This is my second post in a series of (almost) monthly posts about small bits
+<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com/" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/Blog.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com/</id><updated>2012-04-21T00:00:00+08:00</updated><entry><title>Snippets of April 2012</title><link href="http://www.martinbrochhaus.com/2012/04/snippets-201204.html" rel="alternate"></link><updated>2012-04-21T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-04-21:2012/04/snippets-201204.html</id><summary type="html">&lt;p&gt;This is my second post in a series of (almost) monthly posts about small bits
 and pieces of wisdom that amazed me. You can find the first post here:
 &lt;a href="http://martinbrochhaus.com/2012/02/snippets-201202.html"&gt;Snippets of February 2012&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id="ubuntu_static_application_switcher"&gt;Ubuntu: Static Application Switcher&lt;/h1&gt;
+&lt;h1&gt;Ubuntu: Static Application Switcher&lt;/h1&gt;
 &lt;p&gt;App switiching with ALT+TAB became a major pain since Ubuntu introduced that
 horrible Unity interface. The simple solution is to open CompizConfig Settings
 Manager and enable "Static Application Switcher" under "Window Management".&lt;/p&gt;
 &lt;p&gt;I think it is much much more intuitive and effective to have a static list of
 windows instead of an endlessly rotating one.&lt;/p&gt;
-&lt;h1 id="scrolling_and_copy__paste_in_gnu_screen"&gt;Scrolling and Copy &amp;amp; Paste in GNU Screen&lt;/h1&gt;
+&lt;h1&gt;Scrolling and Copy &amp;amp; Paste in GNU Screen&lt;/h1&gt;
 &lt;p&gt;I really got to love screen during the past 4 months and usually work in a
 session with 7 windows open. The problem is, when I swtich to window 1 to see
 the output of my tests and there is a huge traceback, I cannot use my terminal
@@ -21,7 +21,7 @@ sets a marker and pressing it again will copy everything between the first and
 second marker into the clipboard.&lt;/p&gt;
 &lt;p&gt;You can paste the clipboard via &lt;code&gt;CTRL+A ]&lt;/code&gt;. Yea, I know. Read the fucking
 manual... :)&lt;/p&gt;
-&lt;h1 id="ssh_keep_alive"&gt;SSH Keep Alive&lt;/h1&gt;
+&lt;h1&gt;SSH Keep Alive&lt;/h1&gt;
 &lt;p&gt;Whenever I need to SSH into my various servers I get connection timeouts all
 the time. Somehow most people don't suffer from this so this seems to be a
 problem with my Ubuntu installation, but recently I found a solution that works
@@ -39,7 +39,7 @@ caption always &amp;#39;%c:%s&amp;#39;
 screen setting will render a clock at the bottom of the screen which is enough
 to have a steady bit of traffic going through SSH for not kicking me out of the
 server any more.&lt;/p&gt;
-&lt;h1 id="nerdy_it_jargon"&gt;Nerdy IT Jargon&lt;/h1&gt;
+&lt;h1&gt;Nerdy IT Jargon&lt;/h1&gt;
 &lt;p&gt;I can't remember where I learned about these but I love them:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;&amp;lt;=&amp;gt;&lt;/code&gt; is called the spaceship operator&lt;/li&gt;
@@ -48,7 +48,7 @@ server any more.&lt;/p&gt;
 &lt;li&gt;Writing variable names &lt;code&gt;like_this&lt;/code&gt; is called &lt;code&gt;snake_case&lt;/code&gt;. Very Pythonic,
   isn't it?&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id="hg_facepalm"&gt;HG Facepalm&lt;/h1&gt;
+&lt;h1&gt;HG Facepalm&lt;/h1&gt;
 &lt;p&gt;I can't believe that this actually happened, but if you have something from
 Bitbucket in your requirements.txt and try to pip install it, you might get
 a weird error saying that the pip call to Bitbucket returned code 1 and this
@@ -64,7 +64,7 @@ installation.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://mercurial.selenic.com/wiki/UpgradeNotes"&gt;Mercurial upgrade notes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/pypa/pip/issues/454"&gt;Relevant GitHub issue for pip&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id="great_blog_posts"&gt;Great blog posts&lt;/h1&gt;
+&lt;h1&gt;Great blog posts&lt;/h1&gt;
 &lt;p&gt;I currently have 190 subsriptions in Google Reader and I am following 298
 awesome people on Twitter. These lists are carefully curated by myself and I
 usually enjoy reading almost everything that comes in through those streams.
@@ -98,7 +98,7 @@ Here are some posts that, to me, should be spread as far as possible.&lt;/p&gt;
   It sad but true: This whole Scrumm and Agile movement is a big scam. This
   rant explains why. Thought provoking read.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="snippets"></category><category term="ubuntu"></category><category term="screen"></category><category term="ssh"></category><category term="mercurial"></category><category term="self growth"></category></entry><entry><title>MySQL InnoDB vs. MyISAM and the foreign key constraint of death</title><link href="http://www.martinbrochhaus.com/2012/03/myisam-vs-innodb.md.html" rel="alternate"></link><updated>2012-03-18T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>http://www.martinbrochhaus.com/2012/03/myisam-vs-innodb.md.html</id><summary type="html">&lt;p&gt;During the last few months I constantly ran into problems with MySQL which
+&lt;/ul&gt;</summary><category term="snippets"></category><category term="ubuntu"></category><category term="screen"></category><category term="ssh"></category><category term="mercurial"></category><category term="self growth"></category></entry><entry><title>MySQL InnoDB vs. MyISAM and the foreign key constraint of death</title><link href="http://www.martinbrochhaus.com/2012/03/myisam-vs-innodb.md.html" rel="alternate"></link><updated>2012-03-18T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-03-18:2012/03/myisam-vs-innodb.md.html</id><summary type="html">&lt;p&gt;During the last few months I constantly ran into problems with MySQL which
 drove me crazy and I finally decided to use PostgreSQL for all new projects.
 Today I figured out what was going on:&lt;/p&gt;
 &lt;p&gt;On my development machine I have MySQL version 5.1.61 installed. Recent
@@ -146,10 +146,10 @@ other engine by simply executing:&lt;/p&gt;
 
 
 &lt;p&gt;So I converted all MyISAM tables into InnoDB tables and all was good. I should
-definitely update my local MySQL installation...&lt;/p&gt;</summary><category term="databases"></category><category term="mysql"></category><category term="django"></category></entry><entry><title>Snippets of February 2012</title><link href="http://www.martinbrochhaus.com/2012/02/snippets-201202.html" rel="alternate"></link><updated>2012-02-29T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>http://www.martinbrochhaus.com/2012/02/snippets-201202.html</id><summary type="html">&lt;p&gt;Naturally, as a developer I learn new awesome things almost every day.
+definitely update my local MySQL installation...&lt;/p&gt;</summary><category term="databases"></category><category term="mysql"></category><category term="django"></category></entry><entry><title>Snippets of February 2012</title><link href="http://www.martinbrochhaus.com/2012/02/snippets-201202.html" rel="alternate"></link><updated>2012-02-29T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-02-29:2012/02/snippets-201202.html</id><summary type="html">&lt;p&gt;Naturally, as a developer I learn new awesome things almost every day.
 I thought it might be a good idea to keep track of all those small Ah-Ha!
 moments and release a snippets post every month.&lt;/p&gt;
-&lt;h1 id="global_gitignore"&gt;Global .gitignore&lt;/h1&gt;
+&lt;h1&gt;Global .gitignore&lt;/h1&gt;
 &lt;p&gt;When I wanted to contribute code to
 &lt;a href="https://github.com/ametaireau/pelican"&gt;Pelican&lt;/a&gt; I naively added
 &lt;code&gt;.ropeproject&lt;/code&gt; to that repo's &lt;code&gt;.gitignore&lt;/code&gt; file. As a result, I was told in
@@ -164,7 +164,7 @@ excludesfile = $HOME/.gitignore_global
 
 &lt;p&gt;Then create the &lt;code&gt;.gitignore_global&lt;/code&gt; file and put stuff inside that your
 editors of choice might produce.&lt;/p&gt;
-&lt;h1 id="better_omni_completion_in_vim"&gt;Better Omni Completion in Vim&lt;/h1&gt;
+&lt;h1&gt;Better Omni Completion in Vim&lt;/h1&gt;
 &lt;p&gt;So I finally got the &lt;code&gt;hjkl&lt;/code&gt; keys for movement into my muscle memory. Now it
 annoys me that I have to use the arrow keys when I want to browse through the
 various options that the code completion suggests. There is a vimbit for that:&lt;/p&gt;
@@ -186,24 +186,24 @@ inoremap &amp;lt;silent&amp;gt;&amp;lt;C-k&amp;gt; &amp;lt;C-R&amp;gt;=OmniPopup
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h1 id="vimbits"&gt;Vimbits&lt;/h1&gt;
+&lt;h1&gt;Vimbits&lt;/h1&gt;
 &lt;p&gt;Speaking of vimbits: &lt;a href="http://vimbits.com/"&gt;vimbits.com&lt;/a&gt; recently flew through
 my Twitter stream. I spent an hour there. As a result my &lt;code&gt;.vimrc&lt;/code&gt; just
 exploded with all kinds of awesomeness.&lt;/p&gt;
-&lt;h1 id="showing_git_branch_in_prompt"&gt;Showing git branch in prompt&lt;/h1&gt;
+&lt;h1&gt;Showing git branch in prompt&lt;/h1&gt;
 &lt;p&gt;I thought that I was typing &lt;code&gt;git branch&lt;/code&gt; way too often (actually I type
 &lt;code&gt;git br&lt;/code&gt;, of course).&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;export PS1=&amp;#39;\w\[\033[31m\]$(__git_ps1 &amp;quot;(%s)&amp;quot;) \[\033[01;34m\]$\[\033[00m\] &amp;#39;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Hint: In order for this to work, you need to install git via Homebrew on OSX.&lt;/p&gt;</summary><category term="git"></category><category term="python"></category><category term="vim"></category><category term="snippets"></category></entry><entry><title>Blogging with Pelican and GitHub</title><link href="http://www.martinbrochhaus.com/2012/02/pelican.html" rel="alternate"></link><updated>2012-02-20T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>http://www.martinbrochhaus.com/2012/02/pelican.html</id><summary type="html">&lt;p&gt;While it took me indeed just four lines of code and thirty minutes to setup the
+&lt;p&gt;Hint: In order for this to work, you need to install git via Homebrew on OSX.&lt;/p&gt;</summary><category term="git"></category><category term="python"></category><category term="vim"></category><category term="snippets"></category></entry><entry><title>Blogging with Pelican and GitHub</title><link href="http://www.martinbrochhaus.com/2012/02/pelican.html" rel="alternate"></link><updated>2012-02-20T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-02-20:2012/02/pelican.html</id><summary type="html">&lt;p&gt;While it took me indeed just four lines of code and thirty minutes to setup the
 first version of this blog, I couldn't resist to geek over it for a few more
 hours and create a nice and clean approach to publishing this blog with
 &lt;a href="https://github.com/fabric/fabric"&gt;Fabric&lt;/a&gt;,
 &lt;a href="https://github.com/ametaireau/pelican"&gt;Pelican&lt;/a&gt; and
 &lt;a href="http://github.com"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id="what_to_expect"&gt;What to expect&lt;/h1&gt;
+&lt;h1&gt;What to expect&lt;/h1&gt;
 &lt;p&gt;When you follow these instructions, you can expect the following:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;A simple static blog website with a simple yet beautiful theme.&lt;/li&gt;
@@ -220,11 +220,11 @@ hours and create a nice and clean approach to publishing this blog with
 &lt;p&gt;I should mention that Pelican is a Python project and therefore it wouldn't
 hurt if you knew a bit about Pyhton. I will assume basic Python knowledge here.
 Let's get started:&lt;/p&gt;
-&lt;h1 id="activate_github_pages"&gt;Activate GitHub Pages&lt;/h1&gt;
+&lt;h1&gt;Activate GitHub Pages&lt;/h1&gt;
 &lt;p&gt;Just create a new repository called &lt;code&gt;username.github.com&lt;/code&gt;. Whatever you place
 in here will be served at &lt;code&gt;http://username.github.com&lt;/code&gt;. For more information
 please see the &lt;a href="http://pages.github.com/"&gt;GitHub Pages Documentation&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id="setup_your_repository"&gt;Setup your repository&lt;/h1&gt;
+&lt;h1&gt;Setup your repository&lt;/h1&gt;
 &lt;p&gt;First create a folder on your disk for the new project:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;mkdir &lt;span class="nv"&gt;$HOME&lt;/span&gt;/Projects/myblog
 &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/Projects/myblog
@@ -245,7 +245,7 @@ wget https://github.com/mbrochh/mbrochh.github.com/raw/master/source/settings.py
 
 &lt;p&gt;The sample &lt;code&gt;settings.py&lt;/code&gt; you just got from my own repo will need some changes
 now. Have a look at it and edit it so that it fits your needs.&lt;/p&gt;
-&lt;h1 id="setup_your_virtualenv"&gt;Setup your virtualenv&lt;/h1&gt;
+&lt;h1&gt;Setup your virtualenv&lt;/h1&gt;
 &lt;p&gt;If you have never used virtualenv and virtualenvwrapper before, now is the
 time to learn about it. Usually this is what you need to do to install it:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;sudo easy_install pip
@@ -264,7 +264,7 @@ pip install -r requirements.txt
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h1 id="create_your_first_post"&gt;Create your first post&lt;/h1&gt;
+&lt;h1&gt;Create your first post&lt;/h1&gt;
 &lt;p&gt;Now is the time to create your first post:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# make sure to be in the source/ folder&lt;/span&gt;
 mkdir -p posts/2012/02/  &lt;span class="c"&gt;# insert appropriate year and month here&lt;/span&gt;
@@ -295,7 +295,7 @@ git commit -am &lt;span class="s2"&gt;&amp;quot;Created my first post.&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h1 id="publish_your_first_post"&gt;Publish your first post&lt;/h1&gt;
+&lt;h1&gt;Publish your first post&lt;/h1&gt;
 &lt;p&gt;This is the interesting part! You will use Pelican now to generate the output
 for your blog:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# make sure to be in the source/ folder&lt;/span&gt;
@@ -310,8 +310,8 @@ your new blog.&lt;/p&gt;
 &lt;p&gt;If you see that something went wrong, you might want to destroy the generated
 output:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
-&lt;span class="c1"&gt;# make sure to be in the root folder and be sure that your .md file changes&lt;/span&gt;
-&lt;span class="c1"&gt;# have been committed&lt;/span&gt;
+# &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;sure&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="n"&gt;folder&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;sure&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;changes&lt;/span&gt;
+# &lt;span class="n"&gt;have&lt;/span&gt; &lt;span class="n"&gt;been&lt;/span&gt; &lt;span class="n"&gt;committed&lt;/span&gt;
 &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;clean&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -319,14 +319,14 @@ output:&lt;/p&gt;
 &lt;p&gt;Now you can edit your &lt;code&gt;.md&lt;/code&gt; files again and generate the output again. If you
 are happy with your output, it is time to publish it:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
-&lt;span class="c1"&gt;# make sure to be in the root folder&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;am&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Pelican output&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+# &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;sure&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="n"&gt;folder&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;am&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;Pelican&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&amp;quot;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h1 id="publishing_with_fabric"&gt;Publishing with fabric&lt;/h1&gt;
+&lt;h1&gt;Publishing with fabric&lt;/h1&gt;
 &lt;p&gt;As you have seen, the workflow of editing your posts is always the same. First
 you edit your &lt;code&gt;.md&lt;/code&gt; files, next you commit your changes and give a meaningful
 commit message and at last you generate the output and commit it with a
@@ -338,7 +338,7 @@ can just edit your &lt;code&gt;.md&lt;/code&gt; files and once you are done, cal
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h1 id="setting_up_a_custom_domain"&gt;Setting up a custom domain&lt;/h1&gt;
+&lt;h1&gt;Setting up a custom domain&lt;/h1&gt;
 &lt;p&gt;As if all this isn't awesome enough, GitHub makes it really easy to create
 custom domains for your GitHub page. All you need is to place a file called
 &lt;code&gt;CNAME&lt;/code&gt; in the root of your project and add the following content:&lt;/p&gt;
@@ -349,27 +349,27 @@ custom domains for your GitHub page. All you need is to place a file called
 &lt;p&gt;Then point the A record of your domain to the IP address of GitHub. For more
 information have a look at the instructions about
 &lt;a href="http://pages.github.com/#custom_domains"&gt;custom domains on GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id="how_to_embed_images"&gt;How to embed images?&lt;/h1&gt;
+&lt;h1&gt;How to embed images?&lt;/h1&gt;
 &lt;p&gt;If you need to embed images, you can just add them to the folder
 &lt;code&gt;source/images/&lt;/code&gt; and link to them in your &lt;code&gt;.md&lt;/code&gt; files like so:
 &lt;code&gt;![Alt text](./static/images/yourimage.png)&lt;/code&gt;.&lt;/p&gt;
-&lt;h1 id="thanks"&gt;Thanks!&lt;/h1&gt;
+&lt;h1&gt;Thanks!&lt;/h1&gt;
 &lt;p&gt;That's it. I hope I didn't forget anything. I would like to thank
 &lt;a href="https://twitter.com/ametaireau"&gt;Alexis Metaireau&lt;/a&gt; for the great work on
 Pelican. There is a small and friendly group sitting at #pelican on Freenode
 and while I was writing this post, I submitted a pull request to Pelican which
-got merged almost immediately. The project is really worth a closer look!&lt;/p&gt;</summary><category term="blogging"></category><category term="python"></category></entry><entry><title>My next approach to blogging. Again.</title><link href="http://www.martinbrochhaus.com/2012/02/blogging.html" rel="alternate"></link><updated>2012-02-19T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>http://www.martinbrochhaus.com/2012/02/blogging.html</id><summary type="html">&lt;p&gt;I'm a netizen since 1996 or so and I think I have accounts for all major
+got merged almost immediately. The project is really worth a closer look!&lt;/p&gt;</summary><category term="blogging"></category><category term="python"></category></entry><entry><title>My next approach to blogging. Again.</title><link href="http://www.martinbrochhaus.com/2012/02/blogging.html" rel="alternate"></link><updated>2012-02-19T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-02-19:2012/02/blogging.html</id><summary type="html">&lt;p&gt;I'm a netizen since 1996 or so and I think I have accounts for all major
 blogging services that ever popped into existence. Yet I'm quite sure that I
 have never managed to publish stuff on a regular basis or even build an
 audience. This is a shame. If you know tricks to overcome this laziness, please
 let me know in the comments!&lt;/p&gt;
 &lt;p&gt;I think there are two reasons for this:&lt;/p&gt;
-&lt;h1 id="1_i_suck_at_writing"&gt;1. I suck at writing&lt;/h1&gt;
+&lt;h1&gt;1. I suck at writing&lt;/h1&gt;
 &lt;p&gt;Writing meaningful content feels like a chore to me. One problem is that I am
 not a native English speaker yet for the topics I would like to write about I
 expect an English speaking audience. I guess this is just a matter of
 training and self growth, so this should be a problem that can be overcome.&lt;/p&gt;
-&lt;h1 id="2_technology_moves_too_fast"&gt;2. Technology moves too fast&lt;/h1&gt;
+&lt;h1&gt;2. Technology moves too fast&lt;/h1&gt;
 &lt;p&gt;In the past I have created numerous accounts at worpress.com, blogger.com,
 tumblr.com. While setting up those blogs is a piece of cake, I always felt
 uneasy about locking-in all this content into one service. Yes, yes, there
@@ -396,7 +396,7 @@ theme that is optimized for mobile agents and the whole trouble starts over
 again.&lt;/p&gt;
 &lt;p&gt;Hosting Wordpress is just painful and definitely not fun. When you do
 something in your spare time it should always be fun.&lt;/p&gt;
-&lt;h1 id="what_i_want"&gt;What I want&lt;/h1&gt;
+&lt;h1&gt;What I want&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;I want to be able to write my articles in Vim&lt;/li&gt;
 &lt;li&gt;I want to write my posts in Markdown.&lt;/li&gt;

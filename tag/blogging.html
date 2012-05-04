@@ -4,7 +4,7 @@
         <title>martinbrochhaus.com - blogging</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
-        <link href=".././feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="martinbrochhaus.com ATOM Feed" />
+        <link href="http://www.martinbrochhaus.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="martinbrochhaus.com Atom Feed" />
         
 
         <!--[if IE]>
@@ -32,6 +32,18 @@
     })();
 
 </script>
+
+        
+    <script type="text/javascript">
+    /* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto&button=compact';
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */</script>
 
 </head>
 
@@ -73,7 +85,7 @@
 
         
         <address class="vcard author">
-                By <a class="url fn" href=".././author/Martin Brochhaus.html">Martin Brochhaus</a>
+                By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
         </address>
         
 <p>In <a href=".././category/Blog.html">Blog</a>. </p>
@@ -86,7 +98,7 @@ hours and create a nice and clean approach to publishing this blog with
 <a href="https://github.com/fabric/fabric">Fabric</a>,
 <a href="https://github.com/ametaireau/pelican">Pelican</a> and
 <a href="http://github.com">GitHub</a>.</p>
-<h1 id="what_to_expect">What to expect</h1>
+<h1>What to expect</h1>
 <p>When you follow these instructions, you can expect the following:</p>
 <ul>
 <li>A simple static blog website with a simple yet beautiful theme.</li>
@@ -103,11 +115,11 @@ hours and create a nice and clean approach to publishing this blog with
 <p>I should mention that Pelican is a Python project and therefore it wouldn't
 hurt if you knew a bit about Pyhton. I will assume basic Python knowledge here.
 Let's get started:</p>
-<h1 id="activate_github_pages">Activate GitHub Pages</h1>
+<h1>Activate GitHub Pages</h1>
 <p>Just create a new repository called <code>username.github.com</code>. Whatever you place
 in here will be served at <code>http://username.github.com</code>. For more information
 please see the <a href="http://pages.github.com/">GitHub Pages Documentation</a>.</p>
-<h1 id="setup_your_repository">Setup your repository</h1>
+<h1>Setup your repository</h1>
 <p>First create a folder on your disk for the new project:</p>
 <div class="codehilite"><pre>mkdir <span class="nv">$HOME</span>/Projects/myblog
 <span class="nb">cd</span> <span class="nv">$HOME</span>/Projects/myblog
@@ -128,7 +140,7 @@ wget https://github.com/mbrochh/mbrochh.github.com/raw/master/source/settings.py
 
 <p>The sample <code>settings.py</code> you just got from my own repo will need some changes
 now. Have a look at it and edit it so that it fits your needs.</p>
-<h1 id="setup_your_virtualenv">Setup your virtualenv</h1>
+<h1>Setup your virtualenv</h1>
 <p>If you have never used virtualenv and virtualenvwrapper before, now is the
 time to learn about it. Usually this is what you need to do to install it:</p>
 <div class="codehilite"><pre>sudo easy_install pip
@@ -147,7 +159,7 @@ pip install -r requirements.txt
 </pre></div>
 
 
-<h1 id="create_your_first_post">Create your first post</h1>
+<h1>Create your first post</h1>
 <p>Now is the time to create your first post:</p>
 <div class="codehilite"><pre><span class="c"># make sure to be in the source/ folder</span>
 mkdir -p posts/2012/02/  <span class="c"># insert appropriate year and month here</span>
@@ -178,7 +190,7 @@ git commit -am <span class="s2">&quot;Created my first post.&quot;</span>
 </pre></div>
 
 
-<h1 id="publish_your_first_post">Publish your first post</h1>
+<h1>Publish your first post</h1>
 <p>This is the interesting part! You will use Pelican now to generate the output
 for your blog:</p>
 <div class="codehilite"><pre><span class="c"># make sure to be in the source/ folder</span>
@@ -193,8 +205,8 @@ your new blog.</p>
 <p>If you see that something went wrong, you might want to destroy the generated
 output:</p>
 <div class="codehilite"><pre><span class="p">:</span><span class="n">sh</span>
-<span class="c1"># make sure to be in the root folder and be sure that your .md file changes</span>
-<span class="c1"># have been committed</span>
+# <span class="n">make</span> <span class="n">sure</span> <span class="n">to</span> <span class="n">be</span> <span class="n">in</span> <span class="n">the</span> <span class="n">root</span> <span class="n">folder</span> <span class="n">and</span> <span class="n">be</span> <span class="n">sure</span> <span class="n">that</span> <span class="n">your</span> <span class="p">.</span><span class="n">md</span> <span class="n">file</span> <span class="n">changes</span>
+# <span class="n">have</span> <span class="n">been</span> <span class="n">committed</span>
 <span class="n">git</span> <span class="n">clean</span> <span class="o">-</span><span class="n">df</span>
 </pre></div>
 
@@ -202,14 +214,14 @@ output:</p>
 <p>Now you can edit your <code>.md</code> files again and generate the output again. If you
 are happy with your output, it is time to publish it:</p>
 <div class="codehilite"><pre><span class="p">:</span><span class="n">sh</span>
-<span class="c1"># make sure to be in the root folder</span>
-<span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">am</span> <span class="s">&quot;Pelican output&quot;</span>
-<span class="n">git</span> <span class="nb">push</span> <span class="n">origin</span> <span class="n">master</span>
+# <span class="n">make</span> <span class="n">sure</span> <span class="n">to</span> <span class="n">be</span> <span class="n">in</span> <span class="n">the</span> <span class="n">root</span> <span class="n">folder</span>
+<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">am</span> &quot;<span class="n">Pelican</span> <span class="n">output</span>&quot;
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
 </pre></div>
 
 
-<h1 id="publishing_with_fabric">Publishing with fabric</h1>
+<h1>Publishing with fabric</h1>
 <p>As you have seen, the workflow of editing your posts is always the same. First
 you edit your <code>.md</code> files, next you commit your changes and give a meaningful
 commit message and at last you generate the output and commit it with a
@@ -221,7 +233,7 @@ can just edit your <code>.md</code> files and once you are done, call Fabric:</p
 </pre></div>
 
 
-<h1 id="setting_up_a_custom_domain">Setting up a custom domain</h1>
+<h1>Setting up a custom domain</h1>
 <p>As if all this isn't awesome enough, GitHub makes it really easy to create
 custom domains for your GitHub page. All you need is to place a file called
 <code>CNAME</code> in the root of your project and add the following content:</p>
@@ -232,11 +244,11 @@ custom domains for your GitHub page. All you need is to place a file called
 <p>Then point the A record of your domain to the IP address of GitHub. For more
 information have a look at the instructions about
 <a href="http://pages.github.com/#custom_domains">custom domains on GitHub</a>.</p>
-<h1 id="how_to_embed_images">How to embed images?</h1>
+<h1>How to embed images?</h1>
 <p>If you need to embed images, you can just add them to the folder
 <code>source/images/</code> and link to them in your <code>.md</code> files like so:
 <code>![Alt text](./static/images/yourimage.png)</code>.</p>
-<h1 id="thanks">Thanks!</h1>
+<h1>Thanks!</h1>
 <p>That's it. I hope I didn't forget anything. I would like to thank
 <a href="https://twitter.com/ametaireau">Alexis Metaireau</a> for the great work on
 Pelican. There is a small and friendly group sitting at #pelican on Freenode
@@ -249,12 +261,13 @@ got merged almost immediately. The project is really worth a closer look!</p><p>
                 <section id="content" class="body">
                     <h1>Other articles</h1>
                     <hr />
-                        <ol id="posts-list" class="hfeed">
+                    <ol id="posts-list" class="hfeed">
             
         
         
         
         
+            
 
         
          
@@ -272,7 +285,7 @@ got merged almost immediately. The project is really worth a closer look!</p><p>
 
         
         <address class="vcard author">
-                By <a class="url fn" href=".././author/Martin Brochhaus.html">Martin Brochhaus</a>
+                By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
         </address>
         
 <p>In <a href=".././category/Blog.html">Blog</a>. </p>
@@ -298,11 +311,11 @@ audience. This is a shame ...</p>
 </p>
 
         
-
+        
+            </ol><!-- /#posts-list -->
+            </section><!-- /#content -->
+        
     
-    </ol><!-- /#posts-list -->
-    </section><!-- /#content -->
-
 
 
         <section id="extras" class="body">
@@ -312,7 +325,7 @@ audience. This is a shame ...</p>
 
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
-                Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>, which takes great advantages of <a href="http://python.org">python</a>.
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
                 </address><!-- /#about -->
 
                 <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>

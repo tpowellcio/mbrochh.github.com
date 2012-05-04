@@ -10,6 +10,7 @@
 /* Imports */
 @import url("reset.css");
 @import url("pygment.css");
+@import url("typogrify.css");
 @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);
 
 /***** Global *****/
@@ -24,8 +25,6 @@ body {
     padding: 0;
     text-align: left;
 }
-
-
 
 /* Headings */
 h1 {font-size: 2em }
@@ -111,6 +110,13 @@ blockquote {
 cite {}
 
 q {}
+
+div.note {
+   float: right;
+   margin: 5px;
+   font-size: 85%;
+   max-width: 300px;
+}
 
 /* Tables */
 table {margin: .5em auto 1.5em auto; width: 98%;}
@@ -303,7 +309,7 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 		.social a[href*='digg.com'] {background-image: url('../images/icons/digg.png');}
 		.social a[href*='facebook.com'] {background-image: url('../images/icons/facebook.png');}
 		.social a[href*='last.fm'], .social a[href*='lastfm.'] {background-image: url('../images/icons/lastfm.png');}
-		.social a[href*='atom.xml'] {background-image: url('../images/icons/rss.png');}
+		.social a[type$='atom+xml'], .social a[type$='rss+xml'] {background-image: url('../images/icons/rss.png');}
 		.social a[href*='twitter.com'] {background-image: url('../images/icons/twitter.png');}
 		.social a[href*='linkedin.com'] {background-image: url('../images/icons/linkedin.png');}
 
@@ -422,3 +428,12 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 	
 	#add-comment input[type='submit'] {float: right; margin: 0 .5em;}
 	#add-comment * {margin-bottom: .5em;}
+
+
+/********/
+/* MISC */
+/********/
+#socialButtons {
+    margin-bottom: 1em;
+}
+
