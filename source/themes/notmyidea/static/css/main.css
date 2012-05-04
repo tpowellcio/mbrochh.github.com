@@ -210,6 +210,7 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 		-webkit-border-bottom-left-radius: 5px;
 	}
 
+
 /*
 	Featured
 *****************/
@@ -422,3 +423,11 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 	
 	#add-comment input[type='submit'] {float: right; margin: 0 .5em;}
 	#add-comment * {margin-bottom: .5em;}
+
+
+/********/
+/* MISC */
+/********/
+#socialIcons {
+    margin-bottom: 1em;
+}

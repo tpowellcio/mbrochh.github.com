@@ -5,6 +5,7 @@ AUTHOR = 'Martin Brochhaus'
 DEFAULT_CATEGORY = 'Blog'
 SITENAME = 'martinbrochhaus.com'
 SITEURL = 'http://www.martinbrochhaus.com'
+SITE_URL = SITEURL
 STATIC_PATHS = ['images', ]
 TIMEZONE = 'Asia/Singapore'
 
@@ -42,6 +43,7 @@ REVERSE_ARCHIVE_ORDER = True
 THEME = './themes/notmyidea/'
 
 DISQUS_SITENAME = 'martinbrochhauscom'
+FLATTR = True
 GITHUB_URL = 'http://github.com/mbrochh/mbrochh.github.com'
 GOOGLE_ANALYTICS = 'UA-1147761-33'
 MENUITEMS = (

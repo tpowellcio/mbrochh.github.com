@@ -1,0 +1,7 @@
+<a class="FlattrButton" style="display:none;"
+    title="{{ article.title }}"
+    data-flattr-uid="mbrochh"
+    data-flattr-tags="{% if article.tags %}{% for tag in article.tags %}{{ tag }}, {% endfor %}{% endif %}"
+    data-flattr-category="text"
+    href="{{ SITE_URL }}/{{ article.url }}">
+</a>
