@@ -40,7 +40,7 @@ REVERSE_ARCHIVE_ORDER = True
 # =================
 # Theming
 # =================
-THEME = './themes/notmyidea/'
+THEME = 'notmyidea'
 
 DISQUS_SITENAME = 'martinbrochhauscom'
 FLATTR = True
