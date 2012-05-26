@@ -2,7 +2,7 @@ Date: 2012-05-26
 Title: Secure pair programming with wemux and Vim
 Slug: pair
 Category: Blog
-Tags: screen, vim, ssh, programming
+Tags: screen, tmux, wemux, vim, ssh, programming
 
 At [Bitmazk](http://www.bitmazk.com) we are a small team of web developers
 with members located in Singapore and Germany. Of course we do codereviews
