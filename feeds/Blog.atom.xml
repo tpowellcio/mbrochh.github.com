@@ -1,5 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com/" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/Blog.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com/</id><updated>2012-04-21T00:00:00+08:00</updated><entry><title>Snippets of April 2012</title><link href="http://www.martinbrochhaus.com/2012/04/snippets-201204.html" rel="alternate"></link><updated>2012-04-21T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-04-21:2012/04/snippets-201204.html</id><summary type="html">&lt;p&gt;This is my second post in a series of (almost) monthly posts about small bits
+<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com/" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/Blog.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com/</id><updated>2012-05-26T00:00:00+08:00</updated><entry><title>Secure pair programming with wemux and Vim</title><link href="http://www.martinbrochhaus.com/2012/05/pair.html" rel="alternate"></link><updated>2012-05-26T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-05-26:2012/05/pair.html</id><summary type="html">&lt;p&gt;At &lt;a href="http://www.bitmazk.com"&gt;Bitmazk&lt;/a&gt; we are a small team of web developers
+with members located in Singapore and Germany. Of course we do codereviews
+with Google's awesome &lt;a href="https://code.google.com/p/rietveld/"&gt;Rietveld&lt;/a&gt; but
+often when someone has an immediate problem, pair programming is just so much
+more efficient.&lt;/p&gt;
+&lt;p&gt;We used to use Skype for talking and Teamviewer for screen sharing, which
+worked very well for a while but after recent updates both tools became so
+unreliable that they started affecting our work. More importantly: Even when
+those tools worked perfectly well there is significant lag between what I say
+and what my coworker sees. It's just not an optimal solution for staring at a
+terminal.&lt;/p&gt;
+&lt;p&gt;I first tried to set this up with GNU Screen and it almost worked but at the
+final step I ran into a dead end. It seems as if
+&lt;a href="http://superuser.com/questions/117684/gnu-screen-multiuser-mode-is-broken-in-os-x-10-6-snow-leopard"&gt;multiuser support on OSX 10.7 is broken&lt;/a&gt;.
+Or maybe I was just too stupid to get the permissions for the guest user right. &lt;/p&gt;
+&lt;p&gt;As a last resort I tried to achieve my goal with
+&lt;a href="https://github.com/zolrath/wemux"&gt;wemux&lt;/a&gt;. It worked right out of the box and
+took me less than 5 minutes to setup. Goodbye GNU Screen, I guess.&lt;/p&gt;
+&lt;p&gt;The process I am going to describe here looks complex but it is really really
+simple. Please don't give up here!&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Setup a new user &lt;code&gt;pairprogger&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Authorize your colleagues to ssh into that user's account&lt;/li&gt;
+&lt;li&gt;Setup port forwarding in your router's settings&lt;/li&gt;
+&lt;li&gt;Enable remote login (OSX) / start an openssh-server (Ubuntnu)&lt;/li&gt;
+&lt;li&gt;Install tmux and wemux&lt;/li&gt;
+&lt;li&gt;Start a wemux server&lt;/li&gt;
+&lt;li&gt;Join a wemux server&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It will blow your mind even more if you had two machines at your disposal but
+you will of course be able to test this with just one machine and two
+terminals.&lt;/p&gt;
+&lt;p&gt;But rest assured that you won't be able to sleep until you find a real person
+on the internet who you can show this little trick. You have been warned. ;)&lt;/p&gt;
+&lt;h2&gt;Step 1: Create a guest user account&lt;/h2&gt;
+&lt;p&gt;You will ask your colleagues to ssh into your machine for pair programming.
+When I set this up I didn't bother about security at first as I just wanted
+to see how this feels. I invited a very close friend of mine to test this
+and I can tell you that it feels weird. You really don't want anyone in your
+machine with access to your whole home folder. Especially not if he is a
+hacker. At least I could come up with a dozen evil pranks immediately...&lt;/p&gt;
+&lt;p&gt;So let's create a new user called &lt;code&gt;pairprogger&lt;/code&gt;. For OSX I have created a
+file &lt;code&gt;create_user.sh&lt;/code&gt;. Replace the three variables at the top and execute it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OSX&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# find out your staff group id (for me it is 20)&lt;/span&gt;
+&lt;span class="c"&gt;# dscacheutil -q group&lt;/span&gt;
+&lt;span class="n"&gt;STAFF_GROUP_ID&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;XX&lt;/span&gt;
+&lt;span class="n"&gt;USERNAME&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;pairprogger&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;PASSWORD&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;yourpassword&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;MAXID&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;$&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dscl&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Users&lt;/span&gt; &lt;span class="n"&gt;UniqueID&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;awk&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;{print $2}&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nb"&gt;sort&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ug&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;NEWID&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;$&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;MAXID&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;1&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;dscl&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Users&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;$&lt;span class="n"&gt;USERNAME&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;dscl&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Users&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;$&lt;span class="n"&gt;USERNAME&lt;/span&gt; &lt;span class="n"&gt;UserShell&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bash&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;dscl&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Users&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;$&lt;span class="n"&gt;USERNAME&lt;/span&gt; &lt;span class="n"&gt;UniqueID&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$NEWID&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;dscl&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Users&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;$&lt;span class="n"&gt;USERNAME&lt;/span&gt; &lt;span class="n"&gt;PrimaryGroupID&lt;/span&gt; $&lt;span class="n"&gt;STAFF_GROUP_ID&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;dscl&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Users&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;$&lt;span class="n"&gt;USERNAME&lt;/span&gt; &lt;span class="n"&gt;RealName&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Pair Programmer&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;dscl&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Users&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;$&lt;span class="n"&gt;USERNAME&lt;/span&gt; &lt;span class="n"&gt;NFSHomeDirectory&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Users&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;$&lt;span class="n"&gt;USERNAME&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;dscl&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;passwd&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Users&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;$&lt;span class="n"&gt;USERNAME&lt;/span&gt; $&lt;span class="n"&gt;PASSWORD&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;dscl&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Groups&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apple&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;access_ssh&lt;/span&gt; &lt;span class="n"&gt;GroupMembership&lt;/span&gt; $&lt;span class="n"&gt;USERNAME&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;createhomedir&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; $&lt;span class="n"&gt;USERNAME&lt;/span&gt;
+&lt;span class="c"&gt;# make sure that there is /Users/pairprogger/ on your disk now&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I wont take credit for this insane user creation script for OSX.
+This thread on serverfault about
+&lt;a href="http://serverfault.com/questions/20702/how-do-i-create-user-accounts-from-the-terminal-in-mac-os-x-10-5"&gt;how to create a user account on OSX&lt;/a&gt;
+certainly saved my ass.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ubuntu&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;useradd&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bash&lt;/span&gt; &lt;span class="n"&gt;pairprogger&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;passwd&lt;/span&gt; &lt;span class="n"&gt;pairprogger&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You should be able to test this by logging out. The new user should appear
+on your login screen.&lt;/p&gt;
+&lt;h2&gt;Step 2: Restrict access via public RSA keys&lt;/h2&gt;
+&lt;p&gt;You know the password of &lt;code&gt;pairprogger&lt;/code&gt; but you are not going to give it
+away, as it cold get leaked and all kinds of people would be able to ssh into
+your machine. Instead you will create a &lt;code&gt;.ssh&lt;/code&gt; folder for the new user
+and paste your colleagues public RSA keys into the &lt;code&gt;authorized_keys&lt;/code&gt; file:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OSX / Ubuntu&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;su&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;pairprogger&lt;/span&gt;
+&lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;
+&lt;span class="n"&gt;chmod&lt;/span&gt; 700 &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;
+&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;
+&lt;span class="n"&gt;touch&lt;/span&gt; &lt;span class="n"&gt;authorized_keys&lt;/span&gt;
+&lt;span class="n"&gt;chmod&lt;/span&gt; 600 &lt;span class="n"&gt;authorized_keys&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now copy the public RSA keys of the users you want to work with into the
+&lt;code&gt;authorized_keys&lt;/code&gt; file. You might want to add your own key as well in order
+to test your setup later.&lt;/p&gt;
+&lt;h2&gt;Setp 3: Enable port forwarding&lt;/h2&gt;
+&lt;p&gt;There are certainly more elegant solutions where you tell your router that
+this computer should &lt;em&gt;always&lt;/em&gt; get that IP and where you setup dyndns and all
+but I will describe a simpler approach here. Of course the drawback is that
+your IP will change all the time and every day you might have to repeat these
+steps.&lt;/p&gt;
+&lt;p&gt;Note down your &lt;a href="https://duckduckgo.com/?q=ip"&gt;public IP&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Note down your local IP:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OSX&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;ipconfig&lt;/span&gt; &lt;span class="n"&gt;getifaddr&lt;/span&gt; &lt;span class="n"&gt;en1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Ubuntu&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;ifconfig&lt;/span&gt; &lt;span class="n"&gt;wlan0&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;inet addr&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;sed&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;s/.*inet addr:\([0-9.]*\).*/\1/&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To setup port forwarding go to &lt;code&gt;192.168.0.1&lt;/code&gt;. This IP might differ on your
+router. Usually you should find a section for advanced settings which should
+have a section for port forwarding or just forwarding. You should see a table
+where you can enter your machine's local IP address and define which ports
+should be forwarded. You should forward port 22 for SSH and 8000 for your
+Django development server. The latter will enable you to do some pair
+programming and then have a look at the result together, each worker in their
+own browser.&lt;/p&gt;
+&lt;h2&gt;Step 4: Enable remote access&lt;/h2&gt;
+&lt;p&gt;Next you should start your local ssh server so that people can actually ssh
+into your machine. If anyone knows how to do this on the command line in OSX,
+please let me know in the comments! On Ubuntu I just had to install
+&lt;code&gt;openssh-server&lt;/code&gt; and it worked immediately. We will be extra paranoid here
+and restrict access only to the &lt;code&gt;pairprogger&lt;/code&gt; user and we will disallow
+password authentication, which would allow people to crack your password
+via bruteforce.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OSX&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Go to &lt;code&gt;System Preferences&lt;/code&gt; --&amp;gt; &lt;code&gt;Sharing&lt;/code&gt; --&amp;gt; &lt;code&gt;Remote login&lt;/code&gt;. Add
+&lt;code&gt;Pair Programmer&lt;/code&gt; to the list &lt;code&gt;Allow access for&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sshd_config&lt;/span&gt;
+# &lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;PasswordAuthentication&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;
+# &lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;ChallengeResponseAuthentication&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;
+# &lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;UsePAM&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Ubuntu&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;openssh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sshd_config&lt;/span&gt;
+# &lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;PasswordAuthentication&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;
+# &lt;span class="n"&gt;Add&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;following&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;bottom&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+# &lt;span class="n"&gt;AllowUsers&lt;/span&gt; &lt;span class="n"&gt;pairprogger&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Please note that I am not a security expert. I have added these ssh
+restrictions while writing this post and have not tested them thoroughly. It
+would probably be a good idea to also make sure that the user &lt;code&gt;pairprogger&lt;/code&gt;
+is not allowed to leave his home folder and give him some quota so that he
+cannot flood your hard drive with porn. If anyone knows useful settings to
+further restrict this account, please leave them in the comments.&lt;/p&gt;
+&lt;p&gt;So this was the hard part. Now to the fun part...&lt;/p&gt;
+&lt;h2&gt;Step 5: Install tmux and wemux&lt;/h2&gt;
+&lt;p&gt;Since wemux seems to be based on tmux, you need to install both, but that
+should be a no-brainer:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OSX&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;brew&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;wemux&lt;/span&gt;
+&lt;span class="n"&gt;brew&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;downloads&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zolrath&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;wemux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;wemux&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rb&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Ubuntu&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;tmux&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On Ubuntu follow the instructions at https://github.com/zolrath/wemux for
+manual installation.&lt;/p&gt;
+&lt;h2&gt;Step 6: Start the wemux server&lt;/h2&gt;
+&lt;p&gt;You are ready to go. Type the following command:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;wemux&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Step 7: Join the wemux server&lt;/h2&gt;
+&lt;p&gt;Now tell your friend to join you:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;pairprogger&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;public&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;
+&lt;span class="n"&gt;wemux&lt;/span&gt; &lt;span class="n"&gt;attach&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Bonus: Your first tmux config&lt;/h2&gt;
+&lt;p&gt;If you used GNU screen and if you are a Vim user, you will most likely find the 
+settings in my &lt;a href="https://github.com/mbrochh/mbrochh-dotfiles/blob/master/.tmux.conf"&gt;.tmux.conf&lt;/a&gt;
+very useful.&lt;/p&gt;
+&lt;p&gt;I hope I didn't forget anything. If so, please let me know in the comments!&lt;/p&gt;
+&lt;p&gt;Oh and: This is how it is going to look like:
+&lt;img alt="wemux server" src="./images/wemux.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Note how wemux determines that my Ubuntu machine has lesser screen resolution
+and automatically scales down the working area on my MacBook. If this is not
+awesome...&lt;/p&gt;</summary><category term="screen"></category><category term="vim"></category><category term="ssh"></category><category term="programming"></category><category term="pair programming"></category></entry><entry><title>Snippets of April 2012</title><link href="http://www.martinbrochhaus.com/2012/04/snippets-201204.html" rel="alternate"></link><updated>2012-04-21T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-04-21:2012/04/snippets-201204.html</id><summary type="html">&lt;p&gt;This is my second post in a series of (almost) monthly posts about small bits
 and pieces of wisdom that amazed me. You can find the first post here:
 &lt;a href="http://martinbrochhaus.com/2012/02/snippets-201202.html"&gt;Snippets of February 2012&lt;/a&gt;&lt;/p&gt;
 &lt;h1&gt;Ubuntu: Static Application Switcher&lt;/h1&gt;
