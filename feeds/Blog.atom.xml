@@ -193,7 +193,7 @@ very useful.&lt;/p&gt;
 &lt;img alt="wemux server" src="./images/wemux.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Note how wemux determines that my Ubuntu machine has lesser screen resolution
 and automatically scales down the working area on my MacBook. If this is not
-awesome...&lt;/p&gt;</summary><category term="screen"></category><category term="vim"></category><category term="ssh"></category><category term="programming"></category><category term="pair programming"></category></entry><entry><title>Snippets of April 2012</title><link href="http://www.martinbrochhaus.com/2012/04/snippets-201204.html" rel="alternate"></link><updated>2012-04-21T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-04-21:2012/04/snippets-201204.html</id><summary type="html">&lt;p&gt;This is my second post in a series of (almost) monthly posts about small bits
+awesome...&lt;/p&gt;</summary><category term="screen"></category><category term="vim"></category><category term="ssh"></category><category term="programming"></category></entry><entry><title>Snippets of April 2012</title><link href="http://www.martinbrochhaus.com/2012/04/snippets-201204.html" rel="alternate"></link><updated>2012-04-21T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-04-21:2012/04/snippets-201204.html</id><summary type="html">&lt;p&gt;This is my second post in a series of (almost) monthly posts about small bits
 and pieces of wisdom that amazed me. You can find the first post here:
 &lt;a href="http://martinbrochhaus.com/2012/02/snippets-201202.html"&gt;Snippets of February 2012&lt;/a&gt;&lt;/p&gt;
 &lt;h1&gt;Ubuntu: Static Application Switcher&lt;/h1&gt;
