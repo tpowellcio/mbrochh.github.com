@@ -57,14 +57,9 @@ online documentations, mailing lists, RSS feeds, issue trackers, wikis, social
 media profiles, newsletters, chat rooms, slides and sometimes really just in
 the head of another developer.
 
-Be warned: This already is a long post and I'm afraid it is going to be a whole
-lot longer. I will try to describe the Django landscape as I have discovered it
-during the last four years and I will list the essential ressources that stood
-the test of time (for example, despite getting a lot of media buzz, convore
-turned out to be a failure).
-
-Most importantly I will try to describe how you could add these ressources to
-your daily routine while still having a live.
+I will describe how you can add all these ressources to your daily routine
+in a way that still allows you to stay focused on your work and to live a
+normal life.
 
 ## Books
 
