@@ -134,7 +134,7 @@ your new blog.
 If you see that something went wrong, you might want to destroy the generated
 output:
 
-    :sh
+    ::sh
     # make sure to be in the root folder and be sure that your .md file changes
     # have been committed
     git clean -df
@@ -142,7 +142,7 @@ output:
 Now you can edit your `.md` files again and generate the output again. If you
 are happy with your output, it is time to publish it:
 
-    :sh
+    ::sh
     # make sure to be in the root folder
     git add .
     git commit -am "Pelican output"

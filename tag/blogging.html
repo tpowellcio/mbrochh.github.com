@@ -204,20 +204,18 @@ of files in your root directory. Open your <code>index.html</code> and have a lo
 your new blog.</p>
 <p>If you see that something went wrong, you might want to destroy the generated
 output:</p>
-<div class="codehilite"><pre><span class="p">:</span><span class="n">sh</span>
-# <span class="n">make</span> <span class="n">sure</span> <span class="n">to</span> <span class="n">be</span> <span class="n">in</span> <span class="n">the</span> <span class="n">root</span> <span class="n">folder</span> <span class="n">and</span> <span class="n">be</span> <span class="n">sure</span> <span class="n">that</span> <span class="n">your</span> <span class="p">.</span><span class="n">md</span> <span class="n">file</span> <span class="n">changes</span>
-# <span class="n">have</span> <span class="n">been</span> <span class="n">committed</span>
-<span class="n">git</span> <span class="n">clean</span> <span class="o">-</span><span class="n">df</span>
+<div class="codehilite"><pre><span class="c"># make sure to be in the root folder and be sure that your .md file changes</span>
+<span class="c"># have been committed</span>
+git clean -df
 </pre></div>
 
 
 <p>Now you can edit your <code>.md</code> files again and generate the output again. If you
 are happy with your output, it is time to publish it:</p>
-<div class="codehilite"><pre><span class="p">:</span><span class="n">sh</span>
-# <span class="n">make</span> <span class="n">sure</span> <span class="n">to</span> <span class="n">be</span> <span class="n">in</span> <span class="n">the</span> <span class="n">root</span> <span class="n">folder</span>
-<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">am</span> &quot;<span class="n">Pelican</span> <span class="n">output</span>&quot;
-<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+<div class="codehilite"><pre><span class="c"># make sure to be in the root folder</span>
+git add .
+git commit -am <span class="s2">&quot;Pelican output&quot;</span>
+git push origin master
 </pre></div>
 
 

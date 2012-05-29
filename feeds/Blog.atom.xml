@@ -503,20 +503,18 @@ of files in your root directory. Open your &lt;code&gt;index.html&lt;/code&gt; a
 your new blog.&lt;/p&gt;
 &lt;p&gt;If you see that something went wrong, you might want to destroy the generated
 output:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
-# &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;sure&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="n"&gt;folder&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;sure&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;changes&lt;/span&gt;
-# &lt;span class="n"&gt;have&lt;/span&gt; &lt;span class="n"&gt;been&lt;/span&gt; &lt;span class="n"&gt;committed&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;clean&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# make sure to be in the root folder and be sure that your .md file changes&lt;/span&gt;
+&lt;span class="c"&gt;# have been committed&lt;/span&gt;
+git clean -df
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now you can edit your &lt;code&gt;.md&lt;/code&gt; files again and generate the output again. If you
 are happy with your output, it is time to publish it:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
-# &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;sure&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="n"&gt;folder&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;am&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;Pelican&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&amp;quot;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# make sure to be in the root folder&lt;/span&gt;
+git add .
+git commit -am &lt;span class="s2"&gt;&amp;quot;Pelican output&amp;quot;&lt;/span&gt;
+git push origin master
 &lt;/pre&gt;&lt;/div&gt;
 
 
