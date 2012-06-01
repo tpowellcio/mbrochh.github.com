@@ -18,3 +18,11 @@ status: draft
   of that scene. That's the kind of gameplay that I like.
 * After maybe an hour of playing I have solved 23%... really? I would be a
   shame if the game would be that short.
+* Went into the dreamland of the Woodfella. Quite funny and so many mushrooms.
+  I wondered what they are good for, but could not discover anything. The dream
+  ends super simple, just follow the singing bear. Weird.
+* Later I discovered that the mushrooms help to find stuff in the woods. I
+  wonder if they spawn all the time of I have to be smart when to use them and
+  when not. They seem to be limited, what a shame.
+* Rubbing the rainbows. What a cool idea.
+* After my third session I'm 36% into the game.
