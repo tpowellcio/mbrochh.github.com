@@ -41,3 +41,9 @@ status: draft
   about the game later ("I constantly felt like I wanted to return to the
   game"). If I just finished this in one session I would probably complain that
   it only took me 3 hours to beat the game.
+* After my 5th session I am 53% into the game. Instead of moving through the 
+  gate as the game suggested I went to the hut and took a nap. Luckily it was
+  a full moon so the dreamland had more souls to discover and led me to a whole
+  new realm. As usual, music and visuals are wonderful. I love the game and I
+  hated to stop the dream world and go to sleep. What if it kicks me out since
+  full moon will be over tomorrow?
