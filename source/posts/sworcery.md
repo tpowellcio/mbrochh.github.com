@@ -47,3 +47,18 @@ status: draft
   new realm. As usual, music and visuals are wonderful. I love the game and I
   hated to stop the dream world and go to sleep. What if it kicks me out since
   full moon will be over tomorrow?
+* After my 6th session I am 56% in, although I felt that I must have much much
+  more progress. For the first time I had the feeling that I might be stuck, so 
+  I did what you do in every adventure game and ran back all the way to the old
+  places I had visited before. Luckily it was still a bright moon and I could
+  talk to some ghosts, which clearly hinted that the rest of the game will
+  probably take place in the dreamworld. Also, it seems as if I have freed
+  another soul at the other side of the lake last time, so this time when I
+  crossed the lake, I found the impossible island and the next end boss. And
+  boy this time its going to be a tough dance. I'm not sure if it is possible
+  to master that one with the trackpad, now it becomes very clear that this
+  game was designed for tapping on the iPad. Oh and I sat with the musician
+  in the dreamorld and listened to his whole song this time. I realized
+  that you can use the bushes to play tunes along with him and I totally
+  got lost in it, playing my own improvised song while he was playing his.
+  It was beautiful.
