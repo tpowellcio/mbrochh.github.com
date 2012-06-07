@@ -126,7 +126,7 @@ any more.
 
 .tmx is a common format for tile maps that make up the game world.  It has an
 editor called [Tiled](http://mapeditor.org). You can kind of paint the map of
-that level. The tile map also as a layer of trigger tiles which are invisible
+that level. The tile map also has a layer of trigger tiles which are invisible
 but can be accessed by the game program. Therefore, thanks to the .tmx
 standard, the game can know about the position, the look and the type (trigger)
 of any tile of the game world.
@@ -160,9 +160,9 @@ about techniques to juice up your game with special effects.
 
 # Where to go from here
 
-[pygame.org](http://pygame.org)
-[inventwithpython](http://inventwithpython.com)
-[pyweek.org](http://pyweek.org)
+* [pygame.org](http://pygame.org)
+* [inventwithpython](http://inventwithpython.com)
+* [pyweek.org](http://pyweek.org)
 
 # Tools
 
