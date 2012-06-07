@@ -102,7 +102,7 @@ any more.&lt;/p&gt;
 &lt;h1&gt;Tile maps&lt;/h1&gt;
 &lt;p&gt;.tmx is a common format for tile maps that make up the game world.  It has an
 editor called &lt;a href="http://mapeditor.org"&gt;Tiled&lt;/a&gt;. You can kind of paint the map of
-that level. The tile map also as a layer of trigger tiles which are invisible
+that level. The tile map also has a layer of trigger tiles which are invisible
 but can be accessed by the game program. Therefore, thanks to the .tmx
 standard, the game can know about the position, the look and the type (trigger)
 of any tile of the game world.&lt;/p&gt;
@@ -128,9 +128,11 @@ game.&lt;/p&gt;
 &lt;a href="https://www.youtube.com/watch?v=Fy0aCDmgnxg"&gt;Juice it or lose it&lt;/a&gt; which is
 about techniques to juice up your game with special effects.&lt;/p&gt;
 &lt;h1&gt;Where to go from here&lt;/h1&gt;
-&lt;p&gt;&lt;a href="http://pygame.org"&gt;pygame.org&lt;/a&gt;
-&lt;a href="http://inventwithpython.com"&gt;inventwithpython&lt;/a&gt;
-&lt;a href="http://pyweek.org"&gt;pyweek.org&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://pygame.org"&gt;pygame.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://inventwithpython.com"&gt;inventwithpython&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://pyweek.org"&gt;pyweek.org&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1&gt;Tools&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://mapeditor.org"&gt;mapeditor.org&lt;/a&gt; - Creates tile maps&lt;/li&gt;
