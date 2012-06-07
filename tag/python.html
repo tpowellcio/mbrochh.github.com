@@ -77,8 +77,198 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././2012/02/snippets-201202.html">Snippets of February 2012</a></h1> 
+                    <h1 class="entry-title"><a href=".././2012/06/pygame.html">PyCon APAC 2012 - Introduction to Game Development</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-06-07T00:00:00">
+                Thu 07 June 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
+        </address>
+        
+<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
+
+
+</footer><!-- /.post-info --><p>I like how <a href="https://twitter.com/pydanny">Daniel Greenfeld</a> has the habit of
+publishing <a href="http://pydanny-event-notes.readthedocs.org/en/latest/index.html">live notes</a>
+when he attends conferences and meet-ups. I don't think that I will have the
+time and money to attend so many conferences that a dedicated repository would
+make sense but I guess that I can give this a try right here in my blog.</p>
+<p>So here are my notes on <a href="https://plus.google.com/100267502615190755251/posts">Richard Jone's</a>
+tutorial on game development with Python:</p>
+<p>We got a .zip file with a whole game inside. Richard was nice enough to put it
+into public domain, so we can tinker with it and build upon it.</p>
+<h1>Display Something</h1>
+<ul>
+<li>We can display images, draw primitives, draw fonts or use OpenGL.</li>
+<li>Not going to cover OpenGL today, unfortunately.</li>
+</ul>
+<p>A first pygame program is really simple:</p>
+<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">pygame</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Better put some structure to your code. Create a Game() class with a main()
+method. Don't use global variables.</p>
+<p>In pygame, unlike in modern frameworks, the coordinate <code>0,0</code> is the top left
+corner. This is because video hardware draws like this. More modern systems
+like OpenGL separate the drawing part from the display part so that we can use
+a more sane coordinate system with <code>0,0</code> at bottom left. Pygame is not that
+modern unfortunately.</p>
+<p>Let's draw something:</p>
+<div class="codehilite"><pre><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;player.png&#39;</span><span class="p">)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>  <span class="c"># Fill the screen with a background color</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="mi">320</span><span class="p">,</span> <span class="mi">240</span><span class="p">))</span>  <span class="c"># Copies the image to that position on screen</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Pygame uses RGB colors.</p>
+<p>We learn about "tearing". If we draw to the screen directly, the screen might
+refresh while we change what is on the screen so we will see something in
+between. Therefore we will write to a second screen buffer first and once we
+are done drawing everything we will <code>flip</code> the buffers so that the display will
+re-draw the now new buffer. I assume that the <code>display.flip()</code> method does
+somehow know when the display finished drawing one whole screen and will only
+flip once that is done.</p>
+<p>Via <code>pygame.tick.Clock()</code> we can put the main loop to sleep. No need to
+stress our CPU like crazy. 30 FPS should be a good frame rate for any video
+game.</p>
+<p>Our first animation is just adding 10 pixels to the image position.</p>
+<h1>User input</h1>
+<p>While Pygame can tell us, if a key down event has recently happened, it can
+also tell us which keys are currently being pressed:</p>
+<div class="codehilite"><pre><span class="n">key</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_LEFT</span><span class="p">]:</span>
+    <span class="n">image_x</span> <span class="o">-=</span> <span class="mi">10</span>
+</pre></div>
+
+
+<p>Both can be useful. Since the main loop runs with a clock and goes to sleep
+every 30 seconds, it can very well happen that the user pressed the escape key
+to quit the game while we have been sleeping. In this case we would check like
+this:</p>
+<div class="codehilite"><pre><span class="n">event</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_ESCAPE</span><span class="p">:</span>
+</pre></div>
+
+
+<h1>Sprites</h1>
+<p>To put things together, we can define sprites, which are images, that know how
+they look like and where they are on screen. We can give them an <code>update</code>
+method and handle their user input, which pulls out a lot of clutter from our
+main loop:</p>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">Player</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Sprite</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">groups</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">Player</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">groups</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;player.png&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">rect</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">Rect</span><span class="p">((</span><span class="mi">320</span><span class="p">,</span> <span class="mi">240</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">get_size</span><span class="p">())</span>
+
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_LEFT</span><span class="p">]:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">x</span> <span class="o">-=</span> <span class="mi">10</span>
+</pre></div>
+
+
+<p>You would want to pass the amount of time that has passed since the last loop
+call and pass it into the update method. Then don't just jump 10 pixels but
+multiply the passed time with a value. This will make the game feel more smooth
+and more equal on different hardware.</p>
+<h1>Collision detection</h1>
+<p>Axis-Aligned bounding box is the most common collision detection. The name says
+it all, think about it.</p>
+<p>An alternative would be to use circles as bounding boxes.</p>
+<p>A third alternatives is to use a hash map, which is useful for 2D games with
+thousands of sprite on screen. This is usually used for so called <a href="https://en.wikipedia.org/wiki/Bullet_hell#Bullet_hell">Bullet
+Hell</a> games. Didn't know
+about this term before. I'm feeling ashamed.</p>
+<p>You could finally do pixel perfect collision detection but that might be quite
+slow. It would be used in games like Worms, where you can blow up the whole
+environment, which results in shapes that cannot be handled by bounding boxes
+any more.</p>
+<h1>Tile maps</h1>
+<p>.tmx is a common format for tile maps that make up the game world.  It has an
+editor called <a href="http://mapeditor.org">Tiled</a>. You can kind of paint the map of
+that level. The tile map also as a layer of trigger tiles which are invisible
+but can be accessed by the game program. Therefore, thanks to the .tmx
+standard, the game can know about the position, the look and the type (trigger)
+of any tile of the game world.</p>
+<p>The player only sees a fraction of the whole tile map. This is called the view
+port.</p>
+<p>From here on it is pretty much all about doing lots of if and else clauses
+reacting to collisions and inputs. It seems to me that the hardest part about
+game development is structuring your code as efficient as possible because it
+can quickly grow into a huge amount of spaghetti code.</p>
+<h1>Sound</h1>
+<p>As expected, adding sound is extremely easy as well:</p>
+<div class="codehilite"><pre><span class="bp">self</span><span class="o">.</span><span class="n">jump</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mixer</span><span class="o">.</span><span class="n">Sound</span><span class="p">(</span><span class="s">&#39;jump.wav&#39;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">jump</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+</pre></div>
+
+
+<p><a href="https://code.google.com/p/sfxr/">SFXR</a> is a great little tool that emulates
+the sound chip of the C64 and allows you to model cute 8bit sounds for your
+game.</p>
+<h1>Special effects</h1>
+<p>You can use <code>pip install lepton</code>, a library for particles. Richard repeats:
+"Every single game improves with particles" :) He mentions a talk called
+<a href="https://www.youtube.com/watch?v=Fy0aCDmgnxg">Juice it or lose it</a> which is
+about techniques to juice up your game with special effects.</p>
+<h1>Where to go from here</h1>
+<p><a href="http://pygame.org">pygame.org</a>
+<a href="http://inventwithpython.com">inventwithpython</a>
+<a href="http://pyweek.org">pyweek.org</a></p>
+<h1>Tools</h1>
+<ul>
+<li><a href="http://mapeditor.org">mapeditor.org</a> - Creates tile maps</li>
+<li><a href="https://code.google.com/p/sfxr/">SFXR</a> - Creates sound files</li>
+<li><a href="http://danikgames.com/stuff/pyxeledit/">Pyxel Edit</a> - Creates seamless
+  tiles.</li>
+<li><a href="http://pixenapp.com/">Pixen</a> - Creates moving animatinos for characters</li>
+<li><a href="http://cocos2d.org/doc.html">cocos2d.org</a> - Helps with adding juice</li>
+<li><a href="http://www.py2exe.org/">py2exe</a> - Bundle your game and distribute it as an
+  .exe file</li>
+<li><a href="http://svn.pythonmac.org/py2app">py2app</a> - Bundle your game and distribute
+  as an OSX application</li>
+</ul>
+<h1>Conclusion</h1>
+<p>It is <em>amazingly</em> simple to start with game development and Python. Everything
+form installing pygame to getting to play a first prototype just works and
+there seem to be free tools available for every aspect of simple game
+development (like creating sound etc.). I definitely want to try this at home!
+This might be the most awesome way to teach my 12 year old brother in law about
+programming.</p><p>There are <a href=".././2012/06/pygame.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././2012/02/snippets-201202.html" rel="bookmark" title="Permalink to Snippets of February 2012">Snippets of February 2012</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-02-29T00:00:00">
                 Wed 29 February 2012
         </abbr>
@@ -92,68 +282,18 @@
 <p>tags: <a href=".././tag/git.html">git</a><a href=".././tag/python.html">python</a><a href=".././tag/vim.html">vim</a><a href=".././tag/snippets.html">snippets</a></p>
 
 
-</footer><!-- /.post-info --><p>Naturally, as a developer I learn new awesome things almost every day.
+</footer><!-- /.post-info -->
+                <p>Naturally, as a developer I learn new awesome things almost every day.
 I thought it might be a good idea to keep track of all those small Ah-Ha!
 moments and release a snippets post every month.</p>
 <h1>Global .gitignore</h1>
 <p>When I wanted to contribute code to
 <a href="https://github.com/ametaireau/pelican">Pelican</a> I naively added
-<code>.ropeproject</code> to that repo's <code>.gitignore</code> file. As a result, I was told in
-the codereview that I should not pollute other project's <code>.gitignore</code> files
-with unrelated stuff but rather use a global <code>.gitignore</code> file instead. How
-could I not know about this until now?!?</p>
-<p>Just add the following code to your .gitconfig:</p>
-<div class="codehilite"><pre>[core]
-excludesfile = $HOME/.gitignore_global
-</pre></div>
-
-
-<p>Then create the <code>.gitignore_global</code> file and put stuff inside that your
-editors of choice might produce.</p>
-<h1>Better Omni Completion in Vim</h1>
-<p>So I finally got the <code>hjkl</code> keys for movement into my muscle memory. Now it
-annoys me that I have to use the arrow keys when I want to browse through the
-various options that the code completion suggests. There is a vimbit for that:</p>
-<div class="codehilite"><pre>set completeopt=longest,menuone
-
-&quot; found here: http://stackoverflow.com/a/2170800/70778
-function! OmniPopup(action)
-    if pumvisible()
-        if a:action == &#39;j&#39;
-            return &quot;\&lt;C-N&gt;&quot;
-        elseif a:action == &#39;k&#39;
-            return &quot;\&lt;C-P&gt;&quot;
-        endif
-    endif
-    return a:action
-endfunction
-inoremap &lt;silent&gt;&lt;C-j&gt; &lt;C-R&gt;=OmniPopup(&#39;j&#39;)&lt;CR&gt;
-inoremap &lt;silent&gt;&lt;C-k&gt; &lt;C-R&gt;=OmniPopup(&#39;k&#39;)&lt;CR&gt;
-</pre></div>
-
-
-<h1>Vimbits</h1>
-<p>Speaking of vimbits: <a href="http://vimbits.com/">vimbits.com</a> recently flew through
-my Twitter stream. I spent an hour there. As a result my <code>.vimrc</code> just
-exploded with all kinds of awesomeness.</p>
-<h1>Showing git branch in prompt</h1>
-<p>I thought that I was typing <code>git branch</code> way too often (actually I type
-<code>git br</code>, of course).</p>
-<div class="codehilite"><pre>export PS1=&#39;\w\[\033[31m\]$(__git_ps1 &quot;(%s)&quot;) \[\033[01;34m\]$\[\033[00m\] &#39;
-</pre></div>
-
-
-<p>Hint: In order for this to work, you need to install git via Homebrew on OSX.</p><p>There are <a href=".././2012/02/snippets-201202.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
+<code>.ropeproject ...</code></p>
+                <a class="readmore" href=".././2012/02/snippets-201202.html">read more</a>
+                <p>There are <a href=".././2012/02/snippets-201202.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         

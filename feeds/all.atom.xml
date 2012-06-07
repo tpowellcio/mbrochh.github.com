@@ -1,5 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com/" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/all.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com/</id><updated>2012-05-26T00:00:00+08:00</updated><entry><title>Secure pair programming with wemux and Vim</title><link href="http://www.martinbrochhaus.com/2012/05/pair.html" rel="alternate"></link><updated>2012-05-26T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-05-26:2012/05/pair.html</id><summary type="html">&lt;p&gt;At &lt;a href="http://www.bitmazk.com"&gt;Bitmazk&lt;/a&gt; we are a small team of web developers
+<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com/" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/all.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com/</id><updated>2012-06-07T00:00:00+08:00</updated><entry><title>PyCon APAC 2012 - Introduction to Game Development</title><link href="http://www.martinbrochhaus.com/2012/06/pygame.html" rel="alternate"></link><updated>2012-06-07T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-07:2012/06/pygame.html</id><summary type="html">&lt;p&gt;I like how &lt;a href="https://twitter.com/pydanny"&gt;Daniel Greenfeld&lt;/a&gt; has the habit of
+publishing &lt;a href="http://pydanny-event-notes.readthedocs.org/en/latest/index.html"&gt;live notes&lt;/a&gt;
+when he attends conferences and meet-ups. I don't think that I will have the
+time and money to attend so many conferences that a dedicated repository would
+make sense but I guess that I can give this a try right here in my blog.&lt;/p&gt;
+&lt;p&gt;So here are my notes on &lt;a href="https://plus.google.com/100267502615190755251/posts"&gt;Richard Jone's&lt;/a&gt;
+tutorial on game development with Python:&lt;/p&gt;
+&lt;p&gt;We got a .zip file with a whole game inside. Richard was nice enough to put it
+into public domain, so we can tinker with it and build upon it.&lt;/p&gt;
+&lt;h1&gt;Display Something&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;We can display images, draw primitives, draw fonts or use OpenGL.&lt;/li&gt;
+&lt;li&gt;Not going to cover OpenGL today, unfortunately.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A first pygame program is really simple:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pygame&lt;/span&gt;
+&lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;screen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_mode&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mi"&gt;640&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;480&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Better put some structure to your code. Create a Game() class with a main()
+method. Don't use global variables.&lt;/p&gt;
+&lt;p&gt;In pygame, unlike in modern frameworks, the coordinate &lt;code&gt;0,0&lt;/code&gt; is the top left
+corner. This is because video hardware draws like this. More modern systems
+like OpenGL separate the drawing part from the display part so that we can use
+a more sane coordinate system with &lt;code&gt;0,0&lt;/code&gt; at bottom left. Pygame is not that
+modern unfortunately.&lt;/p&gt;
+&lt;p&gt;Let's draw something:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;image&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;player.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;screen&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fill&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;  &lt;span class="c"&gt;# Fill the screen with a background color&lt;/span&gt;
+&lt;span class="n"&gt;screen&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;blit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;320&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;240&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;  &lt;span class="c"&gt;# Copies the image to that position on screen&lt;/span&gt;
+&lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Pygame uses RGB colors.&lt;/p&gt;
+&lt;p&gt;We learn about "tearing". If we draw to the screen directly, the screen might
+refresh while we change what is on the screen so we will see something in
+between. Therefore we will write to a second screen buffer first and once we
+are done drawing everything we will &lt;code&gt;flip&lt;/code&gt; the buffers so that the display will
+re-draw the now new buffer. I assume that the &lt;code&gt;display.flip()&lt;/code&gt; method does
+somehow know when the display finished drawing one whole screen and will only
+flip once that is done.&lt;/p&gt;
+&lt;p&gt;Via &lt;code&gt;pygame.tick.Clock()&lt;/code&gt; we can put the main loop to sleep. No need to
+stress our CPU like crazy. 30 FPS should be a good frame rate for any video
+game.&lt;/p&gt;
+&lt;p&gt;Our first animation is just adding 10 pixels to the image position.&lt;/p&gt;
+&lt;h1&gt;User input&lt;/h1&gt;
+&lt;p&gt;While Pygame can tell us, if a key down event has recently happened, it can
+also tell us which keys are currently being pressed:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_pressed&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;K_LEFT&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;image_x&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Both can be useful. Since the main loop runs with a clock and goes to sleep
+every 30 seconds, it can very well happen that the user pressed the escape key
+to quit the game while we have been sleeping. In this case we would check like
+this:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;event&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;KEYDOWN&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;K_ESCAPE&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Sprites&lt;/h1&gt;
+&lt;p&gt;To put things together, we can define sprites, which are images, that know how
+they look like and where they are on screen. We can give them an &lt;code&gt;update&lt;/code&gt;
+method and handle their user input, which pulls out a lot of clutter from our
+main loop:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Player&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sprite&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Sprite&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;groups&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Player&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;groups&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;player.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rect&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Rect&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mi"&gt;320&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;240&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_size&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_pressed&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;K_LEFT&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You would want to pass the amount of time that has passed since the last loop
+call and pass it into the update method. Then don't just jump 10 pixels but
+multiply the passed time with a value. This will make the game feel more smooth
+and more equal on different hardware.&lt;/p&gt;
+&lt;h1&gt;Collision detection&lt;/h1&gt;
+&lt;p&gt;Axis-Aligned bounding box is the most common collision detection. The name says
+it all, think about it.&lt;/p&gt;
+&lt;p&gt;An alternative would be to use circles as bounding boxes.&lt;/p&gt;
+&lt;p&gt;A third alternatives is to use a hash map, which is useful for 2D games with
+thousands of sprite on screen. This is usually used for so called &lt;a href="https://en.wikipedia.org/wiki/Bullet_hell#Bullet_hell"&gt;Bullet
+Hell&lt;/a&gt; games. Didn't know
+about this term before. I'm feeling ashamed.&lt;/p&gt;
+&lt;p&gt;You could finally do pixel perfect collision detection but that might be quite
+slow. It would be used in games like Worms, where you can blow up the whole
+environment, which results in shapes that cannot be handled by bounding boxes
+any more.&lt;/p&gt;
+&lt;h1&gt;Tile maps&lt;/h1&gt;
+&lt;p&gt;.tmx is a common format for tile maps that make up the game world.  It has an
+editor called &lt;a href="http://mapeditor.org"&gt;Tiled&lt;/a&gt;. You can kind of paint the map of
+that level. The tile map also as a layer of trigger tiles which are invisible
+but can be accessed by the game program. Therefore, thanks to the .tmx
+standard, the game can know about the position, the look and the type (trigger)
+of any tile of the game world.&lt;/p&gt;
+&lt;p&gt;The player only sees a fraction of the whole tile map. This is called the view
+port.&lt;/p&gt;
+&lt;p&gt;From here on it is pretty much all about doing lots of if and else clauses
+reacting to collisions and inputs. It seems to me that the hardest part about
+game development is structuring your code as efficient as possible because it
+can quickly grow into a huge amount of spaghetti code.&lt;/p&gt;
+&lt;h1&gt;Sound&lt;/h1&gt;
+&lt;p&gt;As expected, adding sound is extremely easy as well:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jump&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mixer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Sound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;jump.wav&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jump&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;play&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="https://code.google.com/p/sfxr/"&gt;SFXR&lt;/a&gt; is a great little tool that emulates
+the sound chip of the C64 and allows you to model cute 8bit sounds for your
+game.&lt;/p&gt;
+&lt;h1&gt;Special effects&lt;/h1&gt;
+&lt;p&gt;You can use &lt;code&gt;pip install lepton&lt;/code&gt;, a library for particles. Richard repeats:
+"Every single game improves with particles" :) He mentions a talk called
+&lt;a href="https://www.youtube.com/watch?v=Fy0aCDmgnxg"&gt;Juice it or lose it&lt;/a&gt; which is
+about techniques to juice up your game with special effects.&lt;/p&gt;
+&lt;h1&gt;Where to go from here&lt;/h1&gt;
+&lt;p&gt;&lt;a href="http://pygame.org"&gt;pygame.org&lt;/a&gt;
+&lt;a href="http://inventwithpython.com"&gt;inventwithpython&lt;/a&gt;
+&lt;a href="http://pyweek.org"&gt;pyweek.org&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Tools&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://mapeditor.org"&gt;mapeditor.org&lt;/a&gt; - Creates tile maps&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://code.google.com/p/sfxr/"&gt;SFXR&lt;/a&gt; - Creates sound files&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://danikgames.com/stuff/pyxeledit/"&gt;Pyxel Edit&lt;/a&gt; - Creates seamless
+  tiles.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://pixenapp.com/"&gt;Pixen&lt;/a&gt; - Creates moving animatinos for characters&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://cocos2d.org/doc.html"&gt;cocos2d.org&lt;/a&gt; - Helps with adding juice&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.py2exe.org/"&gt;py2exe&lt;/a&gt; - Bundle your game and distribute it as an
+  .exe file&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://svn.pythonmac.org/py2app"&gt;py2app&lt;/a&gt; - Bundle your game and distribute
+  as an OSX application&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;It is &lt;em&gt;amazingly&lt;/em&gt; simple to start with game development and Python. Everything
+form installing pygame to getting to play a first prototype just works and
+there seem to be free tools available for every aspect of simple game
+development (like creating sound etc.). I definitely want to try this at home!
+This might be the most awesome way to teach my 12 year old brother in law about
+programming.&lt;/p&gt;</summary><category term="python"></category><category term="pycon"></category><category term="conferences"></category></entry><entry><title>Secure pair programming with wemux and Vim</title><link href="http://www.martinbrochhaus.com/2012/05/pair.html" rel="alternate"></link><updated>2012-05-26T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-05-26:2012/05/pair.html</id><summary type="html">&lt;p&gt;At &lt;a href="http://www.bitmazk.com"&gt;Bitmazk&lt;/a&gt; we are a small team of web developers
 with members located in Singapore and Germany. Of course we do codereviews
 with Google's awesome &lt;a href="https://code.google.com/p/rietveld/"&gt;Rietveld&lt;/a&gt; but
 often when someone has an immediate problem, pair programming is just so much

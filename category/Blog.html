@@ -77,8 +77,198 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././2012/05/pair.html">Secure pair programming with wemux and Vim</a></h1> 
+                    <h1 class="entry-title"><a href=".././2012/06/pygame.html">PyCon APAC 2012 - Introduction to Game Development</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-06-07T00:00:00">
+                Thu 07 June 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
+        </address>
+        
+<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
+
+
+</footer><!-- /.post-info --><p>I like how <a href="https://twitter.com/pydanny">Daniel Greenfeld</a> has the habit of
+publishing <a href="http://pydanny-event-notes.readthedocs.org/en/latest/index.html">live notes</a>
+when he attends conferences and meet-ups. I don't think that I will have the
+time and money to attend so many conferences that a dedicated repository would
+make sense but I guess that I can give this a try right here in my blog.</p>
+<p>So here are my notes on <a href="https://plus.google.com/100267502615190755251/posts">Richard Jone's</a>
+tutorial on game development with Python:</p>
+<p>We got a .zip file with a whole game inside. Richard was nice enough to put it
+into public domain, so we can tinker with it and build upon it.</p>
+<h1>Display Something</h1>
+<ul>
+<li>We can display images, draw primitives, draw fonts or use OpenGL.</li>
+<li>Not going to cover OpenGL today, unfortunately.</li>
+</ul>
+<p>A first pygame program is really simple:</p>
+<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">pygame</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Better put some structure to your code. Create a Game() class with a main()
+method. Don't use global variables.</p>
+<p>In pygame, unlike in modern frameworks, the coordinate <code>0,0</code> is the top left
+corner. This is because video hardware draws like this. More modern systems
+like OpenGL separate the drawing part from the display part so that we can use
+a more sane coordinate system with <code>0,0</code> at bottom left. Pygame is not that
+modern unfortunately.</p>
+<p>Let's draw something:</p>
+<div class="codehilite"><pre><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;player.png&#39;</span><span class="p">)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>  <span class="c"># Fill the screen with a background color</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="mi">320</span><span class="p">,</span> <span class="mi">240</span><span class="p">))</span>  <span class="c"># Copies the image to that position on screen</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Pygame uses RGB colors.</p>
+<p>We learn about "tearing". If we draw to the screen directly, the screen might
+refresh while we change what is on the screen so we will see something in
+between. Therefore we will write to a second screen buffer first and once we
+are done drawing everything we will <code>flip</code> the buffers so that the display will
+re-draw the now new buffer. I assume that the <code>display.flip()</code> method does
+somehow know when the display finished drawing one whole screen and will only
+flip once that is done.</p>
+<p>Via <code>pygame.tick.Clock()</code> we can put the main loop to sleep. No need to
+stress our CPU like crazy. 30 FPS should be a good frame rate for any video
+game.</p>
+<p>Our first animation is just adding 10 pixels to the image position.</p>
+<h1>User input</h1>
+<p>While Pygame can tell us, if a key down event has recently happened, it can
+also tell us which keys are currently being pressed:</p>
+<div class="codehilite"><pre><span class="n">key</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_LEFT</span><span class="p">]:</span>
+    <span class="n">image_x</span> <span class="o">-=</span> <span class="mi">10</span>
+</pre></div>
+
+
+<p>Both can be useful. Since the main loop runs with a clock and goes to sleep
+every 30 seconds, it can very well happen that the user pressed the escape key
+to quit the game while we have been sleeping. In this case we would check like
+this:</p>
+<div class="codehilite"><pre><span class="n">event</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_ESCAPE</span><span class="p">:</span>
+</pre></div>
+
+
+<h1>Sprites</h1>
+<p>To put things together, we can define sprites, which are images, that know how
+they look like and where they are on screen. We can give them an <code>update</code>
+method and handle their user input, which pulls out a lot of clutter from our
+main loop:</p>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">Player</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Sprite</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">groups</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">Player</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">groups</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;player.png&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">rect</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">Rect</span><span class="p">((</span><span class="mi">320</span><span class="p">,</span> <span class="mi">240</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">get_size</span><span class="p">())</span>
+
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_LEFT</span><span class="p">]:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">x</span> <span class="o">-=</span> <span class="mi">10</span>
+</pre></div>
+
+
+<p>You would want to pass the amount of time that has passed since the last loop
+call and pass it into the update method. Then don't just jump 10 pixels but
+multiply the passed time with a value. This will make the game feel more smooth
+and more equal on different hardware.</p>
+<h1>Collision detection</h1>
+<p>Axis-Aligned bounding box is the most common collision detection. The name says
+it all, think about it.</p>
+<p>An alternative would be to use circles as bounding boxes.</p>
+<p>A third alternatives is to use a hash map, which is useful for 2D games with
+thousands of sprite on screen. This is usually used for so called <a href="https://en.wikipedia.org/wiki/Bullet_hell#Bullet_hell">Bullet
+Hell</a> games. Didn't know
+about this term before. I'm feeling ashamed.</p>
+<p>You could finally do pixel perfect collision detection but that might be quite
+slow. It would be used in games like Worms, where you can blow up the whole
+environment, which results in shapes that cannot be handled by bounding boxes
+any more.</p>
+<h1>Tile maps</h1>
+<p>.tmx is a common format for tile maps that make up the game world.  It has an
+editor called <a href="http://mapeditor.org">Tiled</a>. You can kind of paint the map of
+that level. The tile map also as a layer of trigger tiles which are invisible
+but can be accessed by the game program. Therefore, thanks to the .tmx
+standard, the game can know about the position, the look and the type (trigger)
+of any tile of the game world.</p>
+<p>The player only sees a fraction of the whole tile map. This is called the view
+port.</p>
+<p>From here on it is pretty much all about doing lots of if and else clauses
+reacting to collisions and inputs. It seems to me that the hardest part about
+game development is structuring your code as efficient as possible because it
+can quickly grow into a huge amount of spaghetti code.</p>
+<h1>Sound</h1>
+<p>As expected, adding sound is extremely easy as well:</p>
+<div class="codehilite"><pre><span class="bp">self</span><span class="o">.</span><span class="n">jump</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mixer</span><span class="o">.</span><span class="n">Sound</span><span class="p">(</span><span class="s">&#39;jump.wav&#39;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">jump</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+</pre></div>
+
+
+<p><a href="https://code.google.com/p/sfxr/">SFXR</a> is a great little tool that emulates
+the sound chip of the C64 and allows you to model cute 8bit sounds for your
+game.</p>
+<h1>Special effects</h1>
+<p>You can use <code>pip install lepton</code>, a library for particles. Richard repeats:
+"Every single game improves with particles" :) He mentions a talk called
+<a href="https://www.youtube.com/watch?v=Fy0aCDmgnxg">Juice it or lose it</a> which is
+about techniques to juice up your game with special effects.</p>
+<h1>Where to go from here</h1>
+<p><a href="http://pygame.org">pygame.org</a>
+<a href="http://inventwithpython.com">inventwithpython</a>
+<a href="http://pyweek.org">pyweek.org</a></p>
+<h1>Tools</h1>
+<ul>
+<li><a href="http://mapeditor.org">mapeditor.org</a> - Creates tile maps</li>
+<li><a href="https://code.google.com/p/sfxr/">SFXR</a> - Creates sound files</li>
+<li><a href="http://danikgames.com/stuff/pyxeledit/">Pyxel Edit</a> - Creates seamless
+  tiles.</li>
+<li><a href="http://pixenapp.com/">Pixen</a> - Creates moving animatinos for characters</li>
+<li><a href="http://cocos2d.org/doc.html">cocos2d.org</a> - Helps with adding juice</li>
+<li><a href="http://www.py2exe.org/">py2exe</a> - Bundle your game and distribute it as an
+  .exe file</li>
+<li><a href="http://svn.pythonmac.org/py2app">py2app</a> - Bundle your game and distribute
+  as an OSX application</li>
+</ul>
+<h1>Conclusion</h1>
+<p>It is <em>amazingly</em> simple to start with game development and Python. Everything
+form installing pygame to getting to play a first prototype just works and
+there seem to be free tools available for every aspect of simple game
+development (like creating sound etc.). I definitely want to try this at home!
+This might be the most awesome way to teach my 12 year old brother in law about
+programming.</p><p>There are <a href=".././2012/06/pygame.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././2012/05/pair.html" rel="bookmark" title="Permalink to Secure pair programming with wemux and Vim">Secure pair programming with wemux and Vim</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-05-26T00:00:00">
                 Sat 26 May 2012
         </abbr>
@@ -92,211 +282,17 @@
 <p>tags: <a href=".././tag/screen.html">screen</a><a href=".././tag/tmux.html">tmux</a><a href=".././tag/wemux.html">wemux</a><a href=".././tag/vim.html">vim</a><a href=".././tag/ssh.html">ssh</a><a href=".././tag/programming.html">programming</a></p>
 
 
-</footer><!-- /.post-info --><p>At <a href="http://www.bitmazk.com">Bitmazk</a> we are a small team of web developers
+</footer><!-- /.post-info -->
+                <p>At <a href="http://www.bitmazk.com">Bitmazk</a> we are a small team of web developers
 with members located in Singapore and Germany. Of course we do codereviews
 with Google's awesome <a href="https://code.google.com/p/rietveld/">Rietveld</a> but
 often when someone has an immediate problem, pair programming is just so much
 more efficient.</p>
-<p>We used to use Skype for talking and Teamviewer for screen sharing, which
-worked very well for a while but after recent updates both tools became so
-unreliable that they started affecting our work. More importantly: Even when
-those tools worked perfectly well there is significant lag between what I say
-and what my coworker sees. It's just not an optimal solution for staring at a
-terminal.</p>
-<p>I first tried to set this up with GNU Screen and it almost worked but at the
-final step I ran into a dead end. It seems as if
-<a href="http://superuser.com/questions/117684/gnu-screen-multiuser-mode-is-broken-in-os-x-10-6-snow-leopard">multiuser support on OSX 10.7 is broken</a>.
-Or maybe I was just too stupid to get the permissions for the guest user right. </p>
-<p>As a last resort I tried to achieve my goal with
-<a href="https://github.com/zolrath/wemux">wemux</a>. It worked right out of the box and
-took me less than 5 minutes to setup. Goodbye GNU Screen, I guess.</p>
-<p>The process I am going to describe here looks complex but it is really really
-simple. Please don't give up here!</p>
-<ol>
-<li>Setup a new user <code>pairprogger</code></li>
-<li>Authorize your colleagues to ssh into that user's account</li>
-<li>Setup port forwarding in your router's settings</li>
-<li>Enable remote login (OSX) / start an openssh-server (Ubuntnu)</li>
-<li>Install tmux and wemux</li>
-<li>Start a wemux server</li>
-<li>Join a wemux server</li>
-</ol>
-<p>It will blow your mind even more if you had two machines at your disposal but
-you will of course be able to test this with just one machine and two
-terminals.</p>
-<p>But rest assured that you won't be able to sleep until you find a real person
-on the internet who you can show this little trick. You have been warned. ;)</p>
-<h2>Step 1: Create a guest user account</h2>
-<p>You will ask your colleagues to ssh into your machine for pair programming.
-When I set this up I didn't bother about security at first as I just wanted
-to see how this feels. I invited a very close friend of mine to test this
-and I can tell you that it feels weird. You really don't want anyone in your
-machine with access to your whole home folder. Especially not if he is a
-hacker. At least I could come up with a dozen evil pranks immediately...</p>
-<p>So let's create a new user called <code>pairprogger</code>. For OSX I have created a
-file <code>create_user.sh</code>. Replace the three variables at the top and execute it.</p>
-<p><strong>OSX</strong></p>
-<div class="codehilite"><pre><span class="c"># find out your staff group id (for me it is 20)</span>
-<span class="c"># dscacheutil -q group</span>
-<span class="n">STAFF_GROUP_ID</span><span class="p">=</span><span class="n">XX</span>
-<span class="n">USERNAME</span><span class="p">=</span><span class="s">&quot;pairprogger&quot;</span>
-<span class="n">PASSWORD</span><span class="p">=</span><span class="s">&quot;yourpassword&quot;</span>
-
-<span class="n">MAXID</span><span class="p">=</span>$<span class="p">(</span><span class="n">dscl</span> <span class="p">.</span> <span class="o">-</span><span class="n">list</span> <span class="o">/</span><span class="n">Users</span> <span class="n">UniqueID</span> <span class="o">|</span> <span class="n">awk</span> <span class="s">&#39;{print $2}&#39;</span> <span class="o">|</span> <span class="nb">sort</span> <span class="o">-</span><span class="n">ug</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span>1<span class="p">)</span>
-<span class="n">NEWID</span><span class="p">=</span>$<span class="p">((</span><span class="n">MAXID</span><span class="o">+</span>1<span class="p">))</span>
-
-<span class="n">sudo</span> <span class="n">dscl</span> <span class="p">.</span> <span class="o">-</span><span class="n">create</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span>$<span class="n">USERNAME</span>
-<span class="n">sudo</span> <span class="n">dscl</span> <span class="p">.</span> <span class="o">-</span><span class="n">create</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span>$<span class="n">USERNAME</span> <span class="n">UserShell</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span>
-<span class="n">sudo</span> <span class="n">dscl</span> <span class="p">.</span> <span class="o">-</span><span class="n">create</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span>$<span class="n">USERNAME</span> <span class="n">UniqueID</span> <span class="s">&quot;$NEWID&quot;</span>
-<span class="n">sudo</span> <span class="n">dscl</span> <span class="p">.</span> <span class="o">-</span><span class="n">create</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span>$<span class="n">USERNAME</span> <span class="n">PrimaryGroupID</span> $<span class="n">STAFF_GROUP_ID</span>
-<span class="n">sudo</span> <span class="n">dscl</span> <span class="p">.</span> <span class="o">-</span><span class="n">create</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span>$<span class="n">USERNAME</span> <span class="n">RealName</span> <span class="s">&quot;Pair Programmer&quot;</span>
-<span class="n">sudo</span> <span class="n">dscl</span> <span class="p">.</span> <span class="o">-</span><span class="n">create</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span>$<span class="n">USERNAME</span> <span class="n">NFSHomeDirectory</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span>$<span class="n">USERNAME</span>
-<span class="n">sudo</span> <span class="n">dscl</span> <span class="p">.</span> <span class="o">-</span><span class="n">passwd</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span>$<span class="n">USERNAME</span> $<span class="n">PASSWORD</span>
-<span class="n">sudo</span> <span class="n">dscl</span> <span class="p">.</span> <span class="o">-</span><span class="n">append</span> <span class="o">/</span><span class="n">Groups</span><span class="o">/</span><span class="n">com</span><span class="p">.</span><span class="n">apple</span><span class="p">.</span><span class="n">access_ssh</span> <span class="n">GroupMembership</span> $<span class="n">USERNAME</span>
-<span class="n">sudo</span> <span class="n">createhomedir</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">u</span> $<span class="n">USERNAME</span>
-<span class="c"># make sure that there is /Users/pairprogger/ on your disk now</span>
-</pre></div>
-
-
-<p>I wont take credit for this insane user creation script for OSX.
-This thread on serverfault about
-<a href="http://serverfault.com/questions/20702/how-do-i-create-user-accounts-from-the-terminal-in-mac-os-x-10-5">how to create a user account on OSX</a>
-certainly saved my ass.</p>
-<p><strong>Ubuntu</strong></p>
-<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">useradd</span> <span class="o">-</span><span class="n">m</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span> <span class="n">pairprogger</span>
-<span class="n">sudo</span> <span class="n">passwd</span> <span class="n">pairprogger</span>
-</pre></div>
-
-
-<p>You should be able to test this by logging out. The new user should appear
-on your login screen.</p>
-<h2>Step 2: Restrict access via public RSA keys</h2>
-<p>You know the password of <code>pairprogger</code> but you are not going to give it
-away, as it cold get leaked and all kinds of people would be able to ssh into
-your machine. Instead you will create a <code>.ssh</code> folder for the new user
-and paste your colleagues public RSA keys into the <code>authorized_keys</code> file:</p>
-<p><strong>OSX / Ubuntu</strong></p>
-<div class="codehilite"><pre><span class="n">su</span> <span class="o">-</span> <span class="n">pairprogger</span>
-<span class="n">mkdir</span> <span class="p">.</span><span class="n">ssh</span>
-<span class="n">chmod</span> 700 <span class="p">.</span><span class="n">ssh</span>
-<span class="n">cd</span> <span class="p">.</span><span class="n">ssh</span>
-<span class="n">touch</span> <span class="n">authorized_keys</span>
-<span class="n">chmod</span> 600 <span class="n">authorized_keys</span>
-</pre></div>
-
-
-<p>Now copy the public RSA keys of the users you want to work with into the
-<code>authorized_keys</code> file. You might want to add your own key as well in order
-to test your setup later.</p>
-<h2>Setp 3: Enable port forwarding</h2>
-<p>There are certainly more elegant solutions where you tell your router that
-this computer should <em>always</em> get that IP and where you setup dyndns and all
-but I will describe a simpler approach here. Of course the drawback is that
-your IP will change all the time and every day you might have to repeat these
-steps.</p>
-<p>Note down your <a href="https://duckduckgo.com/?q=ip">public IP</a></p>
-<p>Note down your local IP:</p>
-<p><strong>OSX</strong></p>
-<div class="codehilite"><pre><span class="n">ipconfig</span> <span class="n">getifaddr</span> <span class="n">en1</span>
-</pre></div>
-
-
-<p><strong>Ubuntu</strong></p>
-<div class="codehilite"><pre><span class="n">ifconfig</span> <span class="n">wlan0</span> <span class="o">|</span> <span class="n">grep</span> <span class="s">&#39;inet addr&#39;</span> <span class="o">|</span> <span class="n">sed</span> <span class="s">&#39;s/.*inet addr:\([0-9.]*\).*/\1/&#39;</span>
-</pre></div>
-
-
-<p>To setup port forwarding go to <code>192.168.0.1</code>. This IP might differ on your
-router. Usually you should find a section for advanced settings which should
-have a section for port forwarding or just forwarding. You should see a table
-where you can enter your machine's local IP address and define which ports
-should be forwarded. You should forward port 22 for SSH and 8000 for your
-Django development server. The latter will enable you to do some pair
-programming and then have a look at the result together, each worker in their
-own browser.</p>
-<h2>Step 4: Enable remote access</h2>
-<p>Next you should start your local ssh server so that people can actually ssh
-into your machine. If anyone knows how to do this on the command line in OSX,
-please let me know in the comments! On Ubuntu I just had to install
-<code>openssh-server</code> and it worked immediately. We will be extra paranoid here
-and restrict access only to the <code>pairprogger</code> user and we will disallow
-password authentication, which would allow people to crack your password
-via bruteforce.</p>
-<p><strong>OSX</strong></p>
-<p>Go to <code>System Preferences</code> --&gt; <code>Sharing</code> --&gt; <code>Remote login</code>. Add
-<code>Pair Programmer</code> to the list <code>Allow access for</code>.</p>
-<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sshd_config</span>
-# <span class="n">Set</span> <span class="n">PasswordAuthentication</span> <span class="n">to</span> <span class="n">no</span>
-# <span class="n">Set</span> <span class="n">ChallengeResponseAuthentication</span> <span class="n">to</span> <span class="n">no</span>
-# <span class="n">Set</span> <span class="n">UsePAM</span> <span class="n">to</span> <span class="n">no</span>
-</pre></div>
-
-
-<p><strong>Ubuntu</strong></p>
-<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">openssh</span><span class="o">-</span><span class="n">server</span>
-<span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
-# <span class="n">Set</span> <span class="n">PasswordAuthentication</span> <span class="n">to</span> <span class="n">no</span>
-# <span class="n">Add</span> <span class="n">the</span> <span class="n">following</span> <span class="n">to</span> <span class="n">the</span> <span class="n">bottom</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span><span class="p">:</span>
-# <span class="n">AllowUsers</span> <span class="n">pairprogger</span>
-</pre></div>
-
-
-<p>Please note that I am not a security expert. I have added these ssh
-restrictions while writing this post and have not tested them thoroughly. It
-would probably be a good idea to also make sure that the user <code>pairprogger</code>
-is not allowed to leave his home folder and give him some quota so that he
-cannot flood your hard drive with porn. If anyone knows useful settings to
-further restrict this account, please leave them in the comments.</p>
-<p>So this was the hard part. Now to the fun part...</p>
-<h2>Step 5: Install tmux and wemux</h2>
-<p>Since wemux seems to be based on tmux, you need to install both, but that
-should be a no-brainer:</p>
-<p><strong>OSX</strong></p>
-<div class="codehilite"><pre><span class="n">brew</span> <span class="n">install</span> <span class="n">wemux</span>
-<span class="n">brew</span> <span class="n">install</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">downloads</span><span class="o">/</span><span class="n">zolrath</span><span class="o">/</span><span class="n">wemux</span><span class="o">/</span><span class="n">wemux</span><span class="p">.</span><span class="n">rb</span>
-</pre></div>
-
-
-<p><strong>Ubuntu</strong></p>
-<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">tmux</span>
-</pre></div>
-
-
-<p>On Ubuntu follow the instructions at https://github.com/zolrath/wemux for
-manual installation.</p>
-<h2>Step 6: Start the wemux server</h2>
-<p>You are ready to go. Type the following command:</p>
-<div class="codehilite"><pre><span class="n">wemux</span> <span class="n">start</span>
-</pre></div>
-
-
-<h2>Step 7: Join the wemux server</h2>
-<p>Now tell your friend to join you:</p>
-<div class="codehilite"><pre><span class="n">ssh</span> <span class="n">pairprogger</span><span class="p">@</span><span class="n">your</span><span class="o">-</span><span class="n">public</span><span class="o">-</span><span class="n">ip</span>
-<span class="n">wemux</span> <span class="n">attach</span>
-</pre></div>
-
-
-<h2>Bonus: Your first tmux config</h2>
-<p>If you used GNU screen and if you are a Vim user, you will most likely find the 
-settings in my <a href="https://github.com/mbrochh/mbrochh-dotfiles/blob/master/.tmux.conf">.tmux.conf</a>
-very useful.</p>
-<p>I hope I didn't forget anything. If so, please let me know in the comments!</p>
-<p>Oh and: This is how it is going to look like:
-<img alt="wemux server" src="../static/images/wemux.png" /></p>
-<p>Note how wemux determines that my Ubuntu machine has lesser screen resolution
-and automatically scales down the working area on my MacBook. If this is not
-awesome...</p><p>There are <a href=".././2012/05/pair.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
+<p>We used to use Skype for talking ...</p>
+                <a class="readmore" href=".././2012/05/pair.html">read more</a>
+                <p>There are <a href=".././2012/05/pair.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
