@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com/" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/Blog.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com/</id><updated>2012-06-08T00:00:00+08:00</updated><entry><title>PyCon APAC 2012 - Keynote</title><link href="http://www.martinbrochhaus.com/2012/06/eafp.html" rel="alternate"></link><updated>2012-06-08T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-08:2012/06/eafp.html</id><summary type="html">&lt;p&gt;Here are my live notes on &lt;a href="https://plus.google.com/106273672060692715136/about"&gt;Alex Martelli's&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com/" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/Blog.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com/</id><updated>2012-06-08T00:00:00+08:00</updated><entry><title>PyCon APAC 2012 - Analyzing Big Data in the Cloud</title><link href="http://www.martinbrochhaus.com/2012/06/big-data-cloud.html" rel="alternate"></link><updated>2012-06-08T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-08:2012/06/big-data-cloud.html</id><summary type="html">&lt;p&gt;Here are my notes on &lt;a href="https://plus.google.com/110893970871115341770/about"&gt;Chris Boesch's&lt;/a&gt;
+talk about analyzing big data in the cloud.&lt;/p&gt;
+&lt;p&gt;Chris is a professor teaching many IT subjects at Singapore Management
+University.  He advertises the cool idea to let the students teach themselves
+at their own pace. He will be there to answer questions but he says no one ever
+comes back to him. Once thrown into the cold water, people just want to figure
+it out themselves.&lt;/p&gt;
+&lt;p&gt;He developed &lt;a href="http://www.singpath.com/eli/index.html"&gt;Singpath&lt;/a&gt;, a playful
+approach on learning Python online via a web powered tournament system. It runs
+on Python on Google App Engine.&lt;/p&gt;
+&lt;p&gt;He asks his students to develop games and put them on Google App Engine. Then
+he asks each team to play against the games of all other teams. A big
+spreadsheet will show which group manages to beat which other group's game
+which tuns out to be a great motivation for students to try harder and
+implement their game more thoroughly. With Tic Tac Toe, where every game should
+actually be a tie and the computer should never lose, this can be done nicely.
+When students see that other groups are beating their Tic Tac Toe, that is
+motivation enough to dive back into code and improve the AI.&lt;/p&gt;
+&lt;p&gt;He also uses &lt;a href="https://www.coderbuddy.com/"&gt;Coderbuddy&lt;/a&gt;, a service that helps
+to deploy and test websites on Google App Engine.&lt;/p&gt;
+&lt;h1&gt;Agile is different&lt;/h1&gt;
+&lt;p&gt;Chris discovered that when teaching people how to program using the cloud,
+some of them instinctively start working extremely agile. This raises
+interesting problems because you need teach a whole new bunch of topics like
+unit testing or split testing. For Google App Engine there are some tools for
+this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://code.google.com/p/gaeunit/"&gt;gaeunit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/kamens/gae_bingo"&gt;gae-bingo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Uploading and downloading massive amounts of data into Google App Engine is
+simple, can be done with a few dozen lines of code.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/The-Lean-Startup-Entrepreneurs-Continuous/dp/0307887898?tag=duckduckgo-d-20"&gt;The Lean Startup&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="python"></category><category term="pycon"></category><category term="conferences"></category></entry><entry><title>PyCon APAC 2012 - Keynote</title><link href="http://www.martinbrochhaus.com/2012/06/eafp.html" rel="alternate"></link><updated>2012-06-08T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-08:2012/06/eafp.html</id><summary type="html">&lt;p&gt;Here are my live notes on &lt;a href="https://plus.google.com/106273672060692715136/about"&gt;Alex Martelli's&lt;/a&gt;
 keynote "Permission for Forgiveness".&lt;/p&gt;
 &lt;p&gt;He starts with a joke about the font in his presentation which looks like
 Comic Sans but is actually Apple's Chalkboard.&lt;/p&gt;
