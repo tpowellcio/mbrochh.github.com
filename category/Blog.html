@@ -77,8 +77,113 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././2012/06/pygame.html">PyCon APAC 2012 - Introduction to Game Development</a></h1> 
+                    <h1 class="entry-title"><a href=".././2012/06/eafp.html">PyCon APAC 2012 - Keynote</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-06-08T00:00:00">
+                Fri 08 June 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
+        </address>
+        
+<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
+
+
+</footer><!-- /.post-info --><p>Here are my live notes on <a href="https://plus.google.com/106273672060692715136/about">Alex Martelli's</a>
+keynote "Permission for Forgiveness".</p>
+<p>He starts with a joke about the font in his presentation which looks like
+Comic Sans but is actually Apple's Chalkboard.</p>
+<p>We learn about <a href="https://en.wikipedia.org/wiki/Grace_Hopper">Grace Hopper</a> who
+ironically won the first "CS <em>man</em> of the year" award in 1969. Alex talks a lot
+about her many achievements, one remarkable story is how she <em>caught</em> the first
+<a href="https://en.wikipedia.org/wiki/File:H96566k.jpg">computer bug</a> in the Mark I.</p>
+<p>This is fantastic! I always knew about the story why bugs are called bugs but I
+never knew about this image of the actual first bug being filed.</p>
+<p><a href="http://docs.python.org/glossary.html#term-eafp">EAFP</a> means "Easier to ask
+forgiveness than permission" and it was Hopper's secret recipe for being
+successful and innovative inside a huge and bureaucratic organization (the
+Navy). Now that I found this reference in the Python glossary I'm beginning to
+understand why this is a good keynote for a Python conference :)</p>
+<h1>Why does EAFP work?</h1>
+<ul>
+<li>If you ask for permission, the bureaucrat is likely to deny it, because it
+  might just be the easiest thing for him to do and because he might see
+  approval as a risk for his own career, since he needs to take responsibility
+  for something he probably only remotely understand.</li>
+<li>The bureaucrat is more likely to grant forgiveness since again, this would
+  be the easier thing for him to do, especially if the project turned out to
+  be successful.</li>
+</ul>
+<h1>EAFP and Python</h1>
+<p>Alex gives a nice example of reading files. Many people (me included, shame on
+me) would first check if the file exists and then access the file. However,
+this is really stupid because one second after your check another process might
+just delete the file and renders your check worthless. Better just read the
+file and capture any exception. Or in other words, ask for forgiveness.</p>
+<p>Another common example is the <code>hasattr</code> call. Python often has defaults,
+so you could just as well just call <code>getattr</code> and return a default if
+the attribute cannot be found.</p>
+<h1>EAFP in software</h1>
+<p>Interesting example. <a href="https://en.wikipedia.org/wiki/Optimistic_concurrency_control">Optimistic concurrency</a>:
+Instead of creating blocks of code that are protected by locks (asking for
+permission), just do it, but have means to detect if the object you are working
+on, has been changed while working, also make sure that your work is in a
+transaction that can be reversed. Now, if the object changes while you are
+working on it, just rollback and try again. This is very common with relational
+databases and I really wonder how this could be implemented when working with
+Python objects.</p>
+<p>Source control is another example. In most modern version control systems you
+can just push your code and the system will try to just do it and ask for your
+help if someone else pushed just before you. Ironically Microsoft's Visual
+Source Save locks files (at least a few years ago when I last worked with it).
+How fitting for a large bureaucratic organization.</p>
+<h1>EAFP in startups</h1>
+<p>At least for modern tech startups, the agile approach has clearly won. Just
+launch a beta of your software as quickly as possible and see what happens.
+When I think about it, Facebook clearly follows this model and shoots first,
+asks for forgiveness later. Well... actually they never really ask for
+forgiveness, I think :)</p>
+<h1>Considerations</h1>
+<p>You shouldn't do EAFP everywhere and all the time. Where there are rules that
+make sense and that have protocols attached to them that make it possible to
+actually work with the rules, you should, obviously, follow them.</p>
+<p>Highly security relevant systems might be an example where EAFP would be rather
+harmful.</p>
+<p>EAFP is not a license to do evil and ask for permission later.</p>
+<h1>Conclusion</h1>
+<p>Great keynote for a PyCon. I like the general theme and idea to just go ahead
+and do things, as long as you don't do evil. It's also kind of encouraging to
+try to stand out even when facing seemingly impossible to overcome bureaucratic
+barriers.</p>
+<p>Slides can be found <a href="../static/http;/www.aleax.it/pycon12ap_fop.pdf">here</a></p><p>There are <a href=".././2012/06/eafp.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././2012/06/pygame.html" rel="bookmark" title="Permalink to PyCon APAC 2012 - Introduction to Game Development">PyCon APAC 2012 - Introduction to Game Development</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-06-07T00:00:00">
                 Thu 07 June 2012
         </abbr>
@@ -92,170 +197,16 @@
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
 
 
-</footer><!-- /.post-info --><p>I like how <a href="https://twitter.com/pydanny">Daniel Greenfeld</a> has the habit of
+</footer><!-- /.post-info -->
+                <p>I like how <a href="https://twitter.com/pydanny">Daniel Greenfeld</a> has the habit of
 publishing <a href="http://pydanny-event-notes.readthedocs.org/en/latest/index.html">live notes</a>
 when he attends conferences and meet-ups. I don't think that I will have the
 time and money to attend so many conferences that a dedicated repository would
-make sense but I guess that I can give this a try right here in my blog.</p>
-<p>So here are my notes on <a href="https://plus.google.com/100267502615190755251/posts">Richard Jone's</a>
-tutorial on game development with Python:</p>
-<p>We got a .zip file with a whole game inside. Richard was nice enough to put it
-into public domain, so we can tinker with it and build upon it.</p>
-<h1>Display Something</h1>
-<ul>
-<li>We can display images, draw primitives, draw fonts or use OpenGL.</li>
-<li>Not going to cover OpenGL today, unfortunately.</li>
-</ul>
-<p>A first pygame program is really simple:</p>
-<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">pygame</span>
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">))</span>
-</pre></div>
-
-
-<p>Better put some structure to your code. Create a Game() class with a main()
-method. Don't use global variables.</p>
-<p>In pygame, unlike in modern frameworks, the coordinate <code>0,0</code> is the top left
-corner. This is because video hardware draws like this. More modern systems
-like OpenGL separate the drawing part from the display part so that we can use
-a more sane coordinate system with <code>0,0</code> at bottom left. Pygame is not that
-modern unfortunately.</p>
-<p>Let's draw something:</p>
-<div class="codehilite"><pre><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;player.png&#39;</span><span class="p">)</span>
-<span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>  <span class="c"># Fill the screen with a background color</span>
-<span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="mi">320</span><span class="p">,</span> <span class="mi">240</span><span class="p">))</span>  <span class="c"># Copies the image to that position on screen</span>
-<span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
-</pre></div>
-
-
-<p>Pygame uses RGB colors.</p>
-<p>We learn about "tearing". If we draw to the screen directly, the screen might
-refresh while we change what is on the screen so we will see something in
-between. Therefore we will write to a second screen buffer first and once we
-are done drawing everything we will <code>flip</code> the buffers so that the display will
-re-draw the now new buffer. I assume that the <code>display.flip()</code> method does
-somehow know when the display finished drawing one whole screen and will only
-flip once that is done.</p>
-<p>Via <code>pygame.tick.Clock()</code> we can put the main loop to sleep. No need to
-stress our CPU like crazy. 30 FPS should be a good frame rate for any video
-game.</p>
-<p>Our first animation is just adding 10 pixels to the image position.</p>
-<h1>User input</h1>
-<p>While Pygame can tell us, if a key down event has recently happened, it can
-also tell us which keys are currently being pressed:</p>
-<div class="codehilite"><pre><span class="n">key</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
-<span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_LEFT</span><span class="p">]:</span>
-    <span class="n">image_x</span> <span class="o">-=</span> <span class="mi">10</span>
-</pre></div>
-
-
-<p>Both can be useful. Since the main loop runs with a clock and goes to sleep
-every 30 seconds, it can very well happen that the user pressed the escape key
-to quit the game while we have been sleeping. In this case we would check like
-this:</p>
-<div class="codehilite"><pre><span class="n">event</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-<span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_ESCAPE</span><span class="p">:</span>
-</pre></div>
-
-
-<h1>Sprites</h1>
-<p>To put things together, we can define sprites, which are images, that know how
-they look like and where they are on screen. We can give them an <code>update</code>
-method and handle their user input, which pulls out a lot of clutter from our
-main loop:</p>
-<div class="codehilite"><pre><span class="k">class</span> <span class="nc">Player</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Sprite</span><span class="p">):</span>
-<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">groups</span><span class="p">):</span>
-    <span class="nb">super</span><span class="p">(</span><span class="n">Player</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">groups</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;player.png&#39;</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">rect</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">Rect</span><span class="p">((</span><span class="mi">320</span><span class="p">,</span> <span class="mi">240</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">get_size</span><span class="p">())</span>
-
-<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">key</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_LEFT</span><span class="p">]:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">x</span> <span class="o">-=</span> <span class="mi">10</span>
-</pre></div>
-
-
-<p>You would want to pass the amount of time that has passed since the last loop
-call and pass it into the update method. Then don't just jump 10 pixels but
-multiply the passed time with a value. This will make the game feel more smooth
-and more equal on different hardware.</p>
-<h1>Collision detection</h1>
-<p>Axis-Aligned bounding box is the most common collision detection. The name says
-it all, think about it.</p>
-<p>An alternative would be to use circles as bounding boxes.</p>
-<p>A third alternatives is to use a hash map, which is useful for 2D games with
-thousands of sprite on screen. This is usually used for so called <a href="https://en.wikipedia.org/wiki/Bullet_hell#Bullet_hell">Bullet
-Hell</a> games. Didn't know
-about this term before. I'm feeling ashamed.</p>
-<p>You could finally do pixel perfect collision detection but that might be quite
-slow. It would be used in games like Worms, where you can blow up the whole
-environment, which results in shapes that cannot be handled by bounding boxes
-any more.</p>
-<h1>Tile maps</h1>
-<p>.tmx is a common format for tile maps that make up the game world.  It has an
-editor called <a href="http://mapeditor.org">Tiled</a>. You can kind of paint the map of
-that level. The tile map also has a layer of trigger tiles which are invisible
-but can be accessed by the game program. Therefore, thanks to the .tmx
-standard, the game can know about the position, the look and the type (trigger)
-of any tile of the game world.</p>
-<p>The player only sees a fraction of the whole tile map. This is called the view
-port.</p>
-<p>From here on it is pretty much all about doing lots of if and else clauses
-reacting to collisions and inputs. It seems to me that the hardest part about
-game development is structuring your code as efficient as possible because it
-can quickly grow into a huge amount of spaghetti code.</p>
-<h1>Sound</h1>
-<p>As expected, adding sound is extremely easy as well:</p>
-<div class="codehilite"><pre><span class="bp">self</span><span class="o">.</span><span class="n">jump</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mixer</span><span class="o">.</span><span class="n">Sound</span><span class="p">(</span><span class="s">&#39;jump.wav&#39;</span><span class="p">)</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">jump</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
-</pre></div>
-
-
-<p><a href="https://code.google.com/p/sfxr/">SFXR</a> is a great little tool that emulates
-the sound chip of the C64 and allows you to model cute 8bit sounds for your
-game.</p>
-<h1>Special effects</h1>
-<p>You can use <code>pip install lepton</code>, a library for particles. Richard repeats:
-"Every single game improves with particles" :) He mentions a talk called
-<a href="https://www.youtube.com/watch?v=Fy0aCDmgnxg">Juice it or lose it</a> which is
-about techniques to juice up your game with special effects.</p>
-<h1>Where to go from here</h1>
-<ul>
-<li><a href="http://pygame.org">pygame.org</a></li>
-<li><a href="http://inventwithpython.com">inventwithpython</a></li>
-<li><a href="http://pyweek.org">pyweek.org</a></li>
-</ul>
-<h1>Tools</h1>
-<ul>
-<li><a href="http://mapeditor.org">mapeditor.org</a> - Creates tile maps</li>
-<li><a href="https://code.google.com/p/sfxr/">SFXR</a> - Creates sound files</li>
-<li><a href="http://danikgames.com/stuff/pyxeledit/">Pyxel Edit</a> - Creates seamless
-  tiles.</li>
-<li><a href="http://pixenapp.com/">Pixen</a> - Creates moving animatinos for characters</li>
-<li><a href="http://cocos2d.org/doc.html">cocos2d.org</a> - Helps with adding juice</li>
-<li><a href="http://www.py2exe.org/">py2exe</a> - Bundle your game and distribute it as an
-  .exe file</li>
-<li><a href="http://svn.pythonmac.org/py2app">py2app</a> - Bundle your game and distribute
-  as an OSX application</li>
-</ul>
-<h1>Conclusion</h1>
-<p>It is <em>amazingly</em> simple to start with game development and Python. Everything
-form installing pygame to getting to play a first prototype just works and
-there seem to be free tools available for every aspect of simple game
-development (like creating sound etc.). I definitely want to try this at home!
-This might be the most awesome way to teach my 12 year old brother in law about
-programming.</p><p>There are <a href=".././2012/06/pygame.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
+make sense but I guess that I can give this ...</p>
+                <a class="readmore" href=".././2012/06/pygame.html">read more</a>
+                <p>There are <a href=".././2012/06/pygame.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
