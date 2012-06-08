@@ -33,7 +33,95 @@ this:&lt;/p&gt;
 simple, can be done with a few dozen lines of code.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.amazon.com/The-Lean-Startup-Entrepreneurs-Continuous/dp/0307887898?tag=duckduckgo-d-20"&gt;The Lean Startup&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="python"></category><category term="pycon"></category><category term="conferences"></category></entry><entry><title>PyCon APAC 2012 - Keynote</title><link href="http://www.martinbrochhaus.com/2012/06/eafp.html" rel="alternate"></link><updated>2012-06-08T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-08:2012/06/eafp.html</id><summary type="html">&lt;p&gt;Here are my live notes on &lt;a href="https://plus.google.com/106273672060692715136/about"&gt;Alex Martelli's&lt;/a&gt;
+&lt;/ul&gt;</summary><category term="python"></category><category term="pycon"></category><category term="conferences"></category></entry><entry><title>PyCon APAC 2012 - Diversity as a Dependency</title><link href="http://www.martinbrochhaus.com/2012/06/diversity.html" rel="alternate"></link><updated>2012-06-08T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-08:2012/06/diversity.html</id><summary type="html">&lt;p&gt;Here are my notes on &lt;a href="https://plus.google.com/108526151904394584422/about"&gt;Anna Martelli Ravenscroft's&lt;/a&gt;
+closing keynote on "Diversity as a Dependency".&lt;/p&gt;
+&lt;p&gt;She opens her keynote with a question:&lt;/p&gt;
+&lt;p&gt;"What do you think of when you hear the word diversity?"&lt;/p&gt;
+&lt;p&gt;Someone in the audience says women, and while this causes laughter it is of
+course what she wanted to hear.&lt;/p&gt;
+&lt;p&gt;In most institutions that thrive to have diversity, the whole process is driven
+by guilt. Guilt is not a good motivator.&lt;/p&gt;
+&lt;h1&gt;Small town&lt;/h1&gt;
+&lt;p&gt;She shows us a study about who is most creative in Small Town. It turned out
+that those people who had connections to more diverse groups were the most
+creative and influential.&lt;/p&gt;
+&lt;h1&gt;Science&lt;/h1&gt;
+&lt;p&gt;Another example is science. Science solves hard problems mostly by discovering
+unexpected results. Also, some of the greatest scientific breakthroughs
+depended on conceptual changes (like assuming a different atom model).&lt;/p&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;Interactions among individuals with &lt;em&gt;different&lt;/em&gt; perspectives create the most
+innovation.&lt;/p&gt;
+&lt;h1&gt;Kinds of diversity&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;needs / motivations&lt;/li&gt;
+&lt;li&gt;skill sets&lt;/li&gt;
+&lt;li&gt;perspectives&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Remarkably there is no gender on this list, because it would be a wrong
+motivator. Python &lt;em&gt;does&lt;/em&gt; need diversity, that is diversity in motivations,
+skills and perspectives.&lt;/p&gt;
+&lt;p&gt;This is especially true in open true, because people usually do it because they
+have an itch to be scratched, and everyone has a different itch to be
+scratched. Here we have different needs and motivations.&lt;/p&gt;
+&lt;h1&gt;Universal Design&lt;/h1&gt;
+&lt;p&gt;Lowered curbs are useful for people who are pulling luggage but they have
+actually been designed for people in wheelchairs. Another example is text to
+speech. It was designed for the blind but it can be useful to anyone who wants
+to drive a car and listen to his book, for example.&lt;/p&gt;
+&lt;h1&gt;Community Growth&lt;/h1&gt;
+&lt;p&gt;Boston Python User Group only had 1% of women in their base of members. They
+started to give workshops for women and increased their user base by 15%, which
+is obviously something that every community would want. If you want to grow
+your community just target a group of people that currently does not seem to
+recognize you.&lt;/p&gt;
+&lt;h1&gt;Financial success&lt;/h1&gt;
+&lt;p&gt;A study about women in business has shown that female CEOs outperform male
+CEOs.&lt;/p&gt;
+&lt;h1&gt;Differing skill-sets&lt;/h1&gt;
+&lt;p&gt;In a soccer team, everyone has a different skill set. Only the team as a whole
+can win. This is similar in programming. Our craft requires so many different
+skill sets that no single one person could ever combine them all in himself.&lt;/p&gt;
+&lt;p&gt;As a Python community we even need people who know how to organize conferences.
+This person would not necessarily need to be an outstanding programmer but his
+very special and "diverse" skill would be a great addition to the community as
+a whole.&lt;/p&gt;
+&lt;h1&gt;Problem solving&lt;/h1&gt;
+&lt;p&gt;Some of us might be individual geniuses, some of us might not, but as a group
+no matter what, we will have a collective intelligence that allow us to solve
+problems that are much bigger than us.&lt;/p&gt;
+&lt;p&gt;Interesting: Our brains are lazy. Whatever has worked in the past, will be
+remembered better than anything else. This means sooner or later we will kind
+of be doomed to try to use the same solution for all problems, first. Only
+diversity in the community can guarantee that fresh solutions for new hard
+problems will be invented.&lt;/p&gt;
+&lt;p&gt;This lazy brain problem also is the reason why we create stereotypes.&lt;/p&gt;
+&lt;p&gt;Anna gives many more lazy brain examples by quoting studies that analyse
+people's behavior and perception in different situation. I think the point is
+that even when we think that we are totally right and that we are deciding on
+facts and with best intentions. In all examples the problem is that we try to
+act conform to everyone else in the group, which can result in extremely stupid
+behavior. One example is an experiment where three people sit in a room that
+fills with smoke. When two just stay calm, the third one will most likely stay
+calm as well and just assume that someone else will come and help. This is
+called the trap of group think.&lt;/p&gt;
+&lt;p&gt;We need diversity to break the group think.&lt;/p&gt;
+&lt;h1&gt;Diversity is hard&lt;/h1&gt;
+&lt;p&gt;While it is good that everyone is so different, at the same time it is also the
+reason why it is very hard to make them all work together in harmony.&lt;/p&gt;
+&lt;p&gt;How can make it work?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Education&lt;/li&gt;
+&lt;li&gt;Facilitating communication&lt;/li&gt;
+&lt;li&gt;Clear process and goal-setting&lt;/li&gt;
+&lt;li&gt;Clear decision making (thank god that we have a BDFL in Python)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;People are harder, because none of us come with docs :)&lt;/p&gt;
+&lt;p&gt;This last slide makes me think about that instructions email that Richard
+Stallman sends to all hosts whenever he come to speak. While it is quite
+amusing and displays him as quite a weirdo, it definitely is a very very
+precise "doc" about the person. Maybe we just could have docs for people?
+Put them on their GitHub profiles?&lt;/p&gt;</summary><category term="python"></category><category term="pycon"></category><category term="conferences"></category></entry><entry><title>PyCon APAC 2012 - Keynote</title><link href="http://www.martinbrochhaus.com/2012/06/eafp.html" rel="alternate"></link><updated>2012-06-08T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-08:2012/06/eafp.html</id><summary type="html">&lt;p&gt;Here are my live notes on &lt;a href="https://plus.google.com/106273672060692715136/about"&gt;Alex Martelli's&lt;/a&gt;
 keynote "Permission for Forgiveness".&lt;/p&gt;
 &lt;p&gt;He starts with a joke about the font in his presentation which looks like
 Comic Sans but is actually Apple's Chalkboard.&lt;/p&gt;
