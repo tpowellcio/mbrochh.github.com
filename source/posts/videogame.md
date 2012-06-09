@@ -1,4 +1,4 @@
-Date: 2012-06-08
+Date: 2012-06-09
 Title: PyCon APAC 2012 - Why we should all write a video game
 Slug: videogame
 Category: Blog
