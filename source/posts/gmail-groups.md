@@ -71,4 +71,6 @@ From now on it is just scanning through the headlines in your inbox and marking
 them all as read. Another good thing about this is that you will be able to
 perform searches in GMail to find old discussions.
 
-# TODO: Screenshot
+Your new inbox should look like this:
+
+<img src="./images/mailinglists.png" width="100%" alt="Gmail with multiple inboxes" />
