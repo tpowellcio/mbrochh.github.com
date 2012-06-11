@@ -77,8 +77,107 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././2012/06/videogame.html">PyCon APAC 2012 - Why we should all write a video game</a></h1> 
+                    <h1 class="entry-title"><a href=".././2012/06/gmail-groups.html">Follow mailing lists using GMail</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-06-11T00:00:00">
+                Mon 11 June 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
+        </address>
+        
+<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>tags: <a href=".././tag/google.html">google</a><a href=".././tag/gmail.html">gmail</a><a href=".././tag/lifehacking.html">lifehacking</a><a href=".././tag/productivity.html">productivity</a></p>
+
+
+</footer><!-- /.post-info --><p>Here is a small trick to manage your mailing list subscriptions with your GMail
+account without cluttering your inbox.</p>
+<h1>Step 1: Setup multiple inboxes</h1>
+<ul>
+<li>Open GMail and go to <em>Settings</em></li>
+<li>Go to <em>Labs</em></li>
+<li>Search for <em>Multiple Inboxes</em> and enable it</li>
+<li>Save your changes</li>
+<li>Go to <em>Settings</em> again</li>
+<li>Go to <em>Multiple Inboxes</em></li>
+<li>Replace the search query for <em>Pane 0</em> with this: <code>-label:muted
+  label:]-groups is:unread</code></li>
+<li>Delete the search query for <em>Pane 1</em></li>
+<li>Set <em>Extra panel positioning</em> to <em>Below the inbox</em></li>
+<li>Go to <em>Settings</em></li>
+<li>Got to <em>Labels</em></li>
+<li>Create a new label <em>] Groups</em></li>
+</ul>
+<p>What have we done so far? We have told GMail that we want a second inbox below
+our main inbox that</p>
+<ul>
+<li>does not display muted posts. This is a nice hack, it turns out that <em>muted</em>
+  is a hidden label in Gmail, so you can filter for muted conversations</li>
+<li>does display anything that has the label <em>] Groups</em> (filtering for labels
+  seems to be case insensitive)</li>
+<li>does only display conversations that are unread</li>
+</ul>
+<h1>Step 2: Create filters for your mailing lists</h1>
+<p>If you are subscribed to <em>N</em> mailing lists you need to create <em>N+1</em> filters
+now.</p>
+<p>First create one big filter for all your mailing lists. Set it up like so:</p>
+<ul>
+<li><em>Has the words</em>: <code>list1@example.com OR list2@example.com ... OR listN@example.com</code></li>
+<li><em>Skip inbox</em></li>
+<li><em>Apply label</em>: <em>] Groups</em></li>
+</ul>
+<p>At this point you would be able to see how many unread mailing list posts there
+are because the <em>] Groups</em> label would become bold and display a number
+behind itself. However, it would be nice if you could see exactly how many
+unread items <em>each</em> of your subscriptions has. For this you simply need to add
+one more filter for each subscription:</p>
+<ul>
+<li><em>Has the words</em>: <code>listX@example.com</code></li>
+<li><em>Skip inbox</em></li>
+<li><em>Apply label</em>: <em>] Groups/listX</em></li>
+</ul>
+<p>So if you are following the Python users mailing list, you would for example
+create a new sub label called <em>python-users</em> under the label <em>] Groups</em>.</p>
+<h1>Step 3: Profit</h1>
+<p>This setup allowed me to follow 16 mailing lists during the last 2 years
+without drowning in content overflow. If a thread on the list is very active
+but you already know that you are not interested in following the discussion,
+just mute the conversation and it will no longer pop up in your second inbox.</p>
+<p>Because the new filters make sure that those messages skip the main inbox, you
+will not get notifications on your Android phone for all these messages, which
+is another huge plus.</p>
+<p>From now on it is just scanning through the headlines in your inbox and marking
+them all as read. Another good thing about this is that you will be able to
+perform searches in GMail to find old discussions.</p>
+<p>Your new inbox should look like this:</p>
+<p><img src="../static/images/mailinglists.png" width="100%" alt="Gmail with multiple inboxes" /></p><p>There are <a href=".././2012/06/gmail-groups.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././2012/06/videogame.html" rel="bookmark" title="Permalink to PyCon APAC 2012 - Why we should all write a video game">PyCon APAC 2012 - Why we should all write a video game</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-06-09T00:00:00">
                 Sat 09 June 2012
         </abbr>
@@ -92,67 +191,16 @@
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
 
 
-</footer><!-- /.post-info --><p>Here are my notes about <a href="https://plus.google.com/100267502615190755251/about">Richard Jones'</a>
+</footer><!-- /.post-info -->
+                <p>Here are my notes about <a href="https://plus.google.com/100267502615190755251/about">Richard Jones'</a>
 keynote with the title "Why we should all write a video game".</p>
 <p>He starts with a awesomely geeky overview over the history of game computing.
 It turns out that with an Amiga or C64 you basically boot up into an
-environment that allows you start developing software for that same system.</p>
-<p>Unthinkable how much fun we would have if an XBox or PlayStation would allow
-us to do the same. It turns out, that a MacBook or a Ubuntu machine comes with
-Python installed.</p>
-<p>Forward further into the future where iPads and similar consumer devices might
-rule the world, it is questionable where the future developers should come
-from, since it is almost impossible or at least very very hard and limited to
-tinker with these devices. Another problem is, that even <em>if</em> you figure out
-how to develop for an iPad, you are again bound to strict rules within the
-Apple App Store.</p>
-<h1>Tinkering</h1>
-<p>Lego is great for exploration, as kids can play with architecture and physics.
-Other great projects are <a href="https://github.com/hugs/bitbeam">bitbeam</a>,
-<a href="http://www.arduino.cc/">Arduino</a> and of course the
-<a href="http://www.raspberrypi.org/">Raspberry Pie</a>, which is currently by far the
-cheapest computer in the world. Richard gives some examples of awesome projects
-that people have come up with using these tools.</p>
-<h1>Code Literacy</h1>
-<ul>
-<li><a href="http://codeyear.com/">http://codeyear.com/</a></li>
-</ul>
-<p>Everyone should learn coding, but not to become a professional programmer but
-rather to get insights into all the gadgets that they are using every day.</p>
-<h1>Game programming</h1>
-<ul>
-<li><a href="http://www.ludumdare.com/">http://www.ludumdare.com/</a></li>
-<li><a href="http://www.indiegamethemovie.com/">http://www.indiegamethemovie.com/</a></li>
-<li><a href="http://pyweek.org/">http://pyweek.org/</a></li>
-<li><a href="http://pyopengl.sourceforge.net/">http://pyopengl.sourceforge.net/</a></li>
-<li><a href="http://pyglet.org/">http://pyglet.org/</a></li>
-<li><a href="http://cocos2d.org/">http://cocos2d.org/</a></li>
-<li><a href="http://kivy.org/#home">http://kivy.org/#home</a></li>
-</ul>
-<h1>Getting started</h1>
-<ul>
-<li><a href="http://inventwithpython.com/">Invent your own games with python</a></li>
-<li><a href="http://www.amazon.com/Beginning-Game-Development-Python-Pygame/dp/1590598725?tag=duckduckgo-d-20">Beginning Game Development with Python and Pygame</a></li>
-</ul>
-<p>Participate in PyWeek and just create something! Don't worry about graphics.
-Just get something done that is fun and playable.</p>
-<h1>Some Zen</h1>
-<ul>
-<li>Get things done!</li>
-<li>Refactor later</li>
-<li>Simple is better than complex</li>
-<li>Complex is better than complicated</li>
-</ul><p>There are <a href=".././2012/06/videogame.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
+environment that allows ...</p>
+                <a class="readmore" href=".././2012/06/videogame.html">read more</a>
+                <p>There are <a href=".././2012/06/videogame.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
@@ -459,44 +507,6 @@ more efficient.</p>
 <p>We used to use Skype for talking ...</p>
                 <a class="readmore" href=".././2012/05/pair.html">read more</a>
                 <p>There are <a href=".././2012/05/pair.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                        <h1><a href=".././2012/04/snippets-201204.html" rel="bookmark" title="Permalink to Snippets of April 2012">Snippets of April 2012</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-04-21T00:00:00">
-                Sat 21 April 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
-        </address>
-        
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
-<p>tags: <a href=".././tag/snippets.html">snippets</a><a href=".././tag/ubuntu.html">ubuntu</a><a href=".././tag/screen.html">screen</a><a href=".././tag/ssh.html">ssh</a><a href=".././tag/mercurial.html">mercurial</a><a href=".././tag/self-growth.html">self growth</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>This is my second post in a series of (almost) monthly posts about small bits
-and pieces of wisdom that amazed me. You can find the first post here:
-<a href="http://martinbrochhaus.com/2012/02/snippets-201202.html">Snippets of February 2012</a></p>
-<h1>Ubuntu: Static Application Switcher</h1>
-<p>App switiching with ALT+TAB became a major pain since Ubuntu introduced that ...</p>
-                <a class="readmore" href=".././2012/04/snippets-201204.html">read more</a>
-                <p>There are <a href=".././2012/04/snippets-201204.html#disqus_thread">comments</a>.</p>
                 </div><!-- /.entry-content -->
             </article></li>
         
