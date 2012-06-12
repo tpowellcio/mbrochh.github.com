@@ -35,3 +35,30 @@ So this book will not teach us how to become good painters, but it will teach
 us to properly analyze and understand existing designs.
 
 ## Chapter 2: The Purpose of Design
+
+"Design is the manifestation of many different layers that make up a product."
+
+The book will primarily deal with visual design as this is the main aspect that
+makes up the design of websites. We shall learn a new way of seeing the world
+and be able to reverse engineer a good design when we see it.
+
+_Visual design_ is a component of the discipline of user experience design.
+Other components are _Usability_ and _Content_.
+
+Sometimes a visual design is ugly but still good enough because the usability
+and content might already solve the underlying problem perfectly well (i.e.
+[www.craiglist.org](http://www.craiglist.org)). Other times an outstanding
+visual design might just be what gives you an advantage over your customers
+(i.e. Apple).
+
+When analysing the user experience of a given product, you can help yourself by
+creating a set of __user personas__, a list of imaginary customers which might
+interact with the product and have certain needs. Then you would describe
+certain __use cases__ (or _user stories_) and therefore find out about crucial
+requirements that your product must fulfil. As a next step you might want to
+use __wireframes__ to create a first prototype that shows how the requirements
+could be met on an actual website.
+
+# Part 2: Medium and Form
+
+## Chapter 3: Medium and Form in Typography
