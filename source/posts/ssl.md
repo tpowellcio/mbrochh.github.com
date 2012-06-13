@@ -4,6 +4,15 @@ Slug: ssl
 Category: Blog
 Tags: ssl, webfaction
 
+For my next big project it will be mandatory to use a SSL certificate for the
+web application. I have never dealt with SSL before, so I am going to take
+some notes here. Let's see how it goes...
+
+I decided to give [StartSSL](https://www.startssl.com/) a trie because when I
+asked around it got recommended several times for offering a good free
+certificate. Their website looks exceptionally ugly but since it is free, I am
+not going to compain here.
+
 After chosing the free option I had to provide my name, address, phone number
 and email. I got an activation link via email immediately. Adter using the
 activation link I was told that my details will be checked within the next 24
@@ -24,9 +33,9 @@ address which I used when creating my StartSSL account.
 
 Next I was presented with a form to generate my private key. Unfortunately my
 passphrase contained spaces which resulted in an error, so I had to start the
-process over again. Clicking back was not an option so I found a way to start
-the process again by clicking at the _Certificates Wizard_ tab and chosing
-web certificate.
+process over again. Clicking back crashed the website. A few clicks later I
+found a way to start the process again by clicking at the _Certificates Wizard_
+tab and chosing the web certificate.
 
 This time I chose a valid password. I needed to copy my private key into a file
 ssl.key and run the command "openssl rsa -in ssl.key -out ssl.key", however I
@@ -44,7 +53,7 @@ key so maybe there is a good reason why the computation took so long.
 I also had to download the intermediate and root certificates which came in the
 form of .pem files.
 
-It seems as if the process is done now, so I headed over to the [SSL docs at
+It seeed as if the process was done now, so I headed over to the [SSL docs at
 Webfaction](https://docs.webfaction.com/user-guide/websites.html#secure-sites-https).
 
 The docs just say "_To enable your security certificate, please upload the
@@ -55,3 +64,9 @@ into the home folder of my Webfaction server.
 I opened a support request in my Webfaction account and asked for activation
 of the certificate. In the meantime I created another website in the control
 panel that uses HTTPS and maps the same apps as the non-HTTPS version.
+
+Just a few minutes after opening the support ticket I got a friendly response
+from the Webfaction support telling me that everything worked fine and indeed,
+I can now access my website via HTTPS.
+
+Wow. That was easy! I'm going to use SSL for all my sites from now on.
