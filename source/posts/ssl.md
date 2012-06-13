@@ -30,4 +30,5 @@ Just a few minutes after opening the support ticket I got a friendly response
 from the Webfaction support telling me that everything worked fine and indeed,
 I can now access my website via HTTPS.
 
-Wow. That was easy! I'm going to use SSL for all my sites from now on.
+Wow. That was easy! The whole process took me less than an hour to setup.
+I'm going to use SSL for all my sites from now on.
