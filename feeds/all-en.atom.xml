@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com/" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/all-en.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com/</id><updated>2012-06-11T00:00:00+08:00</updated><entry><title>Follow mailing lists using GMail</title><link href="http://www.martinbrochhaus.com/2012/06/gmail-groups.html" rel="alternate"></link><updated>2012-06-11T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-11:2012/06/gmail-groups.html</id><summary type="html">&lt;p&gt;Here is a small trick to manage your mailing list subscriptions with your GMail
+<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com/" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/all-en.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com/</id><updated>2012-06-13T00:00:00+08:00</updated><entry><title>Installing Free SSL certificate with StartSSL and Webfaction</title><link href="http://www.martinbrochhaus.com/2012/06/ssl.html" rel="alternate"></link><updated>2012-06-13T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-13:2012/06/ssl.html</id><summary type="html">&lt;p&gt;For my next big project it will be mandatory to use a SSL certificate for the
+web application. I have never dealt with SSL before, so I am going to take
+some notes here. Let's see how it goes...&lt;/p&gt;
+&lt;p&gt;I chose &lt;a href="https://www.startssl.com/"&gt;StartSSL&lt;/a&gt; because they offer a free
+certificate.&lt;/p&gt;
+&lt;p&gt;I had to provide my name, address, phone number and email. After that I got an
+activation link immediately. Interestingly I don't have to authenticate myself
+on the StartSSL website via username and password. Instead they installed a
+client certificate in my browser, which I exported and securely saved in my
+Dropbox account, in case that I reinstall my system in the future.&lt;/p&gt;
+&lt;p&gt;From here on it is just following a wizard to create a new certificate for a
+new domain. After following all instructions given by the wizard, I ended up
+with a bunch of file (.crt, .pem, .key) which I all copied into my Webfaction
+server, as described in the &lt;a href="https://docs.webfaction.com/user-guide/websites.html#secure-sites-https"&gt;SSL docs at Webfaction&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I opened a support request in my Webfaction account and asked for activation
+of the certificate. In the meantime I created another website in the control
+panel that uses HTTPS and maps the same apps as the non-HTTPS version.&lt;/p&gt;
+&lt;p&gt;Just a few minutes after opening the support ticket I got a friendly response
+from the Webfaction support telling me that everything worked fine and indeed,
+I can now access my website via HTTPS.&lt;/p&gt;
+&lt;p&gt;Wow. That was easy! The whole process took me less than an hour to setup.
+I'm going to use SSL for all my sites from now on.&lt;/p&gt;</summary><category term="ssl"></category><category term="webfaction"></category></entry><entry><title>Follow mailing lists using GMail</title><link href="http://www.martinbrochhaus.com/2012/06/gmail-groups.html" rel="alternate"></link><updated>2012-06-11T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-11:2012/06/gmail-groups.html</id><summary type="html">&lt;p&gt;Here is a small trick to manage your mailing list subscriptions with your GMail
 account without cluttering your inbox.&lt;/p&gt;
 &lt;h1&gt;Step 1: Setup multiple inboxes&lt;/h1&gt;
 &lt;ul&gt;

@@ -77,8 +77,68 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./2012/06/gmail-groups.html">Follow mailing lists using GMail</a></h1> 
+                    <h1 class="entry-title"><a href="./2012/06/ssl.html">Installing Free SSL certificate with StartSSL and Webfaction</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-06-13T00:00:00">
+                Wed 13 June 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/martin-brochhaus.html">Martin Brochhaus</a>
+        </address>
+        
+<p>In <a href="./category/Blog.html">Blog</a>. </p>
+<p>tags: <a href="./tag/ssl.html">ssl</a><a href="./tag/webfaction.html">webfaction</a></p>
+
+
+</footer><!-- /.post-info --><p>For my next big project it will be mandatory to use a SSL certificate for the
+web application. I have never dealt with SSL before, so I am going to take
+some notes here. Let's see how it goes...</p>
+<p>I chose <a href="https://www.startssl.com/">StartSSL</a> because they offer a free
+certificate.</p>
+<p>I had to provide my name, address, phone number and email. After that I got an
+activation link immediately. Interestingly I don't have to authenticate myself
+on the StartSSL website via username and password. Instead they installed a
+client certificate in my browser, which I exported and securely saved in my
+Dropbox account, in case that I reinstall my system in the future.</p>
+<p>From here on it is just following a wizard to create a new certificate for a
+new domain. After following all instructions given by the wizard, I ended up
+with a bunch of file (.crt, .pem, .key) which I all copied into my Webfaction
+server, as described in the <a href="https://docs.webfaction.com/user-guide/websites.html#secure-sites-https">SSL docs at Webfaction</a>.</p>
+<p>I opened a support request in my Webfaction account and asked for activation
+of the certificate. In the meantime I created another website in the control
+panel that uses HTTPS and maps the same apps as the non-HTTPS version.</p>
+<p>Just a few minutes after opening the support ticket I got a friendly response
+from the Webfaction support telling me that everything worked fine and indeed,
+I can now access my website via HTTPS.</p>
+<p>Wow. That was easy! The whole process took me less than an hour to setup.
+I'm going to use SSL for all my sites from now on.</p><p>There are <a href="./2012/06/ssl.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href="./2012/06/gmail-groups.html" rel="bookmark" title="Permalink to Follow mailing lists using GMail">Follow mailing lists using GMail</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-06-11T00:00:00">
                 Mon 11 June 2012
         </abbr>
@@ -92,7 +152,8 @@
 <p>tags: <a href="./tag/google.html">google</a><a href="./tag/gmail.html">gmail</a><a href="./tag/lifehacking.html">lifehacking</a><a href="./tag/productivity.html">productivity</a></p>
 
 
-</footer><!-- /.post-info --><p>Here is a small trick to manage your mailing list subscriptions with your GMail
+</footer><!-- /.post-info -->
+                <p>Here is a small trick to manage your mailing list subscriptions with your GMail
 account without cluttering your inbox.</p>
 <h1>Step 1: Setup multiple inboxes</h1>
 <ul>
@@ -101,68 +162,11 @@ account without cluttering your inbox.</p>
 <li>Search for <em>Multiple Inboxes</em> and enable it</li>
 <li>Save your changes</li>
 <li>Go to <em>Settings</em> again</li>
-<li>Go to <em>Multiple Inboxes</em></li>
-<li>Replace the search query for <em>Pane 0</em> with this: <code>-label:muted
-  label:]-groups is:unread</code></li>
-<li>Delete the search query for <em>Pane 1</em></li>
-<li>Set <em>Extra panel positioning</em> to <em>Below the inbox</em></li>
-<li>Go to <em>Settings</em></li>
-<li>Got to <em>Labels</em></li>
-<li>Create a new label <em>] Groups</em></li>
-</ul>
-<p>What have we done so far? We have told GMail that we want a second inbox below
-our main inbox that</p>
-<ul>
-<li>does not display muted posts. This is a nice hack, it turns out that <em>muted</em>
-  is a hidden label in Gmail, so you can filter for muted conversations</li>
-<li>does display anything that has the label <em>] Groups</em> (filtering for labels
-  seems to be case insensitive)</li>
-<li>does only display conversations that are unread</li>
-</ul>
-<h1>Step 2: Create filters for your mailing lists</h1>
-<p>If you are subscribed to <em>N</em> mailing lists you need to create <em>N+1</em> filters
-now.</p>
-<p>First create one big filter for all your mailing lists. Set it up like so:</p>
-<ul>
-<li><em>Has the words</em>: <code>list1@example.com OR list2@example.com ... OR listN@example.com</code></li>
-<li><em>Skip inbox</em></li>
-<li><em>Apply label</em>: <em>] Groups</em></li>
-</ul>
-<p>At this point you would be able to see how many unread mailing list posts there
-are because the <em>] Groups</em> label would become bold and display a number
-behind itself. However, it would be nice if you could see exactly how many
-unread items <em>each</em> of your subscriptions has. For this you simply need to add
-one more filter for each subscription:</p>
-<ul>
-<li><em>Has the words</em>: <code>listX@example.com</code></li>
-<li><em>Skip inbox</em></li>
-<li><em>Apply label</em>: <em>] Groups/listX</em></li>
-</ul>
-<p>So if you are following the Python users mailing list, you would for example
-create a new sub label called <em>python-users</em> under the label <em>] Groups</em>.</p>
-<h1>Step 3: Profit</h1>
-<p>This setup allowed me to follow 16 mailing lists during the last 2 years
-without drowning in content overflow. If a thread on the list is very active
-but you already know that you are not interested in following the discussion,
-just mute the conversation and it will no longer pop up in your second inbox.</p>
-<p>Because the new filters make sure that those messages skip the main inbox, you
-will not get notifications on your Android phone for all these messages, which
-is another huge plus.</p>
-<p>From now on it is just scanning through the headlines in your inbox and marking
-them all as read. Another good thing about this is that you will be able to
-perform searches in GMail to find old discussions.</p>
-<p>Your new inbox should look like this:</p>
-<p><img src="static/images/mailinglists.png" width="100%" alt="Gmail with multiple inboxes" /></p><p>There are <a href="./2012/06/gmail-groups.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
+<li>Go to <em>Multiple ...</em></li></ul>
+                <a class="readmore" href="./2012/06/gmail-groups.html">read more</a>
+                <p>There are <a href="./2012/06/gmail-groups.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
@@ -468,45 +472,6 @@ time and money to attend so many conferences that a dedicated repository would
 make sense but I guess that I can give this ...</p>
                 <a class="readmore" href="./2012/06/pygame.html">read more</a>
                 <p>There are <a href="./2012/06/pygame.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                        <h1><a href="./2012/05/pair.html" rel="bookmark" title="Permalink to Secure pair programming with wemux and Vim">Secure pair programming with wemux and Vim</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-05-26T00:00:00">
-                Sat 26 May 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href="./author/martin-brochhaus.html">Martin Brochhaus</a>
-        </address>
-        
-<p>In <a href="./category/Blog.html">Blog</a>. </p>
-<p>tags: <a href="./tag/screen.html">screen</a><a href="./tag/tmux.html">tmux</a><a href="./tag/wemux.html">wemux</a><a href="./tag/vim.html">vim</a><a href="./tag/ssh.html">ssh</a><a href="./tag/programming.html">programming</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>At <a href="http://www.bitmazk.com">Bitmazk</a> we are a small team of web developers
-with members located in Singapore and Germany. Of course we do codereviews
-with Google's awesome <a href="https://code.google.com/p/rietveld/">Rietveld</a> but
-often when someone has an immediate problem, pair programming is just so much
-more efficient.</p>
-<p>We used to use Skype for talking ...</p>
-                <a class="readmore" href="./2012/05/pair.html">read more</a>
-                <p>There are <a href="./2012/05/pair.html#disqus_thread">comments</a>.</p>
                 </div><!-- /.entry-content -->
             </article></li>
         
