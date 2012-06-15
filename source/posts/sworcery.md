@@ -68,3 +68,14 @@ status: draft
   impossible. I didn't have the motivation to go on with game because I can
   already guess that I can only make progress when there is a dark moon, which
   will be in about half a month.
+* My 8th session was about 45 minutes and ended with 92% into the game. From
+  the hints given in the game I knew that I had to walk through the dream world
+  again on a full moon but it was not a full moon yet. I walked through the
+  dream world anyways and found that singing bear. He ran into the big tree
+  where I had to fight against him. At the end of the fight I had the option to
+  slay him but I decided to let him go, therefore I got a key to the moon cave
+  where I was able to adjust the moon. Unfortunately, running to the dream world
+  again was a bit repetitive now. I had to summon more spirits and the concept
+  was all too common now, I didn't even need any mushrooms to guide me. But
+  still, after defeating the last end boss, thanks to cool music and story
+  telling I had the feeling as if I had achieved something great.
