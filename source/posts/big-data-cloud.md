@@ -7,6 +7,8 @@ Tags: python, pycon, conferences
 Here are my notes on [Chris Boesch's](https://plus.google.com/110893970871115341770/about)
 talk about analyzing big data in the cloud.
 
+_Edit_: Here is the video: https://www.youtube.com/watch?v=ADjIt6ZbqKU
+
 Chris is a professor teaching many IT subjects at Singapore Management
 University.  He advertises the cool idea to let the students teach themselves
 at their own pace. He will be there to answer questions but he says no one ever

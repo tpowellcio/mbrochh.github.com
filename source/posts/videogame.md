@@ -7,6 +7,8 @@ Tags: python, pycon, conferences
 Here are my notes about [Richard Jones'](https://plus.google.com/100267502615190755251/about)
 keynote with the title "Why we should all write a video game".
 
+_Edit_: Here is the video: https://www.youtube.com/watch?v=jpaSS82Jgbg
+
 He starts with a awesomely geeky overview over the history of game computing.
 It turns out that with an Amiga or C64 you basically boot up into an
 environment that allows you start developing software for that same system.

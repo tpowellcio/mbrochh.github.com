@@ -7,6 +7,8 @@ Tags: python, pycon, conferences
 Here are my notes for [Gavin Bong's](https://twitter.com/chihiro)
 talk about functional programming in Python.
 
+_Edit_: Here is the video: https://www.youtube.com/watch?v=r75X4Vn_E9k
+
 Sorry for the horribly weird notes. I don't know anything about functional
 programming and got lost during the talk more than once. :/
 

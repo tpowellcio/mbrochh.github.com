@@ -7,6 +7,8 @@ Tags: python, pycon, conferences
 Here are my notes on [Anna Martelli Ravenscroft's](https://plus.google.com/108526151904394584422/about)
 closing keynote on "Diversity as a Dependency".
 
+_Edit_: Here is the video: https://www.youtube.com/watch?v=wOpdDxJzNkw
+
 She opens her keynote with a question:
 
 "What do you think of when you hear the word diversity?"

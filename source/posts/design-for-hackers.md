@@ -62,3 +62,5 @@ could be met on an actual website.
 # Part 2: Medium and Form
 
 ## Chapter 3: Medium and Form in Typography
+
+

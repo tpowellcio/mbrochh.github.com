@@ -7,6 +7,8 @@ Tags: python, pycon, conferences
 Here are my live notes on [Alex Martelli's](https://plus.google.com/106273672060692715136/about)
 keynote "Permission for Forgiveness".
 
+_Edit_: Here is the video: https://www.youtube.com/watch?v=lEtyYEKqUlk
+
 He starts with a joke about the font in his presentation which looks like
 Comic Sans but is actually Apple's Chalkboard.
 

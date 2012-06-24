@@ -7,6 +7,8 @@ Tags: python, pycon, conferences
 Here are my notes on [Mathias Stern's](https://twitter.com/#!/mathias_mongo)
 talk about "MongoDB with Python"
 
+_Edit_: Here is the video: https://www.youtube.com/watch?v=hU8rkNT6CVk
+
 MongoDB should make your life easier. You should be able to start coding
 as fast as possible.
 
