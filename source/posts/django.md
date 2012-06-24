@@ -17,10 +17,10 @@ work through [Learn Python The Hard Way](http://learnpythonthehardway.org/)
 and then follow the [Django Tutorial](https://docs.djangoproject.com/en/dev/intro/tutorial01/).
 This should take you between one and two weeks. Afterwards you would have an
 idea about Python and Django but you would not be able to implement the next
-Instagram.
+Facebook.
 
 If you want to make a change in your career and earn real money by creating
-web applications there is a slightly larger answer. After all, this is IT and
+web applications there is a slightly longer answer. After all, this is IT and
 it turns out that it is a bit more complex than just [turning it off an on
 again](https://www.youtube.com/watch?v=p85xwZ_OLX0).
 
@@ -30,13 +30,13 @@ files.  Last week SASS entered the stage and you need to learn that and
 yesterday you heard that Compass on top of SASS is all the rage now. And as
 this component of your stack (Stylesheets) evolves there are three or four
 different packages competing against each other on Github, Bitbucket and Google
-Code. Well, maybe not Google Code.
+Code. Well... maybe not on Google Code but you get the idea.
 
 No need to say that there are several dozen more components that are ten times
 more complex than stylesheets. And they all change, too. Don't get me wrong,
 I'm not complaining. This situation is not bad at all. It is a sign that this
 technology is widely popular, that there is a vibrant community and that you
-can safely bet your future on it.
+can safely bet your financial future on it.
 
 Now if you are the CTO of a startup or just an independant software consultant
 you really really want to know what is going on. I guess during the last four
@@ -57,9 +57,8 @@ online documentations, mailing lists, RSS feeds, issue trackers, wikis, social
 media profiles, newsletters, chat rooms, slides and sometimes really just in
 the head of another developer.
 
-I will describe how you can add all these ressources to your daily routine
-in a way that still allows you to stay focused on your work and to live a
-normal life.
+I will describe how you can add all these ressources to your daily routine in a
+way that allows you to stay focused on your work and to live a normal life.
 
 ## Books
 
