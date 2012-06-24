@@ -82,6 +82,7 @@ perform searches in GMail to find old discussions.&lt;/p&gt;
 &lt;p&gt;Your new inbox should look like this:&lt;/p&gt;
 &lt;p&gt;&lt;img src="./images/mailinglists.png" width="100%" alt="Gmail with multiple inboxes" /&gt;&lt;/p&gt;</summary><category term="google"></category><category term="gmail"></category><category term="lifehacking"></category><category term="productivity"></category></entry><entry><title>PyCon APAC 2012 - Why we should all write a video game</title><link href="http://www.martinbrochhaus.com/2012/06/videogame.html" rel="alternate"></link><updated>2012-06-09T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-09:2012/06/videogame.html</id><summary type="html">&lt;p&gt;Here are my notes about &lt;a href="https://plus.google.com/100267502615190755251/about"&gt;Richard Jones'&lt;/a&gt;
 keynote with the title "Why we should all write a video game".&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Edit&lt;/em&gt;: Here is the video: https://www.youtube.com/watch?v=jpaSS82Jgbg&lt;/p&gt;
 &lt;p&gt;He starts with a awesomely geeky overview over the history of game computing.
 It turns out that with an Amiga or C64 you basically boot up into an
 environment that allows you start developing software for that same system.&lt;/p&gt;
@@ -132,6 +133,7 @@ Just get something done that is fun and playable.&lt;/p&gt;
 &lt;li&gt;Complex is better than complicated&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="python"></category><category term="pycon"></category><category term="conferences"></category></entry><entry><title>PyCon APAC 2012 - Analyzing Big Data in the Cloud</title><link href="http://www.martinbrochhaus.com/2012/06/big-data-cloud.html" rel="alternate"></link><updated>2012-06-08T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-08:2012/06/big-data-cloud.html</id><summary type="html">&lt;p&gt;Here are my notes on &lt;a href="https://plus.google.com/110893970871115341770/about"&gt;Chris Boesch's&lt;/a&gt;
 talk about analyzing big data in the cloud.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Edit&lt;/em&gt;: Here is the video: https://www.youtube.com/watch?v=ADjIt6ZbqKU&lt;/p&gt;
 &lt;p&gt;Chris is a professor teaching many IT subjects at Singapore Management
 University.  He advertises the cool idea to let the students teach themselves
 at their own pace. He will be there to answer questions but he says no one ever
@@ -166,6 +168,7 @@ simple, can be done with a few dozen lines of code.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://www.amazon.com/The-Lean-Startup-Entrepreneurs-Continuous/dp/0307887898?tag=duckduckgo-d-20"&gt;The Lean Startup&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="python"></category><category term="pycon"></category><category term="conferences"></category></entry><entry><title>PyCon APAC 2012 - Diversity as a Dependency</title><link href="http://www.martinbrochhaus.com/2012/06/diversity.html" rel="alternate"></link><updated>2012-06-08T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-08:2012/06/diversity.html</id><summary type="html">&lt;p&gt;Here are my notes on &lt;a href="https://plus.google.com/108526151904394584422/about"&gt;Anna Martelli Ravenscroft's&lt;/a&gt;
 closing keynote on "Diversity as a Dependency".&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Edit&lt;/em&gt;: Here is the video: https://www.youtube.com/watch?v=wOpdDxJzNkw&lt;/p&gt;
 &lt;p&gt;She opens her keynote with a question:&lt;/p&gt;
 &lt;p&gt;"What do you think of when you hear the word diversity?"&lt;/p&gt;
 &lt;p&gt;Someone in the audience says women, and while this causes laughter it is of
@@ -254,6 +257,7 @@ amusing and displays him as quite a weirdo, it definitely is a very very
 precise "doc" about the person. Maybe we just could have docs for people?
 Put them on their GitHub profiles?&lt;/p&gt;</summary><category term="python"></category><category term="pycon"></category><category term="conferences"></category></entry><entry><title>PyCon APAC 2012 - Keynote</title><link href="http://www.martinbrochhaus.com/2012/06/eafp.html" rel="alternate"></link><updated>2012-06-08T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-08:2012/06/eafp.html</id><summary type="html">&lt;p&gt;Here are my live notes on &lt;a href="https://plus.google.com/106273672060692715136/about"&gt;Alex Martelli's&lt;/a&gt;
 keynote "Permission for Forgiveness".&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Edit&lt;/em&gt;: Here is the video: https://www.youtube.com/watch?v=lEtyYEKqUlk&lt;/p&gt;
 &lt;p&gt;He starts with a joke about the font in his presentation which looks like
 Comic Sans but is actually Apple's Chalkboard.&lt;/p&gt;
 &lt;p&gt;We learn about &lt;a href="https://en.wikipedia.org/wiki/Grace_Hopper"&gt;Grace Hopper&lt;/a&gt; who
@@ -320,6 +324,7 @@ try to stand out even when facing seemingly impossible to overcome bureaucratic
 barriers.&lt;/p&gt;
 &lt;p&gt;Slides can be found &lt;a href="http;//www.aleax.it/pycon12ap_fop.pdf"&gt;here&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category><category term="pycon"></category><category term="conferences"></category></entry><entry><title>PyCon APAC 2012 - Functional Programming in Python</title><link href="http://www.martinbrochhaus.com/2012/06/functional.html" rel="alternate"></link><updated>2012-06-08T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-08:2012/06/functional.html</id><summary type="html">&lt;p&gt;Here are my notes for &lt;a href="https://twitter.com/chihiro"&gt;Gavin Bong's&lt;/a&gt;
 talk about functional programming in Python.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Edit&lt;/em&gt;: Here is the video: https://www.youtube.com/watch?v=r75X4Vn_E9k&lt;/p&gt;
 &lt;p&gt;Sorry for the horribly weird notes. I don't know anything about functional
 programming and got lost during the talk more than once. :/&lt;/p&gt;
 &lt;p&gt;Gavin describes key features of functional programming. Given the common
@@ -369,6 +374,7 @@ functions, which is the standard in Haskell.&lt;/p&gt;
 &lt;h2&gt;Headin 2&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://www.google.com"&gt;wwww.google.com&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category><category term="pycon"></category><category term="conferences"></category></entry><entry><title>PyCon APAC 2012 - MongoDB with Python</title><link href="http://www.martinbrochhaus.com/2012/06/mongodb.html" rel="alternate"></link><updated>2012-06-08T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-06-08:2012/06/mongodb.html</id><summary type="html">&lt;p&gt;Here are my notes on &lt;a href="https://twitter.com/#!/mathias_mongo"&gt;Mathias Stern's&lt;/a&gt;
 talk about "MongoDB with Python"&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Edit&lt;/em&gt;: Here is the video: https://www.youtube.com/watch?v=hU8rkNT6CVk&lt;/p&gt;
 &lt;p&gt;MongoDB should make your life easier. You should be able to start coding
 as fast as possible.&lt;/p&gt;
 &lt;p&gt;Starting the database is as simple as creating a &lt;code&gt;~/mongodb/data/&lt;/code&gt; folder
