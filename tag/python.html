@@ -65,7 +65,7 @@
                 
                 
                 
-                    <li ><a href=".././category/Blog.html">Blog</a></li>
+                    <li ><a href=".././category/blog.html">Blog</a></li>
                 
                 </ul></nav>
         </header><!-- /#banner -->
@@ -77,10 +77,10 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././2012/06/videogame.html">PyCon APAC 2012 - Why we should all write a video game</a></h1> 
+                    <h1 class="entry-title"><a href=".././2012/07/circus.html">Daemonize Solr with Circus 0.5 on Webfaction</a></h1> 
                     <footer class="post-info">
-        <abbr class="published" title="2012-06-09T00:00:00">
-                Sat 09 June 2012
+        <abbr class="published" title="2012-07-13T00:00:00">
+                Fri 13 July 2012
         </abbr>
 
         
@@ -88,62 +88,104 @@
                 By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
         </address>
         
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
-<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
+<p>In <a href=".././category/blog.html">Blog</a>. </p>
+<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/solr.html">solr</a><a href=".././tag/circus.html">circus</a></p>
 
 
-</footer><!-- /.post-info --><p>Here are my notes about <a href="https://plus.google.com/100267502615190755251/about">Richard Jones'</a>
-keynote with the title "Why we should all write a video game".</p>
-<p><em>Edit</em>: Here is the video: https://www.youtube.com/watch?v=jpaSS82Jgbg</p>
-<p>He starts with a awesomely geeky overview over the history of game computing.
-It turns out that with an Amiga or C64 you basically boot up into an
-environment that allows you start developing software for that same system.</p>
-<p>Unthinkable how much fun we would have if an XBox or PlayStation would allow
-us to do the same. It turns out, that a MacBook or a Ubuntu machine comes with
-Python installed.</p>
-<p>Forward further into the future where iPads and similar consumer devices might
-rule the world, it is questionable where the future developers should come
-from, since it is almost impossible or at least very very hard and limited to
-tinker with these devices. Another problem is, that even <em>if</em> you figure out
-how to develop for an iPad, you are again bound to strict rules within the
-Apple App Store.</p>
-<h1>Tinkering</h1>
-<p>Lego is great for exploration, as kids can play with architecture and physics.
-Other great projects are <a href="https://github.com/hugs/bitbeam">bitbeam</a>,
-<a href="http://www.arduino.cc/">Arduino</a> and of course the
-<a href="http://www.raspberrypi.org/">Raspberry Pie</a>, which is currently by far the
-cheapest computer in the world. Richard gives some examples of awesome projects
-that people have come up with using these tools.</p>
-<h1>Code Literacy</h1>
-<ul>
-<li><a href="http://codeyear.com/">http://codeyear.com/</a></li>
-</ul>
-<p>Everyone should learn coding, but not to become a professional programmer but
-rather to get insights into all the gadgets that they are using every day.</p>
-<h1>Game programming</h1>
-<ul>
-<li><a href="http://www.ludumdare.com/">http://www.ludumdare.com/</a></li>
-<li><a href="http://www.indiegamethemovie.com/">http://www.indiegamethemovie.com/</a></li>
-<li><a href="http://pyweek.org/">http://pyweek.org/</a></li>
-<li><a href="http://pyopengl.sourceforge.net/">http://pyopengl.sourceforge.net/</a></li>
-<li><a href="http://pyglet.org/">http://pyglet.org/</a></li>
-<li><a href="http://cocos2d.org/">http://cocos2d.org/</a></li>
-<li><a href="http://kivy.org/#home">http://kivy.org/#home</a></li>
-</ul>
-<h1>Getting started</h1>
-<ul>
-<li><a href="http://inventwithpython.com/">Invent your own games with python</a></li>
-<li><a href="http://www.amazon.com/Beginning-Game-Development-Python-Pygame/dp/1590598725?tag=duckduckgo-d-20">Beginning Game Development with Python and Pygame</a></li>
-</ul>
-<p>Participate in PyWeek and just create something! Don't worry about graphics.
-Just get something done that is fun and playable.</p>
-<h1>Some Zen</h1>
-<ul>
-<li>Get things done!</li>
-<li>Refactor later</li>
-<li>Simple is better than complex</li>
-<li>Complex is better than complicated</li>
-</ul><p>There are <a href=".././2012/06/videogame.html#disqus_thread">comments</a>.</p>
+</footer><!-- /.post-info --><p>Since Webfaction increased the available memory from 40 MB to 250 MB I started
+using Solr for more and more of my projects. However, I never really knew how
+to ensure that Solr restarts itself if it crashes and how to easily stop and
+start it in case I have to re-build the <code>schema.xml</code> file.</p>
+<p>Then I found out about <a href="http://circus.readthedocs.org/en/0.5/index.html">Circus 0.5</a>
+and got curious.</p>
+<p>Here is what I did to install zeromq, solr and circus on a Webfaction server:</p>
+<h2>Install zeromq</h2>
+<p>Since we cannot install anything as root, I chose to install zeromq into
+the folder <code>/opt/zeromq-2.2.0</code>:</p>
+<div class="codehilite"><pre><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> $<span class="n">HOME</span><span class="o">/</span><span class="n">src</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> $<span class="n">HOME</span><span class="o">/</span><span class="n">opt</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> $<span class="n">HOME</span><span class="o">/</span><span class="n">etc</span>
+<span class="n">cd</span> $<span class="n">HOME</span><span class="o">/</span><span class="n">src</span>
+<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="p">.</span><span class="n">zeromq</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">zeromq</span><span class="o">-</span>2<span class="p">.</span>2<span class="p">.</span>0<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">zeromq</span><span class="o">-</span>2<span class="p">.</span>2<span class="p">.</span>0<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="n">zeromq</span><span class="o">-</span>2<span class="p">.</span>2<span class="p">.</span>0
+<span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="p">=</span>$<span class="n">HOME</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">zeromq</span><span class="o">-</span>2<span class="p">.</span>2<span class="p">.</span>0
+<span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span>
+</pre></div>
+
+
+<h2>Install Circus</h2>
+<p>Now we can install Circus. I assume that you are using virtualenv and
+virtualenvwrapper:</p>
+<div class="codehilite"><pre><span class="n">workon</span> <span class="n">yourvenv</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">circus</span>
+</pre></div>
+
+
+<p>This will fail because of the custom installation folder of zeromq. Thankfully
+the failed zeromq build will remain in your virtualenv's build folder so that
+you can install it again manually, this time giving it the path to your
+zeromq installation:</p>
+<div class="codehilite"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">Venv</span><span class="o">/</span>
+<span class="n">cd</span> <span class="n">build</span>
+<span class="n">cd</span> <span class="n">pyzmq</span>
+<span class="n">python</span> <span class="n">setup</span><span class="p">.</span><span class="n">py</span> <span class="n">install</span> <span class="o">--</span><span class="n">zmq</span><span class="p">=</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">username</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">zeromq</span><span class="o">-</span>2<span class="p">.</span>2<span class="p">.</span>0
+<span class="n">pip</span> <span class="n">install</span> <span class="n">circus</span>
+</pre></div>
+
+
+<h2>Install Solr</h2>
+<p>Now let's install Solr, following <a href="http://django-haystack.readthedocs.org/en/latest/installing_search_engines.html#solr">this post</a>.
+All you really need to do is download and unpack it:</p>
+<div class="codehilite"><pre><span class="n">cd</span> $<span class="n">HOME</span><span class="o">/</span><span class="n">opt</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">apache</span><span class="p">.</span><span class="n">mirrors</span><span class="p">.</span><span class="n">tds</span><span class="p">.</span><span class="n">net</span><span class="o">/</span><span class="n">lucene</span><span class="o">/</span><span class="n">solr</span><span class="o">/</span>3<span class="p">.</span>5<span class="p">.</span>0<span class="o">/</span><span class="n">apache</span><span class="o">-</span><span class="n">solr</span><span class="o">-</span>3<span class="p">.</span>5<span class="p">.</span>0<span class="p">.</span><span class="n">tgz</span>
+<span class="n">tar</span> <span class="n">xvzf</span> <span class="n">apache</span><span class="o">-</span><span class="n">solr</span><span class="o">-</span>3<span class="p">.</span>5<span class="p">.</span>0<span class="p">.</span><span class="n">tgz</span>
+</pre></div>
+
+
+<h2>Configure Circus</h2>
+<p>Create a <code>circus.ini</code> file somewhere on your file system. The following file
+works great for me, just replace the path to your Solr installation
+(usually just change your username):</p>
+<div class="codehilite"><pre><span class="k">[circus]</span>
+<span class="na">check_delay</span> <span class="o">=</span> <span class="s">5</span>
+<span class="na">endpoint</span> <span class="o">=</span> <span class="s">tcp://127.0.0.1:5555</span>
+
+<span class="k">[watcher:solr]</span>
+<span class="na">cmd</span> <span class="o">=</span> <span class="s">java</span>
+<span class="na">args</span> <span class="o">=</span> <span class="s">-Djava.util.logging.config.file=logging.properties -jar start.jar</span>
+<span class="na">working_dir</span> <span class="o">=</span> <span class="s">/home/&lt;USERNAME&gt;/opt/apache-solr-3.5.0/example</span>
+<span class="na">warmup_delay</span> <span class="o">=</span> <span class="s">0</span>
+<span class="na">numprocesses</span> <span class="o">=</span> <span class="s">1</span>
+<span class="na">singleton</span> <span class="o">=</span> <span class="s">True</span>
+</pre></div>
+
+
+<p>Start circus:</p>
+<div class="codehilite"><pre><span class="n">circusd</span> <span class="n">circus</span><span class="p">.</span><span class="n">ini</span> <span class="o">&amp;</span>
+</pre></div>
+
+
+<p>That's it. On my Webfaction server circus eats 15MB RAM. You can now start and
+stop Solr using <code>circusctl</code>:</p>
+<div class="codehilite"><pre><span class="n">circusctl</span> <span class="n">status</span> <span class="n">solr</span>
+<span class="n">circusctl</span> <span class="n">stop</span> <span class="n">solr</span>
+<span class="n">circusctl</span> <span class="n">start</span> <span class="n">solr</span>
+</pre></div>
+
+
+<p>Or try to kill Solr. Circus will immediately restart it:</p>
+<div class="codehilite"><pre><span class="n">ps</span> <span class="n">aux</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">java</span>
+<span class="n">kill</span> <span class="o">&lt;</span><span class="n">solr</span> <span class="n">PID</span><span class="o">&gt;</span>
+<span class="n">ps</span> <span class="n">aux</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">java</span>
+</pre></div>
+
+
+<p>You need to be careful when starting and stopping Solr. Even though Circus will
+return <code>[OK]</code> the process will remain visible for a few seconds after you
+stopped it. Similarly it will not accept requests for a few seconds after it
+has been started. So if you use start and stop in a shell script or Fabric
+task better insert some <code>sleep</code> seconds before doing anything else with Solr.</p><p>There are <a href=".././2012/07/circus.html#disqus_thread">comments</a>.</p>
                 </article>
                 
             </aside><!-- /#featured -->
@@ -156,6 +198,43 @@ Just get something done that is fun and playable.</p>
         
         
         
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href=".././2012/06/videogame.html" rel="bookmark"
+                           title="Permalink to PyCon APAC 2012 - Why we should all write a video game">PyCon APAC 2012 - Why we should all write a video game</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-06-09T00:00:00">
+                Sat 09 June 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">Blog</a>. </p>
+<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>Here are my notes about <a href="https://plus.google.com/100267502615190755251/about">Richard Jones'</a>
+keynote with the title "Why we should all write a video game".</p>
+<p><em>Edit</em>: Here is the video: https://www.youtube.com/watch?v=jpaSS82Jgbg</p>
+<p>He starts with a awesomely geeky overview over the history of game computing.
+It turns out that with an ...</p>
+                <a class="readmore" href=".././2012/06/videogame.html">read more</a>
+                <p>There are <a href=".././2012/06/videogame.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
         
             
 
@@ -164,7 +243,8 @@ Just get something done that is fun and playable.</p>
             
             <li><article class="hentry">    
                 <header>
-                        <h1><a href=".././2012/06/big-data-cloud.html" rel="bookmark" title="Permalink to PyCon APAC 2012 - Analyzing Big Data in the Cloud">PyCon APAC 2012 - Analyzing Big Data in the Cloud</a></h1>
+                    <h1><a href=".././2012/06/big-data-cloud.html" rel="bookmark"
+                           title="Permalink to PyCon APAC 2012 - Analyzing Big Data in the Cloud">PyCon APAC 2012 - Analyzing Big Data in the Cloud</a></h1>
                 </header>
                 
                 <div class="entry-content">
@@ -178,7 +258,7 @@ Just get something done that is fun and playable.</p>
                 By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
         </address>
         
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>In <a href=".././category/blog.html">Blog</a>. </p>
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
 
 
@@ -194,7 +274,6 @@ University.  He advertises the cool idea to let the students teach ...</p>
             </article></li>
         
         
-        
             
 
         
@@ -202,7 +281,8 @@ University.  He advertises the cool idea to let the students teach ...</p>
             
             <li><article class="hentry">    
                 <header>
-                        <h1><a href=".././2012/06/diversity.html" rel="bookmark" title="Permalink to PyCon APAC 2012 - Diversity as a Dependency">PyCon APAC 2012 - Diversity as a Dependency</a></h1>
+                    <h1><a href=".././2012/06/diversity.html" rel="bookmark"
+                           title="Permalink to PyCon APAC 2012 - Diversity as a Dependency">PyCon APAC 2012 - Diversity as a Dependency</a></h1>
                 </header>
                 
                 <div class="entry-content">
@@ -216,7 +296,7 @@ University.  He advertises the cool idea to let the students teach ...</p>
                 By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
         </address>
         
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>In <a href=".././category/blog.html">Blog</a>. </p>
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
 
 
@@ -233,7 +313,6 @@ closing keynote on "Diversity as a Dependency".</p>
             </article></li>
         
         
-        
             
 
         
@@ -241,7 +320,8 @@ closing keynote on "Diversity as a Dependency".</p>
             
             <li><article class="hentry">    
                 <header>
-                        <h1><a href=".././2012/06/eafp.html" rel="bookmark" title="Permalink to PyCon APAC 2012 - Keynote">PyCon APAC 2012 - Keynote</a></h1>
+                    <h1><a href=".././2012/06/eafp.html" rel="bookmark"
+                           title="Permalink to PyCon APAC 2012 - Keynote">PyCon APAC 2012 - Keynote</a></h1>
                 </header>
                 
                 <div class="entry-content">
@@ -255,7 +335,7 @@ closing keynote on "Diversity as a Dependency".</p>
                 By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
         </address>
         
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>In <a href=".././category/blog.html">Blog</a>. </p>
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
 
 
@@ -272,7 +352,6 @@ Comic Sans but is actually Apple's Chalkboard.</p>
             </article></li>
         
         
-        
             
 
         
@@ -280,7 +359,8 @@ Comic Sans but is actually Apple's Chalkboard.</p>
             
             <li><article class="hentry">    
                 <header>
-                        <h1><a href=".././2012/06/functional.html" rel="bookmark" title="Permalink to PyCon APAC 2012 - Functional Programming in Python">PyCon APAC 2012 - Functional Programming in Python</a></h1>
+                    <h1><a href=".././2012/06/functional.html" rel="bookmark"
+                           title="Permalink to PyCon APAC 2012 - Functional Programming in Python">PyCon APAC 2012 - Functional Programming in Python</a></h1>
                 </header>
                 
                 <div class="entry-content">
@@ -294,7 +374,7 @@ Comic Sans but is actually Apple's Chalkboard.</p>
                 By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
         </address>
         
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>In <a href=".././category/blog.html">Blog</a>. </p>
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
 
 
@@ -311,7 +391,6 @@ programming and got lost during the talk more than once. :/</p>
             </article></li>
         
         
-        
             
 
         
@@ -319,7 +398,8 @@ programming and got lost during the talk more than once. :/</p>
             
             <li><article class="hentry">    
                 <header>
-                        <h1><a href=".././2012/06/lightning.html" rel="bookmark" title="Permalink to PyCon APAC 2012 - My lightning talk, yay!">PyCon APAC 2012 - My lightning talk, yay!</a></h1>
+                    <h1><a href=".././2012/06/lightning.html" rel="bookmark"
+                           title="Permalink to PyCon APAC 2012 - My lightning talk, yay!">PyCon APAC 2012 - My lightning talk, yay!</a></h1>
                 </header>
                 
                 <div class="entry-content">
@@ -333,7 +413,7 @@ programming and got lost during the talk more than once. :/</p>
                 By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
         </address>
         
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>In <a href=".././category/blog.html">Blog</a>. </p>
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
 
 
@@ -348,7 +428,6 @@ programming and got lost during the talk more than once. :/</p>
             </article></li>
         
         
-        
             
 
         
@@ -356,7 +435,8 @@ programming and got lost during the talk more than once. :/</p>
             
             <li><article class="hentry">    
                 <header>
-                        <h1><a href=".././2012/06/mongodb.html" rel="bookmark" title="Permalink to PyCon APAC 2012 - MongoDB with Python">PyCon APAC 2012 - MongoDB with Python</a></h1>
+                    <h1><a href=".././2012/06/mongodb.html" rel="bookmark"
+                           title="Permalink to PyCon APAC 2012 - MongoDB with Python">PyCon APAC 2012 - MongoDB with Python</a></h1>
                 </header>
                 
                 <div class="entry-content">
@@ -370,7 +450,7 @@ programming and got lost during the talk more than once. :/</p>
                 By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
         </address>
         
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>In <a href=".././category/blog.html">Blog</a>. </p>
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
 
 
@@ -387,7 +467,6 @@ as fast as possible.</p>
             </article></li>
         
         
-        
             
 
         
@@ -395,7 +474,8 @@ as fast as possible.</p>
             
             <li><article class="hentry">    
                 <header>
-                        <h1><a href=".././2012/06/pygame.html" rel="bookmark" title="Permalink to PyCon APAC 2012 - Introduction to Game Development">PyCon APAC 2012 - Introduction to Game Development</a></h1>
+                    <h1><a href=".././2012/06/pygame.html" rel="bookmark"
+                           title="Permalink to PyCon APAC 2012 - Introduction to Game Development">PyCon APAC 2012 - Introduction to Game Development</a></h1>
                 </header>
                 
                 <div class="entry-content">
@@ -409,7 +489,7 @@ as fast as possible.</p>
                 By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
         </address>
         
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>In <a href=".././category/blog.html">Blog</a>. </p>
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
 
 
@@ -425,7 +505,6 @@ make sense but I guess that I can give this ...</p>
             </article></li>
         
         
-        
             
 
         
@@ -433,7 +512,8 @@ make sense but I guess that I can give this ...</p>
             
             <li><article class="hentry">    
                 <header>
-                        <h1><a href=".././2012/02/snippets-201202.html" rel="bookmark" title="Permalink to Snippets of February 2012">Snippets of February 2012</a></h1>
+                    <h1><a href=".././2012/02/snippets-201202.html" rel="bookmark"
+                           title="Permalink to Snippets of February 2012">Snippets of February 2012</a></h1>
                 </header>
                 
                 <div class="entry-content">
@@ -447,7 +527,7 @@ make sense but I guess that I can give this ...</p>
                 By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
         </address>
         
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
+<p>In <a href=".././category/blog.html">Blog</a>. </p>
 <p>tags: <a href=".././tag/git.html">git</a><a href=".././tag/python.html">python</a><a href=".././tag/vim.html">vim</a><a href=".././tag/snippets.html">snippets</a></p>
 
 
@@ -465,46 +545,9 @@ moments and release a snippets post every month.</p>
             </article></li>
         
         
-        
+            </ol><!-- /#posts-list -->
             
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                        <h1><a href=".././2012/02/pelican.html" rel="bookmark" title="Permalink to Blogging with Pelican and GitHub">Blogging with Pelican and GitHub</a></h1>
-                </header>
                 
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-02-20T00:00:00">
-                Mon 20 February 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
-        </address>
-        
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
-<p>tags: <a href=".././tag/blogging.html">blogging</a><a href=".././tag/python.html">python</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>While it took me indeed just four lines of code and thirty minutes to setup the
-first version of this blog, I couldn't resist to geek over it for a few more
-hours and create a nice and clean approach to publishing this blog with
-<a href="https://github.com/fabric/fabric">Fabric</a>,
-<a href="https://github.com/ametaireau/pelican">Pelican</a> and
-<a href="http://github.com">GitHub ...</a></p>
-                <a class="readmore" href=".././2012/02/pelican.html">read more</a>
-                <p>There are <a href=".././2012/02/pelican.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            
 <p class="paginator">
     
     Page 1 / 2
@@ -513,9 +556,7 @@ hours and create a nice and clean approach to publishing this blog with
     
 </p>
 
-        
-        
-            </ol><!-- /#posts-list -->
+            
             </section><!-- /#content -->
         
     
