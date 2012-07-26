@@ -42,7 +42,7 @@ of the Command Line Tools and install it from the ``.dmg`` file. This works
 although that version's description is exactly the same, I don't see why the
 latest version does not work. **What the fuck?**
 
-Anyways, the link is here: http://adcdownload.apple.com/ios/ios_simulator__resigned/cltools_mountainliondp2_march12.dmg
+Anyways, the link is here: [cltools_mountainliondp2_march12.dmg](http://adcdownload.apple.com/ios/ios_simulator__resigned/cltools_mountainliondp2_march12.dmg)
 
 ## Re-Install Parallels
 
@@ -50,15 +50,17 @@ I should have started Parallels before upgrading to Mountain Lion, then it
 would have upgraded itself. Instead after logging in to Mountain Lion it
 told me that it found incompatible software which it moved to some graveyard
 folder. No more Parallels for me. Thankfully I could login at the Parallels
-website and retrieve a download link for the latest version here: http://www.parallels.com/download/build/desktop/
+website and retrieve a download link for the latest version [here](http://www.parallels.com/download/build/desktop/)
 
 ## Update zsh
 
 Something in my zsh seemed to be broken because whenever I tried to use TAB
-for folder completion I got this error: ``(eval):setopt:3: no such option: NO_ignoreclosebraces``.
+for folder completion I got this error:
+
+    (eval):setopt:3: no such option: NO_ignoreclosebraces
 
 Updating zsh can only be done if you went through the various what-the-fucks of
-updating your Command Line Tools first, after that it simply is::
+updating your Command Line Tools first, after that it simply is:
 
     brew update
     brew unlink zsh
@@ -74,13 +76,13 @@ anything into my virtualenvs because pip always tried to install it into
 ``/Library/Python/2.7/site-packages/`` which of course resulted in ``Permission
 denied`` errors. ``brew list`` showed that I actually installed Python via
 homebrew for some reason (I assume because of pygame), so I thought it might
-be a good idea to re-install Python::
+be a good idea to re-install Python:
 
     brew uninstall python
     brew install python --framework
 
 After this I ran into several other problems. I'm not sure if this is really
-necessary but setting up my ``PATH`` like this seemed to help::
+necessary but setting up my ``PATH`` like this seemed to help:
 
     export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH
     # Include user's bin folder.
@@ -91,7 +93,7 @@ necessary but setting up my ``PATH`` like this seemed to help::
 ## Re-Install Python stuff
 
 It turned out that I could no longer activate my virtualenvs. Here is what I
-had to do::
+had to do:
 
     sudo easy_install-2.7 pip
     sudo easy_install mercurial
@@ -106,7 +108,7 @@ The last one is wonderful. Somehow Apple ships the Python stuff as compiled
 ``.pyc`` files without the ``.py`` files. I can't remember if it was when I
 tried to use ``pip install`` or ``workon`` but I got that error telling me
 that ``/distutils/__init__.py`` cannot be found. Google told me that I can
-just create that missing ``.py`` file. **What the fuck?**::
+just create that missing ``.py`` file. **What the fuck?**
 
 ## Re-Install Java
 
