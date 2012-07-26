@@ -118,6 +118,13 @@ installing them into each and every virtualenv:
 
 When I tried to start solr a pop-up offered to download the latest Java version.
 
+## Set iTerm to xterm-256color
+
+You might have a problem when running Vim inside of GNU Screen or tmux. It
+might no longer show the correct color theme. This is because iTerm forgot it's
+setting for ``Report Terminal Type``, which you can set at ``Preferences -->
+Profiles --> Default``. Set it back to ``xterm-256color``.
+
 ## That's it
 
 This whole thing took me exactly 4 hours including the writing of this blog
