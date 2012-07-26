@@ -127,18 +127,22 @@ one of the others. <strong>What the fuck?</strong></p>
 of the Command Line Tools and install it from the <code>.dmg</code> file. This works
 although that version's description is exactly the same, I don't see why the
 latest version does not work. <strong>What the fuck?</strong></p>
-<p>Anyways, the link is here: http://adcdownload.apple.com/ios/ios_simulator__resigned/cltools_mountainliondp2_march12.dmg</p>
+<p>Anyways, the link is here: <a href="http://adcdownload.apple.com/ios/ios_simulator__resigned/cltools_mountainliondp2_march12.dmg">cltools_mountainliondp2_march12.dmg</a></p>
 <h2>Re-Install Parallels</h2>
 <p>I should have started Parallels before upgrading to Mountain Lion, then it
 would have upgraded itself. Instead after logging in to Mountain Lion it
 told me that it found incompatible software which it moved to some graveyard
 folder. No more Parallels for me. Thankfully I could login at the Parallels
-website and retrieve a download link for the latest version here: http://www.parallels.com/download/build/desktop/</p>
+website and retrieve a download link for the latest version <a href="http://www.parallels.com/download/build/desktop/">here</a></p>
 <h2>Update zsh</h2>
 <p>Something in my zsh seemed to be broken because whenever I tried to use TAB
-for folder completion I got this error: <code>(eval):setopt:3: no such option: NO_ignoreclosebraces</code>.</p>
+for folder completion I got this error:</p>
+<div class="codehilite"><pre><span class="p">(</span><span class="n">eval</span><span class="p">):</span><span class="n">setopt</span><span class="p">:</span>3<span class="p">:</span> <span class="n">no</span> <span class="n">such</span> <span class="n">option</span><span class="p">:</span> <span class="n">NO_ignoreclosebraces</span>
+</pre></div>
+
+
 <p>Updating zsh can only be done if you went through the various what-the-fucks of
-updating your Command Line Tools first, after that it simply is::</p>
+updating your Command Line Tools first, after that it simply is:</p>
 <div class="codehilite"><pre><span class="n">brew</span> <span class="n">update</span>
 <span class="n">brew</span> <span class="n">unlink</span> <span class="n">zsh</span>
 <span class="n">brew</span> <span class="n">install</span> <span class="n">zsh</span>
@@ -153,14 +157,14 @@ anything into my virtualenvs because pip always tried to install it into
 <code>/Library/Python/2.7/site-packages/</code> which of course resulted in <code>Permission
 denied</code> errors. <code>brew list</code> showed that I actually installed Python via
 homebrew for some reason (I assume because of pygame), so I thought it might
-be a good idea to re-install Python::</p>
+be a good idea to re-install Python:</p>
 <div class="codehilite"><pre><span class="n">brew</span> <span class="n">uninstall</span> <span class="n">python</span>
 <span class="n">brew</span> <span class="n">install</span> <span class="n">python</span> <span class="o">--</span><span class="n">framework</span>
 </pre></div>
 
 
 <p>After this I ran into several other problems. I'm not sure if this is really
-necessary but setting up my <code>PATH</code> like this seemed to help::</p>
+necessary but setting up my <code>PATH</code> like this seemed to help:</p>
 <div class="codehilite"><pre><span class="n">export</span> <span class="n">PATH</span><span class="p">=</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">sbin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">python</span><span class="p">:</span>$<span class="n">PATH</span>
 # <span class="n">Include</span> <span class="n">user</span><span class="o">&#39;</span><span class="n">s</span> <span class="n">bin</span> <span class="n">folder</span><span class="p">.</span>
 <span class="k">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">d</span> &quot;$<span class="n">HOME</span><span class="o">/</span><span class="n">bin</span>&quot; <span class="p">]</span> <span class="p">;</span> <span class="n">then</span>
@@ -171,7 +175,7 @@ necessary but setting up my <code>PATH</code> like this seemed to help::</p>
 
 <h2>Re-Install Python stuff</h2>
 <p>It turned out that I could no longer activate my virtualenvs. Here is what I
-had to do::</p>
+had to do:</p>
 <div class="codehilite"><pre><span class="n">sudo</span> <span class="n">easy_install</span><span class="o">-</span>2<span class="p">.</span>7 <span class="n">pip</span>
 <span class="n">sudo</span> <span class="n">easy_install</span> <span class="n">mercurial</span>
 <span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span>
@@ -187,7 +191,7 @@ had to do::</p>
 <code>.pyc</code> files without the <code>.py</code> files. I can't remember if it was when I
 tried to use <code>pip install</code> or <code>workon</code> but I got that error telling me
 that <code>/distutils/__init__.py</code> cannot be found. Google told me that I can
-just create that missing <code>.py</code> file. <strong>What the fuck?</strong>::</p>
+just create that missing <code>.py</code> file. <strong>What the fuck?</strong></p>
 <h2>Re-Install Java</h2>
 <p>When I tried to start solr a pop-up offered to download the latest Java version.</p>
 <h2>That's it</h2>
