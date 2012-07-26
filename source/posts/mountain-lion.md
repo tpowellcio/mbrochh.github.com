@@ -63,7 +63,7 @@ Updating zsh can only be done if you went through the various what-the-fucks of
 updating your Command Line Tools first, after that it simply is:
 
     brew update
-    brew unlink zsh
+    brew uninstall zsh
     brew install zsh
 
 And fixed my problem right away.
