@@ -101,6 +101,11 @@ installing them into each and every virtualenv:&lt;/p&gt;
 
 &lt;h2&gt;Re-Install Java&lt;/h2&gt;
 &lt;p&gt;When I tried to start solr a pop-up offered to download the latest Java version.&lt;/p&gt;
+&lt;h2&gt;Set iTerm to xterm-256color&lt;/h2&gt;
+&lt;p&gt;You might have a problem when running Vim inside of GNU Screen or tmux. It
+might no longer show the correct color theme. This is because iTerm forgot it's
+setting for &lt;code&gt;Report Terminal Type&lt;/code&gt;, which you can set at &lt;code&gt;Preferences --&amp;gt;
+Profiles --&amp;gt; Default&lt;/code&gt;. Set it back to &lt;code&gt;xterm-256color&lt;/code&gt;.&lt;/p&gt;
 &lt;h2&gt;That's it&lt;/h2&gt;
 &lt;p&gt;This whole thing took me exactly 4 hours including the writing of this blog
 post. It also took so long because I had to reinstall a huge virtualenv over
