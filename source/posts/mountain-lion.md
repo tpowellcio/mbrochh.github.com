@@ -100,15 +100,19 @@ had to do:
     sudo pip install virtualenv
     sduo pip install virtualenvwrapper
     sudo touch /System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/distutils/__init__.py
-    sudo pip install psycopg2
-    sudo pip install mysql-python
-    sudo pip install PIL
 
 The last one is wonderful. Somehow Apple ships the Python stuff as compiled
 ``.pyc`` files without the ``.py`` files. I can't remember if it was when I
 tried to use ``pip install`` or ``workon`` but I got that error telling me
 that ``/distutils/__init__.py`` cannot be found. Google told me that I can
 just create that missing ``.py`` file. **What the fuck?**
+
+I also re-installed some packages that I like to install globally instead of
+installing them into each and every virtualenv:
+
+    sudo pip install psycopg2
+    sudo pip install mysql-python
+    sudo pip install PIL
 
 ## Re-Install Java
 
