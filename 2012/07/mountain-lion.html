@@ -181,9 +181,6 @@ had to do:</p>
 <span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span>
 <span class="n">sduo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenvwrapper</span>
 <span class="n">sudo</span> <span class="n">touch</span> <span class="o">/</span><span class="n">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span>2<span class="p">.</span>7<span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span>7<span class="o">/</span><span class="n">distutils</span><span class="o">/</span><span class="n">__init__</span><span class="p">.</span><span class="n">py</span>
-<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">psycopg2</span>
-<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">mysql</span><span class="o">-</span><span class="n">python</span>
-<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">PIL</span>
 </pre></div>
 
 
@@ -192,6 +189,14 @@ had to do:</p>
 tried to use <code>pip install</code> or <code>workon</code> but I got that error telling me
 that <code>/distutils/__init__.py</code> cannot be found. Google told me that I can
 just create that missing <code>.py</code> file. <strong>What the fuck?</strong></p>
+<p>I also re-installed some packages that I like to install globally instead of
+installing them into each and every virtualenv:</p>
+<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">psycopg2</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">mysql</span><span class="o">-</span><span class="n">python</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">PIL</span>
+</pre></div>
+
+
 <h2>Re-Install Java</h2>
 <p>When I tried to start solr a pop-up offered to download the latest Java version.</p>
 <h2>That's it</h2>
