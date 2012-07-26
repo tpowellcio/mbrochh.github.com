@@ -26,13 +26,13 @@ Here is what I had to do to get my Python projects back up and running:
 With the Mountain Lion upgrade I also upgraded a few other apps, such as XCode.
 Unfortunately it seems that the Command Line Tools I had installed are no
 longer working, so the natural thing to do is, login to the Apple Developer
-site and downlad the latest version. Turns out that version is not compatible
+site and download the latest version. Turns out that version is not compatible
 with OSX 10.8. **What the fuck?**
 
 Some googling revealed that you can install these tools now via XCode by going
 to ``Preferences --> Downloads``. I clicked at the ``Install`` button next to
 ``Command Line Tools`` and had to enter my Apple Developer ID and password.
-After a few seconds Xcode tells me that I don't have access to that download
+After a few seconds XCode tells me that I don't have access to that download
 and that I should contact Apple to resolve access problems. Turns out this is
 a bug in XCode that has been fixed for some but not for others. I'm seem to be
 one of the others. **What the fuck?**
@@ -48,7 +48,7 @@ Anyways, the link is here: http://adcdownload.apple.com/ios/ios_simulator__resig
 
 I should have started Parallels before upgrading to Mountain Lion, then it
 would have upgraded itself. Instead after logging in to Mountain Lion it
-told me that it found incompatible softare which it moved to some graveyard
+told me that it found incompatible software which it moved to some graveyard
 folder. No more Parallels for me. Thankfully I could login at the Parallels
 website and retrieve a download link for the latest version here: http://www.parallels.com/download/build/desktop/
 
@@ -103,14 +103,14 @@ had to do::
     sudo pip install PIL
 
 The last one is wonderful. Somehow Apple ships the Python stuff as compiled
-``.pyc`` files witout the ``.py`` files. I can't remember if it was when I
+``.pyc`` files without the ``.py`` files. I can't remember if it was when I
 tried to use ``pip install`` or ``workon`` but I got that error telling me
 that ``/distutils/__init__.py`` cannot be found. Google told me that I can
 just create that missing ``.py`` file. **What the fuck?**::
 
 ## Re-Install Java
 
-When I tried to start solr a popup offered to download the latest Java version.
+When I tried to start solr a pop-up offered to download the latest Java version.
 
 ## That's it
 

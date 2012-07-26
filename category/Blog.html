@@ -77,8 +77,144 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././2012/07/circus.html">Daemonize Solr with Circus 0.5 on Webfaction</a></h1> 
+                    <h1 class="entry-title"><a href=".././2012/07/mountain-lion.html">Fixing OSX 10.8 after Mountain Lion upgrade</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-07-26T00:00:00">
+                Thu 26 July 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">Blog</a>. </p>
+<p>tags: <a href=".././tag/apple.html">apple</a><a href=".././tag/osx.html">osx</a></p>
+
+
+</footer><!-- /.post-info --><p>Out of habit I opened the AppStore on my MacBook Pro yesterday and found a big
+fat new app in the spotlight: OSX 10.8 Mountain Lion. I paid my 15 bucks,
+downloaded the 4GB over night and started the installation this morning. It
+estimated 34 minutes to install but I don't know if that is true because I went
+back to sleep.</p>
+<p>When I got up, the Mountain Lion login screen greeted me. If this is not an
+awesome upgrade experience, I don't know what is. 15 EUR and three clicks,
+other than that totally unattended update. I cannot see any way how Microsoft
+and Windows will survive the next decade.</p>
+<p>I guess from a user point of view this is the best experience possible. For us
+developers it doesn't look that good, but that is to be expected and the same
+happens on Ubuntu as well, so I won't complain here.</p>
+<p>Here is what I had to do to get my Python projects back up and running:</p>
+<h2>Re-Install Command Line Tools</h2>
+<p>With the Mountain Lion upgrade I also upgraded a few other apps, such as XCode.
+Unfortunately it seems that the Command Line Tools I had installed are no
+longer working, so the natural thing to do is, login to the Apple Developer
+site and download the latest version. Turns out that version is not compatible
+with OSX 10.8. <strong>What the fuck?</strong></p>
+<p>Some googling revealed that you can install these tools now via XCode by going
+to <code>Preferences --&gt; Downloads</code>. I clicked at the <code>Install</code> button next to
+<code>Command Line Tools</code> and had to enter my Apple Developer ID and password.
+After a few seconds XCode tells me that I don't have access to that download
+and that I should contact Apple to resolve access problems. Turns out this is
+a bug in XCode that has been fixed for some but not for others. I'm seem to be
+one of the others. <strong>What the fuck?</strong></p>
+<p>Some more googling revealed that you can download a special, older version
+of the Command Line Tools and install it from the <code>.dmg</code> file. This works
+although that version's description is exactly the same, I don't see why the
+latest version does not work. <strong>What the fuck?</strong></p>
+<p>Anyways, the link is here: http://adcdownload.apple.com/ios/ios_simulator__resigned/cltools_mountainliondp2_march12.dmg</p>
+<h2>Re-Install Parallels</h2>
+<p>I should have started Parallels before upgrading to Mountain Lion, then it
+would have upgraded itself. Instead after logging in to Mountain Lion it
+told me that it found incompatible software which it moved to some graveyard
+folder. No more Parallels for me. Thankfully I could login at the Parallels
+website and retrieve a download link for the latest version here: http://www.parallels.com/download/build/desktop/</p>
+<h2>Update zsh</h2>
+<p>Something in my zsh seemed to be broken because whenever I tried to use TAB
+for folder completion I got this error: <code>(eval):setopt:3: no such option: NO_ignoreclosebraces</code>.</p>
+<p>Updating zsh can only be done if you went through the various what-the-fucks of
+updating your Command Line Tools first, after that it simply is::</p>
+<div class="codehilite"><pre><span class="n">brew</span> <span class="n">update</span>
+<span class="n">brew</span> <span class="n">unlink</span> <span class="n">zsh</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">zsh</span>
+</pre></div>
+
+
+<p>And fixed my problem right away.</p>
+<h2>Re-Install Python</h2>
+<p>I actually did this at the end of my journey because it turned out that even
+though I updated virtualenv and virtualenvwrapper I was not able to install
+anything into my virtualenvs because pip always tried to install it into
+<code>/Library/Python/2.7/site-packages/</code> which of course resulted in <code>Permission
+denied</code> errors. <code>brew list</code> showed that I actually installed Python via
+homebrew for some reason (I assume because of pygame), so I thought it might
+be a good idea to re-install Python::</p>
+<div class="codehilite"><pre><span class="n">brew</span> <span class="n">uninstall</span> <span class="n">python</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">python</span> <span class="o">--</span><span class="n">framework</span>
+</pre></div>
+
+
+<p>After this I ran into several other problems. I'm not sure if this is really
+necessary but setting up my <code>PATH</code> like this seemed to help::</p>
+<div class="codehilite"><pre><span class="n">export</span> <span class="n">PATH</span><span class="p">=</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">sbin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">python</span><span class="p">:</span>$<span class="n">PATH</span>
+# <span class="n">Include</span> <span class="n">user</span><span class="o">&#39;</span><span class="n">s</span> <span class="n">bin</span> <span class="n">folder</span><span class="p">.</span>
+<span class="k">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">d</span> &quot;$<span class="n">HOME</span><span class="o">/</span><span class="n">bin</span>&quot; <span class="p">]</span> <span class="p">;</span> <span class="n">then</span>
+    <span class="n">export</span> <span class="n">PATH</span><span class="p">=</span>&quot;$<span class="n">HOME</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span>$<span class="n">PATH</span>&quot;
+<span class="n">fi</span>
+</pre></div>
+
+
+<h2>Re-Install Python stuff</h2>
+<p>It turned out that I could no longer activate my virtualenvs. Here is what I
+had to do::</p>
+<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">easy_install</span><span class="o">-</span>2<span class="p">.</span>7 <span class="n">pip</span>
+<span class="n">sudo</span> <span class="n">easy_install</span> <span class="n">mercurial</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span>
+<span class="n">sduo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenvwrapper</span>
+<span class="n">sudo</span> <span class="n">touch</span> <span class="o">/</span><span class="n">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span>2<span class="p">.</span>7<span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span>7<span class="o">/</span><span class="n">distutils</span><span class="o">/</span><span class="n">__init__</span><span class="p">.</span><span class="n">py</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">psycopg2</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">mysql</span><span class="o">-</span><span class="n">python</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">PIL</span>
+</pre></div>
+
+
+<p>The last one is wonderful. Somehow Apple ships the Python stuff as compiled
+<code>.pyc</code> files without the <code>.py</code> files. I can't remember if it was when I
+tried to use <code>pip install</code> or <code>workon</code> but I got that error telling me
+that <code>/distutils/__init__.py</code> cannot be found. Google told me that I can
+just create that missing <code>.py</code> file. <strong>What the fuck?</strong>::</p>
+<h2>Re-Install Java</h2>
+<p>When I tried to start solr a pop-up offered to download the latest Java version.</p>
+<h2>That's it</h2>
+<p>This whole thing took me exactly 4 hours including the writing of this blog
+post. It also took so long because I had to reinstall a huge virtualenv over
+and over again until it finally worked without errors. Not too bad actually and
+I found it quite amazing that MySQL and Postgres still worked.</p><p>There are <a href=".././2012/07/mountain-lion.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href=".././2012/07/circus.html" rel="bookmark"
+                           title="Permalink to Daemonize Solr with Circus 0.5 on Webfaction">Daemonize Solr with Circus 0.5 on Webfaction</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-07-13T00:00:00">
                 Fri 13 July 2012
         </abbr>
@@ -92,110 +228,15 @@
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/solr.html">solr</a><a href=".././tag/circus.html">circus</a></p>
 
 
-</footer><!-- /.post-info --><p>Since Webfaction increased the available memory from 40 MB to 250 MB I started
+</footer><!-- /.post-info -->
+                <p>Since Webfaction increased the available memory from 40 MB to 250 MB I started
 using Solr for more and more of my projects. However, I never really knew how
 to ensure that Solr restarts itself if it crashes and how to easily stop and
-start it in case I have to re-build the <code>schema.xml</code> file.</p>
-<p>Then I found out about <a href="http://circus.readthedocs.org/en/0.5/index.html">Circus 0.5</a>
-and got curious.</p>
-<p>Here is what I did to install zeromq, solr and circus on a Webfaction server:</p>
-<h2>Install zeromq</h2>
-<p>Since we cannot install anything as root, I chose to install zeromq into
-the folder <code>/opt/zeromq-2.2.0</code>:</p>
-<div class="codehilite"><pre><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> $<span class="n">HOME</span><span class="o">/</span><span class="n">src</span>
-<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> $<span class="n">HOME</span><span class="o">/</span><span class="n">opt</span>
-<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> $<span class="n">HOME</span><span class="o">/</span><span class="n">etc</span>
-<span class="n">cd</span> $<span class="n">HOME</span><span class="o">/</span><span class="n">src</span>
-<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="p">.</span><span class="n">zeromq</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">zeromq</span><span class="o">-</span>2<span class="p">.</span>2<span class="p">.</span>0<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
-<span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">zeromq</span><span class="o">-</span>2<span class="p">.</span>2<span class="p">.</span>0<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
-<span class="n">cd</span> <span class="n">zeromq</span><span class="o">-</span>2<span class="p">.</span>2<span class="p">.</span>0
-<span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="p">=</span>$<span class="n">HOME</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">zeromq</span><span class="o">-</span>2<span class="p">.</span>2<span class="p">.</span>0
-<span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span>
-</pre></div>
-
-
-<h2>Install Circus</h2>
-<p>Now we can install Circus. I assume that you are using virtualenv and
-virtualenvwrapper:</p>
-<div class="codehilite"><pre><span class="n">workon</span> <span class="n">yourvenv</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">circus</span>
-</pre></div>
-
-
-<p>This will fail because of the custom installation folder of zeromq. Thankfully
-the failed zeromq build will remain in your virtualenv's build folder so that
-you can install it again manually, this time giving it the path to your
-zeromq installation:</p>
-<div class="codehilite"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">Venv</span><span class="o">/</span>
-<span class="n">cd</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="n">pyzmq</span>
-<span class="n">python</span> <span class="n">setup</span><span class="p">.</span><span class="n">py</span> <span class="n">install</span> <span class="o">--</span><span class="n">zmq</span><span class="p">=</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">username</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">zeromq</span><span class="o">-</span>2<span class="p">.</span>2<span class="p">.</span>0
-<span class="n">pip</span> <span class="n">install</span> <span class="n">circus</span>
-</pre></div>
-
-
-<h2>Install Solr</h2>
-<p>Now let's install Solr, following <a href="http://django-haystack.readthedocs.org/en/latest/installing_search_engines.html#solr">this post</a>.
-All you really need to do is download and unpack it:</p>
-<div class="codehilite"><pre><span class="n">cd</span> $<span class="n">HOME</span><span class="o">/</span><span class="n">opt</span>
-<span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">apache</span><span class="p">.</span><span class="n">mirrors</span><span class="p">.</span><span class="n">tds</span><span class="p">.</span><span class="n">net</span><span class="o">/</span><span class="n">lucene</span><span class="o">/</span><span class="n">solr</span><span class="o">/</span>3<span class="p">.</span>5<span class="p">.</span>0<span class="o">/</span><span class="n">apache</span><span class="o">-</span><span class="n">solr</span><span class="o">-</span>3<span class="p">.</span>5<span class="p">.</span>0<span class="p">.</span><span class="n">tgz</span>
-<span class="n">tar</span> <span class="n">xvzf</span> <span class="n">apache</span><span class="o">-</span><span class="n">solr</span><span class="o">-</span>3<span class="p">.</span>5<span class="p">.</span>0<span class="p">.</span><span class="n">tgz</span>
-</pre></div>
-
-
-<h2>Configure Circus</h2>
-<p>Create a <code>circus.ini</code> file somewhere on your file system. The following file
-works great for me, just replace the path to your Solr installation
-(usually just change your username):</p>
-<div class="codehilite"><pre><span class="k">[circus]</span>
-<span class="na">check_delay</span> <span class="o">=</span> <span class="s">5</span>
-<span class="na">endpoint</span> <span class="o">=</span> <span class="s">tcp://127.0.0.1:5555</span>
-
-<span class="k">[watcher:solr]</span>
-<span class="na">cmd</span> <span class="o">=</span> <span class="s">java</span>
-<span class="na">args</span> <span class="o">=</span> <span class="s">-Djava.util.logging.config.file=logging.properties -jar start.jar</span>
-<span class="na">working_dir</span> <span class="o">=</span> <span class="s">/home/&lt;USERNAME&gt;/opt/apache-solr-3.5.0/example</span>
-<span class="na">warmup_delay</span> <span class="o">=</span> <span class="s">0</span>
-<span class="na">numprocesses</span> <span class="o">=</span> <span class="s">1</span>
-<span class="na">singleton</span> <span class="o">=</span> <span class="s">True</span>
-</pre></div>
-
-
-<p>Start circus:</p>
-<div class="codehilite"><pre><span class="n">circusd</span> <span class="n">circus</span><span class="p">.</span><span class="n">ini</span> <span class="o">&amp;</span>
-</pre></div>
-
-
-<p>That's it. On my Webfaction server circus eats 15MB RAM. You can now start and
-stop Solr using <code>circusctl</code>:</p>
-<div class="codehilite"><pre><span class="n">circusctl</span> <span class="n">status</span> <span class="n">solr</span>
-<span class="n">circusctl</span> <span class="n">stop</span> <span class="n">solr</span>
-<span class="n">circusctl</span> <span class="n">start</span> <span class="n">solr</span>
-</pre></div>
-
-
-<p>Or try to kill Solr. Circus will immediately restart it:</p>
-<div class="codehilite"><pre><span class="n">ps</span> <span class="n">aux</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">java</span>
-<span class="n">kill</span> <span class="o">&lt;</span><span class="n">solr</span> <span class="n">PID</span><span class="o">&gt;</span>
-<span class="n">ps</span> <span class="n">aux</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">java</span>
-</pre></div>
-
-
-<p>You need to be careful when starting and stopping Solr. Even though Circus will
-return <code>[OK]</code> the process will remain visible for a few seconds after you
-stopped it. Similarly it will not accept requests for a few seconds after it
-has been started. So if you use start and stop in a shell script or Fabric
-task better insert some <code>sleep</code> seconds before doing anything else with Solr.</p><p>There are <a href=".././2012/07/circus.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
+start it in case I have ...</p>
+                <a class="readmore" href=".././2012/07/circus.html">read more</a>
+                <p>There are <a href=".././2012/07/circus.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
             
@@ -506,45 +547,6 @@ programming and got lost during the talk more than once. :/</p>
 <p><a href="http://www.google.com">wwww.google.com</a></p>
                 <a class="readmore" href=".././2012/06/lightning.html">read more</a>
                 <p>There are <a href=".././2012/06/lightning.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href=".././2012/06/mongodb.html" rel="bookmark"
-                           title="Permalink to PyCon APAC 2012 - MongoDB with Python">PyCon APAC 2012 - MongoDB with Python</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-06-08T00:00:00">
-                Fri 08 June 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/martin-brochhaus.html">Martin Brochhaus</a>
-        </address>
-        
-<p>In <a href=".././category/blog.html">Blog</a>. </p>
-<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pycon.html">pycon</a><a href=".././tag/conferences.html">conferences</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>Here are my notes on <a href="https://twitter.com/#!/mathias_mongo">Mathias Stern's</a>
-talk about "MongoDB with Python"</p>
-<p><em>Edit</em>: Here is the video: https://www.youtube.com/watch?v=hU8rkNT6CVk</p>
-<p>MongoDB should make your life easier. You should be able to start coding
-as fast as possible.</p>
-<p>Starting the database is as simple as creating ...</p>
-                <a class="readmore" href=".././2012/06/mongodb.html">read more</a>
-                <p>There are <a href=".././2012/06/mongodb.html#disqus_thread">comments</a>.</p>
                 </div><!-- /.entry-content -->
             </article></li>
         

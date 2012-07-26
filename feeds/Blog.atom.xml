@@ -1,5 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com/" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/Blog.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com/</id><updated>2012-07-13T00:00:00+08:00</updated><entry><title>Daemonize Solr with Circus 0.5 on Webfaction</title><link href="http://www.martinbrochhaus.com/2012/07/circus.html" rel="alternate"></link><updated>2012-07-13T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-07-13:2012/07/circus.html</id><summary type="html">&lt;p&gt;Since Webfaction increased the available memory from 40 MB to 250 MB I started
+<feed xmlns="http://www.w3.org/2005/Atom"><title>martinbrochhaus.com</title><link href="http://www.martinbrochhaus.com/" rel="alternate"></link><link href="http://www.martinbrochhaus.com/feeds/Blog.atom.xml" rel="self"></link><id>http://www.martinbrochhaus.com/</id><updated>2012-07-26T00:00:00+08:00</updated><entry><title>Fixing OSX 10.8 after Mountain Lion upgrade</title><link href="http://www.martinbrochhaus.com/2012/07/mountain-lion.html" rel="alternate"></link><updated>2012-07-26T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-07-26:2012/07/mountain-lion.html</id><summary type="html">&lt;p&gt;Out of habit I opened the AppStore on my MacBook Pro yesterday and found a big
+fat new app in the spotlight: OSX 10.8 Mountain Lion. I paid my 15 bucks,
+downloaded the 4GB over night and started the installation this morning. It
+estimated 34 minutes to install but I don't know if that is true because I went
+back to sleep.&lt;/p&gt;
+&lt;p&gt;When I got up, the Mountain Lion login screen greeted me. If this is not an
+awesome upgrade experience, I don't know what is. 15 EUR and three clicks,
+other than that totally unattended update. I cannot see any way how Microsoft
+and Windows will survive the next decade.&lt;/p&gt;
+&lt;p&gt;I guess from a user point of view this is the best experience possible. For us
+developers it doesn't look that good, but that is to be expected and the same
+happens on Ubuntu as well, so I won't complain here.&lt;/p&gt;
+&lt;p&gt;Here is what I had to do to get my Python projects back up and running:&lt;/p&gt;
+&lt;h2&gt;Re-Install Command Line Tools&lt;/h2&gt;
+&lt;p&gt;With the Mountain Lion upgrade I also upgraded a few other apps, such as XCode.
+Unfortunately it seems that the Command Line Tools I had installed are no
+longer working, so the natural thing to do is, login to the Apple Developer
+site and download the latest version. Turns out that version is not compatible
+with OSX 10.8. &lt;strong&gt;What the fuck?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Some googling revealed that you can install these tools now via XCode by going
+to &lt;code&gt;Preferences --&amp;gt; Downloads&lt;/code&gt;. I clicked at the &lt;code&gt;Install&lt;/code&gt; button next to
+&lt;code&gt;Command Line Tools&lt;/code&gt; and had to enter my Apple Developer ID and password.
+After a few seconds XCode tells me that I don't have access to that download
+and that I should contact Apple to resolve access problems. Turns out this is
+a bug in XCode that has been fixed for some but not for others. I'm seem to be
+one of the others. &lt;strong&gt;What the fuck?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Some more googling revealed that you can download a special, older version
+of the Command Line Tools and install it from the &lt;code&gt;.dmg&lt;/code&gt; file. This works
+although that version's description is exactly the same, I don't see why the
+latest version does not work. &lt;strong&gt;What the fuck?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Anyways, the link is here: http://adcdownload.apple.com/ios/ios_simulator__resigned/cltools_mountainliondp2_march12.dmg&lt;/p&gt;
+&lt;h2&gt;Re-Install Parallels&lt;/h2&gt;
+&lt;p&gt;I should have started Parallels before upgrading to Mountain Lion, then it
+would have upgraded itself. Instead after logging in to Mountain Lion it
+told me that it found incompatible software which it moved to some graveyard
+folder. No more Parallels for me. Thankfully I could login at the Parallels
+website and retrieve a download link for the latest version here: http://www.parallels.com/download/build/desktop/&lt;/p&gt;
+&lt;h2&gt;Update zsh&lt;/h2&gt;
+&lt;p&gt;Something in my zsh seemed to be broken because whenever I tried to use TAB
+for folder completion I got this error: &lt;code&gt;(eval):setopt:3: no such option: NO_ignoreclosebraces&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Updating zsh can only be done if you went through the various what-the-fucks of
+updating your Command Line Tools first, after that it simply is::&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;brew&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt;
+&lt;span class="n"&gt;brew&lt;/span&gt; &lt;span class="n"&gt;unlink&lt;/span&gt; &lt;span class="n"&gt;zsh&lt;/span&gt;
+&lt;span class="n"&gt;brew&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;zsh&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And fixed my problem right away.&lt;/p&gt;
+&lt;h2&gt;Re-Install Python&lt;/h2&gt;
+&lt;p&gt;I actually did this at the end of my journey because it turned out that even
+though I updated virtualenv and virtualenvwrapper I was not able to install
+anything into my virtualenvs because pip always tried to install it into
+&lt;code&gt;/Library/Python/2.7/site-packages/&lt;/code&gt; which of course resulted in &lt;code&gt;Permission
+denied&lt;/code&gt; errors. &lt;code&gt;brew list&lt;/code&gt; showed that I actually installed Python via
+homebrew for some reason (I assume because of pygame), so I thought it might
+be a good idea to re-install Python::&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;brew&lt;/span&gt; &lt;span class="n"&gt;uninstall&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="n"&gt;brew&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;framework&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After this I ran into several other problems. I'm not sure if this is really
+necessary but setting up my &lt;code&gt;PATH&lt;/code&gt; like this seemed to help::&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;PATH&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sbin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;$&lt;span class="n"&gt;PATH&lt;/span&gt;
+# &lt;span class="n"&gt;Include&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;bin&lt;/span&gt; &lt;span class="n"&gt;folder&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &amp;quot;$&lt;span class="n"&gt;HOME&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&amp;quot; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
+    &lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;PATH&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;$&lt;span class="n"&gt;HOME&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;$&lt;span class="n"&gt;PATH&lt;/span&gt;&amp;quot;
+&lt;span class="n"&gt;fi&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Re-Install Python stuff&lt;/h2&gt;
+&lt;p&gt;It turned out that I could no longer activate my virtualenvs. Here is what I
+had to do::&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;easy_install&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7 &lt;span class="n"&gt;pip&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;easy_install&lt;/span&gt; &lt;span class="n"&gt;mercurial&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;
+&lt;span class="n"&gt;sduo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;virtualenvwrapper&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;touch&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Library&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Frameworks&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;framework&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Versions&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;distutils&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;psycopg2&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;PIL&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The last one is wonderful. Somehow Apple ships the Python stuff as compiled
+&lt;code&gt;.pyc&lt;/code&gt; files without the &lt;code&gt;.py&lt;/code&gt; files. I can't remember if it was when I
+tried to use &lt;code&gt;pip install&lt;/code&gt; or &lt;code&gt;workon&lt;/code&gt; but I got that error telling me
+that &lt;code&gt;/distutils/__init__.py&lt;/code&gt; cannot be found. Google told me that I can
+just create that missing &lt;code&gt;.py&lt;/code&gt; file. &lt;strong&gt;What the fuck?&lt;/strong&gt;::&lt;/p&gt;
+&lt;h2&gt;Re-Install Java&lt;/h2&gt;
+&lt;p&gt;When I tried to start solr a pop-up offered to download the latest Java version.&lt;/p&gt;
+&lt;h2&gt;That's it&lt;/h2&gt;
+&lt;p&gt;This whole thing took me exactly 4 hours including the writing of this blog
+post. It also took so long because I had to reinstall a huge virtualenv over
+and over again until it finally worked without errors. Not too bad actually and
+I found it quite amazing that MySQL and Postgres still worked.&lt;/p&gt;</summary><category term="apple"></category><category term="osx"></category></entry><entry><title>Daemonize Solr with Circus 0.5 on Webfaction</title><link href="http://www.martinbrochhaus.com/2012/07/circus.html" rel="alternate"></link><updated>2012-07-13T00:00:00+08:00</updated><author><name>Martin Brochhaus</name></author><id>tag:www.martinbrochhaus.com,2012-07-13:2012/07/circus.html</id><summary type="html">&lt;p&gt;Since Webfaction increased the available memory from 40 MB to 250 MB I started
 using Solr for more and more of my projects. However, I never really knew how
 to ensure that Solr restarts itself if it crashes and how to easily stop and
 start it in case I have to re-build the &lt;code&gt;schema.xml&lt;/code&gt; file.&lt;/p&gt;
