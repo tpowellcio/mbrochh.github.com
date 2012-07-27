@@ -95,7 +95,7 @@ necessary but setting up my ``PATH`` like this seemed to help:
 It turned out that I could no longer activate my virtualenvs. Here is what I
 had to do:
 
-    sudo easy_install-2.7 pip
+    sudo easy_install pip
     sudo easy_install mercurial
     sudo pip install virtualenv
     sduo pip install virtualenvwrapper
