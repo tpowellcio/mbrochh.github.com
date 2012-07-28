@@ -1189,7 +1189,7 @@ hours and create a nice and clean approach to publishing this blog with
   front page of &lt;a href="http://news.ycombinator.com/"&gt;Hacker News&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I should mention that Pelican is a Python project and therefore it wouldn't
-hurt if you knew a bit about Pyhton. I will assume basic Python knowledge here.
+hurt if you knew a bit about Python. I will assume basic Python knowledge here.
 Let's get started:&lt;/p&gt;
 &lt;h1&gt;Activate GitHub Pages&lt;/h1&gt;
 &lt;p&gt;Just create a new repository called &lt;code&gt;username.github.com&lt;/code&gt;. Whatever you place
