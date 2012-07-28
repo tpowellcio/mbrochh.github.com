@@ -27,7 +27,7 @@ When you follow these instructions, you can expect the following:
   front page of [Hacker News](http://news.ycombinator.com/).
 
 I should mention that Pelican is a Python project and therefore it wouldn't
-hurt if you knew a bit about Pyhton. I will assume basic Python knowledge here.
+hurt if you knew a bit about Python. I will assume basic Python knowledge here.
 Let's get started:
 
 
